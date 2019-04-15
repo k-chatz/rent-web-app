@@ -8,6 +8,10 @@ const routes: Routes = [
     component: AuthenticationComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'login'
+      },
+      {
         path: 'login',
         loadChildren: './login/login.module#LoginModule'
       },

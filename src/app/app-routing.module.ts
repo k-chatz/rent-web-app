@@ -3,12 +3,12 @@ import {Routes, RouterModule} from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'authentication',
+    path: 'auth',
     loadChildren: './authentication/authentication.module#AuthenticationModule',
   },
   {
-    path: 'dashboard',
-    loadChildren: './dashboard/dashboard.module#DashboardModule'
+    path: 'management',
+    loadChildren: './management/management.module#ManagementModule'
   },
   {
     path: 'main',
