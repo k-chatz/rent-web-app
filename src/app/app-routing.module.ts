@@ -1,7 +1,22 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import {AppComponent} from './app.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: AppComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: './main/main.module#MainModule'
+      },
+      {
+        path: 'main',
+        redirectTo: '',
+      }
+    ]
+  },
   {
     path: 'auth',
     loadChildren: './authentication/authentication.module#AuthenticationModule',
@@ -10,14 +25,10 @@ const routes: Routes = [
     path: 'management',
     loadChildren: './management/management.module#ManagementModule'
   },
-  {
-    path: 'main',
-    loadChildren: './main/main.module#MainModule'
-  },
-  {
-    path: '**',
-    redirectTo: '',
-  },
+    {
+      path: '**',
+      redirectTo: '',
+    },
 ];
 
 @NgModule({
