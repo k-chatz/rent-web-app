@@ -11,10 +11,6 @@ const routes: Routes = [
         path: '',
         loadChildren: './main/main.module#MainModule'
       },
-      {
-        path: 'main',
-        redirectTo: '',
-      }
     ]
   },
   {
