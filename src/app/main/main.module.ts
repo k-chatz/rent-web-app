@@ -6,13 +6,20 @@ import {FooterComponent} from './components/footer/footer.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {ThumbnailCarouselComponent} from './components/thumbnail-carousel/thumbnail-carousel.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import {SearchResultsModule} from './modules/search-results/search-results.module';
+import {BsDropdownModule} from 'ngx-bootstrap';
+import {FormsModule} from '@angular/forms';
+import {VarDirective} from '../shared/directives/VarDirective';
 
 @NgModule({
-  declarations: [MainComponent, FooterComponent, NavbarComponent, ThumbnailCarouselComponent],
+  declarations: [MainComponent, FooterComponent, NavbarComponent, ThumbnailCarouselComponent, VarDirective],
   imports: [
     CommonModule,
     AngularFontAwesomeModule,
-    MainRoutingModule
+    MainRoutingModule,
+    SearchResultsModule,
+    BsDropdownModule,
+    FormsModule
   ]
 })
 export class MainModule {

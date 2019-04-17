@@ -10,6 +10,8 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {environment} from '../environments/environment';
 import {AgmCoreModule} from '@agm/core';
+import {HomeService} from './main/modules/home/home.service';
+import {BsDropdownModule} from 'ngx-bootstrap';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -28,6 +30,7 @@ export const createTranslateLoader = (http: HttpClient) => {
     HttpClientModule,
     FormsModule,
     NgZorroAntdModule,
+    BsDropdownModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: environment.googleMapsKey
     }),
@@ -40,7 +43,8 @@ export const createTranslateLoader = (http: HttpClient) => {
     }),
   ],
   providers: [
-    {provide: NZ_I18N, useValue: en_US}
+    {provide: NZ_I18N, useValue: en_US},
+    HomeService
   ],
   bootstrap: [AppComponent]
 })

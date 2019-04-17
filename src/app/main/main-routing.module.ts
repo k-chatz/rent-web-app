@@ -15,6 +15,10 @@ const routes: Routes = [
         path: 'profile',
         loadChildren: './modules/profile/profile.module#ProfileModule',
       },
+      {
+        path: 'search',
+        loadChildren: './modules/search-results/search-results.module#SearchResultsModule',
+      },
     ]
   },
 ];

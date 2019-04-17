@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-expand-xl navbar-dark">
+<nav *ngVar="currentUser$ | async as user" class="navbar navbar-inverse navbar-expand-xl navbar-dark">
   <div class="navbar-header d-flex col">
     <a class="navbar-brand" href="#"><i class="fa fa-cube"></i>Rent<b>Cube</b></a>
     <button type="button" data-target="#navbarCollapse" data-toggle="collapse"
@@ -12,22 +12,48 @@
   <!-- Collection of nav links, forms, and other content for toggling -->
   <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
     <ul class="nav navbar-nav navbar-right ml-auto">
-      <li class="nav-item"><a routerLink="/management" class="nav-link"><i class="fa fa-futbol-o"></i><span>Rent your property</span></a>
+
+      <li class="nav-item">
+        <a routerLink="/management" class="nav-link">
+          <i class="fa fa-futbol-o"></i>
+          <span>Rent your property</span>
+        </a>
       </li>
-      <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-envelope"></i><span>Messages</span></a></li>
-      <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-bell"></i><span>Notifications</span></a></li>
-      <li class="nav-item dropdown">
-        <a  routerLink="/profile"  data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img
-          src="https://www.tutorialrepublic.com/examples/images/avatar/3.jpg" class="avatar" alt="Avatar"> Antonio
-          Moreno <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a routerLink="/profile" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a></li>
-          <li><a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a></li>
-          <li><a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a></li>
+
+      <li *ngIf="user" class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fa fa-envelope"></i>
+          <span>Messages</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="fa fa-bell"></i>
+          <span>Notifications</span>
+        </a>
+      </li>
+
+      <li *ngIf="user" class="btn-group" dropdown>
+        <a id="button-basic" dropdownToggle class="nav-link dropdown-toggle user-action"
+           aria-controls="dropdown-basic">
+          <img src="{{user.photoUrl}}" class="avatar" alt="Avatar">
+          {{user.name}}&nbsp;{{user.surname}}
+          <b class="caret"></b>
+        </a>
+        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+            role="menu" aria-labelledby="button-basic">
+          <li role="menuitem"><a class="dropdown-item" href="#"><i class="fa fa-user-o"></i> Profile</a></li>
+          <li role="menuitem"><a class="dropdown-item" href="#"><i class="fa fa-calendar-o"></i> Calendar</a></li>
+          <li role="menuitem"><a class="dropdown-item" href="#"><i class="fa fa-sliders"></i> Settings</a></li>
           <li class="divider dropdown-divider"></li>
-          <li><a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a></li>
+          <li role="menuitem"><a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i> Logout</a>
+          </li>
         </ul>
       </li>
+
+      <li *ngIf="!user" class="nav-item"><a href="#" class="nav-link"><i class="fa fa-sign-in"></i><span>Sign in / Booking</span></a>
+      </li>
+
     </ul>
   </div>
 </nav>
