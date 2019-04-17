@@ -5,8 +5,18 @@ import {MainComponent} from './main.component';
 const routes: Routes = [
   {
     path: '',
-    component: MainComponent
-  }
+    component: MainComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: './modules/home/home.module#HomeModule',
+      },
+      {
+        path: 'profile',
+        loadChildren: './modules/profile/profile.module#ProfileModule',
+      },
+    ]
+  },
 ];
 
 @NgModule({

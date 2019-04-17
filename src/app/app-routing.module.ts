@@ -21,10 +21,10 @@ const routes: Routes = [
     path: 'management',
     loadChildren: './management/management.module#ManagementModule'
   },
-    {
-      path: '**',
-      redirectTo: '',
-    },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];
 
 @NgModule({
