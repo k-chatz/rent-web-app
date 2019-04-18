@@ -32,34 +32,17 @@
               }
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.css",
-
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "node_modules/font-awesome/css/font-awesome.css",
-              "node_modules/datatables.net-dt/css/jquery.dataTables.css",
-              "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.css",
-              "node_modules/datatables.net-responsive-dt/css/responsive.dataTables.css",
-              "node_modules/jquery-datatables-checkboxes/css/dataTables.checkboxes.css"
+              "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.js",
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.js",
-              "node_modules/popper.js/dist/popper.js",
-              "node_modules/jquery.easing/jquery.easing.js",
-
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/jquery/dist/jquery.js",
-              "node_modules/datatables.net/js/jquery.dataTables.js",
-              "node_modules/jszip/dist/jszip.js",
-              "node_modules/datatables.net-responsive/js/dataTables.responsive.js",
-              "node_modules/datatables.net-buttons/js/dataTables.buttons.js",
-              "node_modules/datatables.net-buttons/js/buttons.colVis.js",
-              "node_modules/datatables.net-buttons/js/buttons.flash.js",
-              "node_modules/datatables.net-buttons/js/buttons.html5.js",
-              "node_modules/datatables.net-buttons/js/buttons.print.js",
-              "node_modules/jquery-datatables-checkboxes/js/dataTables.checkboxes.js"
-
+              "node_modules/jquery.easing/jquery.easing.js",
+              "node_modules/popper.js/dist/umd/popper.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.js"
             ],
             "es5BrowserSupport": true
           },

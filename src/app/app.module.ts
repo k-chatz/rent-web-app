@@ -44,7 +44,7 @@ export const createTranslateLoader = (http: HttpClient) => {
   ],
   providers: [
     {provide: NZ_I18N, useValue: en_US},
-    HomeService
+    HomeService,
   ],
   bootstrap: [AppComponent]
 })

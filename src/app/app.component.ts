@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {GuardsCheckEnd, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 
@@ -10,8 +10,10 @@ import {TranslateService} from '@ngx-translate/core';
 export class AppComponent {
   showLoadingIndicator = true;
 
-  constructor(private translate: TranslateService,
-              private router: Router) {
+  constructor(
+    private translate: TranslateService,
+    private router: Router,
+  ) {
 
     translate.setDefaultLang('gr');
     this.router.events.subscribe((routerEvent: any) => {
@@ -45,4 +47,6 @@ export class AppComponent {
       }
     });
   }
+
+
 }

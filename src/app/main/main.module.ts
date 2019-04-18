@@ -8,18 +8,29 @@ import {ThumbnailCarouselComponent} from './components/thumbnail-carousel/thumbn
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {SearchResultsModule} from './modules/search-results/search-results.module';
 import {BsDropdownModule} from 'ngx-bootstrap';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {VarDirective} from '../shared/directives/VarDirective';
+import {NgZorroAntdModule} from 'ng-zorro-antd';
+import {ConnectFormComponent} from './components/connect-form/connect-form.component';
 
 @NgModule({
-  declarations: [MainComponent, FooterComponent, NavbarComponent, ThumbnailCarouselComponent, VarDirective],
+  declarations: [
+    MainComponent,
+    FooterComponent,
+    NavbarComponent,
+    ThumbnailCarouselComponent,
+    VarDirective,
+    ConnectFormComponent
+  ],
   imports: [
     CommonModule,
     AngularFontAwesomeModule,
     MainRoutingModule,
     SearchResultsModule,
     BsDropdownModule,
-    FormsModule
+    FormsModule,
+    NgZorroAntdModule,
+    ReactiveFormsModule
   ]
 })
 export class MainModule {

@@ -8,6 +8,8 @@ import {AuthService} from '../../../authentication/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
+  isVisible = false;
+
   constructor(
     private auth: AuthService
   ) {
@@ -20,5 +22,20 @@ export class NavbarComponent implements OnInit {
     return this.auth.currentUser$;
   }
 
+
+  showSignInModal() {
+    this.isVisible = true;
+  }
+
+
+  handleOk(): void {
+    console.log('Button ok clicked!');
+    this.isVisible = false;
+  }
+
+  handleCancel(): void {
+    console.log('Button cancel clicked!');
+    this.isVisible = false;
+  }
 
 }

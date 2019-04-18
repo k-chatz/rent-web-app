@@ -1,0 +1,81 @@
+<div class="container" id="container">
+  <div class="form-container sign-up-container">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit(signUpForm.value)">
+      <h1>Create Account</h1>
+      <div class="social-container">
+        <a href="#" class="social">
+          <i class="fa fa-facebook"></i>
+        </a>
+        <a href="#" class="social">
+          <i class="fa fa-google-plus"></i>
+        </a>
+        <a href="#" class="social">
+          <i class="fa fa-linkedin"></i>
+        </a>
+      </div>
+      <span>or use your email for registration</span>
+      <input
+        type="text"
+        placeholder="Username"
+        class="form-control"
+        formControlName="username"
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        formControlName="email"
+      />
+      <div formGroupName="passwordGroup">
+        <input
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+        <input
+          type="password"
+          placeholder="Confirm password"
+          formControlName="confirmPassword"
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-outline-dark"
+      >Sign Up
+      </button>
+    </form>
+  </div>
+  <div class="form-container sign-in-container">
+    <form>
+      <h1>Sign in</h1>
+      <div class="social-container">
+        <a href="#" class="social">
+          <i class="fa fa-facebook"></i></a>
+        <a href="#" class="social">
+          <i class="fa fa-google-plus"></i>
+        </a>
+        <a href="#" class="social">
+          <i class="fa fa-linkedin"></i>
+        </a>
+      </div>
+      <span>or use your account</span>
+      <input type="email" placeholder="Email"/>
+      <input type="password" placeholder="Password"/>
+      <a href="#">Forgot your password?</a>
+      <button type="button" class="btn btn-outline-dark">Sign In</button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>Welcome Back!</h1>
+        <p>To keep connected with us please login with your personal info</p>
+        <button type="button" class="btn btn-outline-dark" (click)="signIn($event)" id="signIn">Sign In</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>Hello, Visitor!</h1>
+        <p>Enter your personal details and start journey with us</p>
+        <button type="button" class="btn btn-outline-dark" (click)="signUp($event)" id="signUp">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>

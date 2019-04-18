@@ -22,6 +22,7 @@ export class AuthService {
     const x = this.http.get('https://jsonplaceholder.typicode.com/users/1').pipe(
       map((data: any) => {
         return {
+          ...data,
           id: 1,
           email: data.email,
           name: 'kostas',
@@ -34,7 +35,7 @@ export class AuthService {
       console.log(user);
       this.currentUser$ = new Observable(observer => {
         observer.next(user);
-        observer.complete();
+       // observer.complete();
       });
     });
   }
@@ -42,9 +43,7 @@ export class AuthService {
   signOut() {
     this.currentUser$ = new Observable(observer => {
       observer.next(null);
-      observer.complete();
+      // observer.complete();
     });
   }
-
-
 }

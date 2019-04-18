@@ -5,12 +5,14 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import {HomeService} from './home.service';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import {MainModule} from '../../main.module';
 
 @NgModule({
   declarations: [HomeComponent, SearchBarComponent],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    MainModule
   ],
   providers: [
     HomeService

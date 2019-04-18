@@ -37,23 +37,56 @@
         <a id="button-basic" dropdownToggle class="nav-link dropdown-toggle user-action"
            aria-controls="dropdown-basic">
           <img src="{{user.photoUrl}}" class="avatar" alt="Avatar">
-          {{user.name}}&nbsp;{{user.surname}}
-          <b class="caret"></b>
+          <!--<b class="caret"></b>-->
         </a>
-        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right"
             role="menu" aria-labelledby="button-basic">
-          <li role="menuitem"><a class="dropdown-item" href="#"><i class="fa fa-user-o"></i> Profile</a></li>
-          <li role="menuitem"><a class="dropdown-item" href="#"><i class="fa fa-calendar-o"></i> Calendar</a></li>
-          <li role="menuitem"><a class="dropdown-item" href="#"><i class="fa fa-sliders"></i> Settings</a></li>
-          <li class="divider dropdown-divider"></li>
-          <li role="menuitem"><a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i> Logout</a>
+
+          <li role="menuitem">
+            <a class="dropdown-item" routerLink="/profile">
+              <i class="fa fa-user-o"></i> {{user.name}}&nbsp;{{user.surname}}</a>
+          </li>
+
+          <li class="divider dropdown-divider">
+
+          <li role="menuitem">
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-calendar-o"></i> Calendar</a>
+          </li>
+
+          <li role="menuitem">
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-sliders"></i> Settings
+            </a>
+          </li>
+          <li class="divider dropdown-divider">
+
+          </li>
+          <li role="menuitem">
+            <a class="dropdown-item" href="#">
+              <i class="fa fa-sign-out"></i> Logout
+            </a>
           </li>
         </ul>
       </li>
 
-      <li *ngIf="!user" class="nav-item"><a href="#" class="nav-link"><i class="fa fa-sign-in"></i><span>Sign in / Booking</span></a>
+      <li *ngIf="!user" class="nav-item">
+        <a class="nav-link" data-toggle="modal" data-target="#connectModal">
+          <i class="fa fa-sign-in"></i>
+          <span>Sign in / Booking</span>
+        </a>
       </li>
-
     </ul>
   </div>
 </nav>
+
+<!-- Modal -->
+<div class="modal fade" id="connectModal"
+     tabindex="-1" role="dialog"
+     aria-labelledby="connectModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog  modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <app-connect-form></app-connect-form>
+    </div>
+  </div>
+</div>
