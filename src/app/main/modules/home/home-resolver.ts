@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Resolve, RouterStateSnapshot, ActivatedRouteSnapshot, Router} from '@angular/router';
 import {Observable, of} from 'rxjs';
-import {HomeService} from './home.service';
 import {delay} from 'rxjs/operators';
 
 @Injectable({
@@ -9,8 +8,7 @@ import {delay} from 'rxjs/operators';
 })
 export class HomeResolver implements Resolve<Observable<any>> {
   constructor(
-    private router: Router,
-    private service: HomeService
+    private router: Router
   ) {
   }
 

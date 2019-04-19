@@ -44,7 +44,7 @@
 
           <li role="menuitem">
             <a class="dropdown-item" routerLink="/profile">
-              <i class="fa fa-user-o"></i> {{user.name}}&nbsp;{{user.surname}}</a>
+              <i class="fa fa-user-o"></i> {{user.firstName}}&nbsp;{{user.lastName}}</a>
           </li>
 
           <li class="divider dropdown-divider">
@@ -63,7 +63,7 @@
 
           </li>
           <li role="menuitem">
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="#" (click)="logout()">
               <i class="fa fa-sign-out"></i> Logout
             </a>
           </li>
@@ -87,6 +87,9 @@
   <div class="modal-dialog  modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <app-connect-form></app-connect-form>
+
+
+
     </div>
   </div>
 </div>

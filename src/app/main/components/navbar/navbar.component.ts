@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../../authentication/auth.service';
+import {AuthenticationService} from '../../../shared/services/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit {
   isVisible = false;
 
   constructor(
-    private auth: AuthService
+    private auth: AuthenticationService
   ) {
   }
 
@@ -38,4 +38,7 @@ export class NavbarComponent implements OnInit {
     this.isVisible = false;
   }
 
+  logout() {
+    this.auth.logout();
+  }
 }

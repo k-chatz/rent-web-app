@@ -5,13 +5,15 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {en_US, NgZorroAntdModule, NZ_I18N} from 'ng-zorro-antd';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {environment} from '../environments/environment';
 import {AgmCoreModule} from '@agm/core';
-import {HomeService} from './main/modules/home/home.service';
 import {BsDropdownModule} from 'ngx-bootstrap';
+import {JwtInterceptor} from './shared/interceptors/jwt.interceptor';
+import {ErrorInterceptor} from './shared/interceptors/error.interceptor';
+import {mockProvider} from './shared/interceptors/mock.interceptor';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -44,7 +46,9 @@ export const createTranslateLoader = (http: HttpClient) => {
   ],
   providers: [
     {provide: NZ_I18N, useValue: en_US},
-    HomeService,
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    mockProvider
   ],
   bootstrap: [AppComponent]
 })

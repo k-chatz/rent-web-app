@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {AuthService} from '../../../authentication/auth.service';
+import {AuthenticationService} from '../../../shared/services/authentication.service';
+import {first} from 'rxjs/internal/operators/first';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private auth: AuthService
+    private auth: AuthenticationService
   ) {
   }
 
@@ -22,10 +23,18 @@ export class HomeComponent implements OnInit {
   }
 
   login() {
-    this.auth.signIn();
+    this.auth.login('test', 'test')
+      .pipe(first())
+      .subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.error(error);
+        });
   }
 
   logout() {
-    this.auth.signOut();
+    this.auth.logout();
   }
 }
