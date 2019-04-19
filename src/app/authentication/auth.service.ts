@@ -16,6 +16,7 @@ export class AuthService {
   constructor(
     private http: HttpClient
   ) {
+    this.currentUser$ = of(null);
   }
 
   signIn() {
@@ -35,7 +36,7 @@ export class AuthService {
       console.log(user);
       this.currentUser$ = new Observable(observer => {
         observer.next(user);
-       // observer.complete();
+        // observer.complete();
       });
     });
   }
