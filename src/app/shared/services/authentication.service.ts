@@ -25,27 +25,29 @@ export class AuthenticationService {
     return this.currentUserSubject$.value;
   }
 
-  login(username: string, password: string) {
+  login(email: string, password: string) {
     console.log('login');
-    return this.http.post<any>(`/users/authenticate`, {username, password})
-      .pipe(map(user => {
-        console.log('user', user);
-        // login successful if there's a jwt token in the response
-        if (user && user.token) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
+    return this.http.post<any>(`/users/authenticate`, {email, password})
+      .pipe(
+        map(user => {
+          console.log('user', user);
+          // login successful if there's a jwt token in the response
+          if (user && user.token) {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('currentUser', JSON.stringify(user));
 
-          console.log('getRandomColor', getRandomColor());
+            console.log('getRandomColor', getRandomColor());
 
-          this.currentUserSubject$.next({
-            ...user,
-            photoUrl: user.photoUrl ? user.photoUrl : 'https://ui-avatars.com/api/?name=' +
-              user.firstName + '+' + user.lastName +
-              '&rounded=true&%20bold=true&background=' + getRandomColor()
-          });
-        }
-        return user;
-      }));
+            this.currentUserSubject$.next({
+              ...user,
+              photoUrl: user.photoUrl ? user.photoUrl : 'https://ui-avatars.com/api/?name=' +
+                user.firstName + '+' + user.lastName +
+                '&rounded=true&%20bold=true&background=' + getRandomColor()
+            });
+          }
+          return user;
+        })
+      );
   }
 
   logout() {

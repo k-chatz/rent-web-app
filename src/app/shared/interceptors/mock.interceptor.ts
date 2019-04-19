@@ -10,7 +10,7 @@ export class MockInterceptor implements HttpInterceptor {
     const users: User[] = [
       {id: 1, username: 'test', email: 'test@test.com', photoUrl: '', password: 'test', firstName: 'Test', lastName: 'User'},
       {
-        id: 2, username: 'kwstarikanos', email: 'kwstarikanos@gmail.com', photoUrl: '', password: '12345', firstName: 'Κώστας',
+        id: 2, username: 'kwstarikanos', email: 'kwstarikanos@gmail.com', photoUrl: '', password: '123456', firstName: 'Κώστας',
         lastName: 'Χατζόπουλος'
       }
     ];
@@ -24,7 +24,8 @@ export class MockInterceptor implements HttpInterceptor {
 
         // authenticate - public
         if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
-          const user = users.find(x => x.username === request.body.username && x.password === request.body.password);
+          console.log('request', request);
+          const user = users.find(x => x.email === request.body.email && x.password === request.body.password);
           if (!user) {
             return error({
               error: {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../../shared/services/authentication.service';
 import {first} from 'rxjs/operators';
@@ -28,6 +28,7 @@ function passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null 
   styleUrls: ['./connect-form.component.scss']
 })
 export class ConnectFormComponent implements OnInit {
+  @ViewChild('loginFormEmail') loginFormEmail: ElementRef;
   loginProgress = false;
   registerProgress = false;
   loginForm: FormGroup;
@@ -73,6 +74,7 @@ export class ConnectFormComponent implements OnInit {
 
   onLoginSubmit(data: LoginForm) {
     console.log(data);
+    this.loginForm.markAsPristine();
     this.loginProgress = true;
     this.auth.login(data.email, data.password)
       .pipe(first())
@@ -80,10 +82,14 @@ export class ConnectFormComponent implements OnInit {
         d => {
           console.log(d);
           this.loginProgress = false;
+          document.getElementById('connectModal').click();
         },
         error => {
           console.error(error);
           this.loginProgress = false;
+          this.loginForm.get('email').setValue('');
+          this.loginFormEmail.nativeElement.focus();
+          this.loginForm.get('password').setValue('');
         });
   }
 
