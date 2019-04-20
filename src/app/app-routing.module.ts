@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {AppComponent} from './app.component';
+import {AuthorizationGuard} from './shared/guards/authorization.guard';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
   },
   {
     path: 'management',
-    loadChildren: './management/management.module#ManagementModule'
+    loadChildren: './management/management.module#ManagementModule',
+    canActivate: [AuthorizationGuard]
   },
   {
     path: '**',

@@ -1,6 +1,6 @@
 <nav *ngVar="currentUser$ | async as user" class="navbar navbar-inverse navbar-expand-xl navbar-dark">
   <div class="navbar-header d-flex col">
-    <a class="navbar-brand" href="#"><i class="fa fa-cube"></i>Rent<b>Cube</b></a>
+    <a class="navbar-brand" routerLink="/"><i class="fa fa-cube"></i>Rent<b>Cube</b></a>
     <button type="button" data-target="#navbarCollapse" data-toggle="collapse"
             class="navbar-toggle navbar-toggler ml-auto">
       <span class="navbar-toggler-icon"></span>
@@ -63,7 +63,7 @@
 
           </li>
           <li role="menuitem">
-            <a class="dropdown-item" href="#" (click)="logout()">
+            <a class="dropdown-item" routerLink="/" (click)="logout()">
               <i class="fa fa-sign-out"></i> Logout
             </a>
           </li>

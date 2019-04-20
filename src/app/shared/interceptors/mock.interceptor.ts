@@ -3,15 +3,31 @@ import {HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP
 import {Observable, of, throwError} from 'rxjs';
 import {delay, mergeMap, materialize, dematerialize} from 'rxjs/operators';
 import {User} from '../models/user';
+import {Role} from '../models/role';
 
 @Injectable()
 export class MockInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const users: User[] = [
-      {id: 1, username: 'test', email: 'test@test.com', photoUrl: '', password: 'test', firstName: 'Test', lastName: 'User'},
       {
-        id: 2, username: 'kwstarikanos', email: 'kwstarikanos@gmail.com', photoUrl: '', password: '123456', firstName: 'Κώστας',
-        lastName: 'Χατζόπουλος'
+        id: 1,
+        username: 'test',
+        email: 'test@test.com',
+        photoUrl: '',
+        password: 'test',
+        firstName: 'Test',
+        lastName: 'User',
+        role: Role.User
+      },
+      {
+        id: 2,
+        username: 'kwstarikanos',
+        email: 'kwstarikanos@gmail.com',
+        photoUrl: '',
+        password: '123456',
+        firstName: 'Κώστας',
+        lastName: 'Χατζόπουλος',
+        role: Role.Admin
       }
     ];
 

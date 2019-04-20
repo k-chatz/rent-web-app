@@ -23,7 +23,7 @@
       </div>
       <button
         [disabled]="!registerForm.valid || registerProgress || registerForm.untouched"
-        type="submit" class="btn btn-outline-dark">
+        type="submit" class="btn btn-outline-dark" style="margin-top: 10px">
         Sign Up
         <fa *ngIf="registerProgress" name="cog" animation="spin"></fa>
         <fa *ngIf="!registerProgress" name="sign-in"></fa>

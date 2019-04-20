@@ -42,6 +42,7 @@ export class ConnectFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('connect form ng on init');
     this.loginForm = this.lfb.group(
       {
         email: ['', [Validators.required, Validators.email]],
@@ -82,19 +83,24 @@ export class ConnectFormComponent implements OnInit {
         d => {
           console.log(d);
           this.loginProgress = false;
+          this.loginForm.get('email').setValue('');
+          this.loginForm.get('password').setValue('');
           document.getElementById('connectModal').click();
         },
         error => {
           console.error(error);
           this.loginProgress = false;
           this.loginForm.get('email').setValue('');
-          this.loginFormEmail.nativeElement.focus();
           this.loginForm.get('password').setValue('');
+          this.loginFormEmail.nativeElement.focus();
         });
   }
 
   onRegisterSubmit(data: any) {
     console.log(data);
-
+    this.registerForm.get('username').setValue('');
+    this.registerForm.get('email').setValue('');
+    this.registerForm.get('passwordGroup').get('password').setValue('');
+    this.registerForm.get('passwordGroup').get('confirmPassword').setValue('');
   }
 }
