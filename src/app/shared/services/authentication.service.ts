@@ -36,19 +36,17 @@ export class AuthenticationService {
           // login successful if there's a jwt token in the response
           if (data && data.access.token) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('session', JSON.stringify(data));
-            console.log('getRandomColor', getRandomColor());
-            this.sessionSubject$.next(
-              {
-                access: data.access,
-                user: {
-                  ...data.user,
-                  role: data.user.role.name,
-                  photoUrl: 'https://ui-avatars.com/api/?name=' + data.user.name + '+' + data.user.surname +
-                    '&rounded=true&%20bold=true&background=' + getRandomColor()
-                }
+            const session = {
+              access: data.access,
+              user: {
+                ...data.user,
+                role: data.user.role.name,
+                photoUrl: 'https://ui-avatars.com/api/?name=' + data.user.name + '+' + data.user.surname +
+                  '&rounded=true&%20bold=true&background=' + getRandomColor()
               }
-            );
+            };
+            localStorage.setItem('session', JSON.stringify(session));
+            this.sessionSubject$.next(session);
           }
           return data;
         })

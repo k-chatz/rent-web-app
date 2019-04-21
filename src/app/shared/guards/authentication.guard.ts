@@ -11,13 +11,14 @@ export class AuthenticationGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const currentUser = this.authenticationService.session;
-    if (currentUser) {
-      console.log('currentUser', currentUser);
+    const session = this.authenticationService.session;
+    if (session) {
+      if (route.data.roles && route.data.roles.indexOf(session.user.role) === -1) {
+        this.router.navigate(['/auth/login'], {queryParams: {returnUrl: state.url}});
+        return false;
+      }
       return true;
     }
-
-    // not logged in so redirect to login page with the return url
     this.router.navigate(['/auth/login'], {queryParams: {returnUrl: state.url}});
     return false;
   }

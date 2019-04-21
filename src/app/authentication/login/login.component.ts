@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {AuthenticationService} from '../../shared/services/authentication.service';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -8,28 +10,45 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  @ViewChild('loginFormEmail') loginFormEmail: ElementRef;
+  loginProgress = false;
+  loginForm: FormGroup;
 
-  validateForm: FormGroup;
-
-  submitForm(): void {
-    for (const i in this.validateForm.controls) {
-      this.validateForm.controls[i].markAsDirty();
-      this.validateForm.controls[i].updateValueAndValidity();
-    }
-  }
-
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private auth: AuthenticationService
+  ) {
   }
 
   ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      remember: [true]
-    });
+    this.loginForm = this.fb.group(
+      {
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        remember: [true]
+      }
+    );
   }
 
-  gotoRegister() {
-    this.router.navigate(['/authentication/register']);
+  submit(data: LoginForm): void {
+    console.log(data);
+    this.loginForm.markAsPristine();
+    this.loginProgress = true;
+    this.auth.login(data.email, data.password)
+      .pipe(first())
+      .subscribe((response: any) => {
+          console.log(response);
+          this.loginProgress = false;
+          this.loginForm.get('email').setValue('');
+          this.loginForm.get('password').setValue('');
+          console.log('this.router', this.router);
+        },
+        error => {
+          console.error(error);
+          this.loginProgress = false;
+          this.loginForm.get('email').setValue('');
+          this.loginForm.get('password').setValue('');
+        });
   }
 }

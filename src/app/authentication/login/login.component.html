@@ -1,13 +1,12 @@
-<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+<form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submit(loginForm.value)">
   <nz-form-item>
     <nz-form-control>
       <nz-input-group [nzPrefix]="prefixUser">
-        <input type="text" nz-input formControlName="userName" placeholder="Username"/>
+        <input #loginFormEmail type="email" nz-input formControlName="email" placeholder="Email"/>
       </nz-input-group>
-      <nz-form-explain *ngIf="validateForm.get('userName')?.dirty && validateForm.get('userName')?.errors"
-      >Please input your username!
-      </nz-form-explain
-      >
+      <nz-form-explain *ngIf="loginForm.get('email')?.dirty && loginForm.get('email')?.errors">
+        Please input your email!
+      </nz-form-explain>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
@@ -15,10 +14,9 @@
       <nz-input-group [nzPrefix]="prefixLock">
         <input type="password" nz-input formControlName="password" placeholder="Password"/>
       </nz-input-group>
-      <nz-form-explain *ngIf="validateForm.get('password')?.dirty && validateForm.get('password')?.errors"
-      >Please input your Password!
-      </nz-form-explain
-      >
+      <nz-form-explain *ngIf="loginForm.get('password')?.dirty && loginForm.get('password')?.errors">
+        Please input your Password!
+      </nz-form-explain>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
@@ -26,10 +24,16 @@
       <label nz-checkbox formControlName="remember">
         <span>Remember me</span>
       </label>
-      <a class="login-form-forgot" class="login-form-forgot">Forgot password</a>
-      <button nz-button class="login-form-button" [nzType]="'primary'">Log in</button>
+      <a class="login-form-forgot">Forgot password</a>
+      <button
+        [disabled]="!loginForm.valid || loginProgress || loginForm.untouched"
+        nz-button class="login-form-button" [nzType]="'primary'">
+        Sign in
+        <fa *ngIf="loginProgress" name="cog" animation="spin"></fa>
+        <fa *ngIf="!loginProgress" name="sign-in"></fa>
+      </button>
       Or
-      <a (click)="gotoRegister()">register now!</a>
+      <a routerLink="/auth/register">register now!</a>
     </nz-form-control>
   </nz-form-item>
 </form>

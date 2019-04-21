@@ -3,11 +3,6 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 import {AuthenticationService} from '../../../shared/services/authentication.service';
 import {first} from 'rxjs/operators';
 
-interface LoginForm {
-  email: string;
-  password: string;
-}
-
 function passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null {
   const passwordControl = c.get('password');
   const confirmPasswordControl = c.get('confirmPassword');
@@ -79,9 +74,8 @@ export class ConnectFormComponent implements OnInit {
     this.loginProgress = true;
     this.auth.login(data.email, data.password)
       .pipe(first())
-      .subscribe(
-        d => {
-          console.log(d);
+      .subscribe((response: any) => {
+          console.log('response', response);
           this.loginProgress = false;
           this.loginForm.get('email').setValue('');
           this.loginForm.get('password').setValue('');

@@ -1,7 +1,8 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {AppComponent} from './app.component';
-import {AuthorizationGuard} from './shared/guards/authorization.guard';
+import {Role} from './shared/models/role';
+import {AuthenticationGuard} from './shared/guards/authentication.guard';
 
 const routes: Routes = [
   {
@@ -21,7 +22,13 @@ const routes: Routes = [
   {
     path: 'management',
     loadChildren: './management/management.module#ManagementModule',
-    canActivate: [AuthorizationGuard]
+    canActivate: [AuthenticationGuard],
+    data: {
+      roles: [
+        Role.Admin,
+        Role.Provider
+      ]
+    }
   },
   {
     path: '**',
