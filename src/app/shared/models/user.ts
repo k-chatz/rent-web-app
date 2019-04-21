@@ -3,11 +3,12 @@ import {Role} from './role';
 export interface User {
   id: number;
   username: string;
+  name: string;
+  surname: string;
   photoUrl: string;
-  email: string;
   password: string;
-  firstName: string;
-  lastName: string;
   role: Role;
-  token?: string;
+  birthday: string;
+  locked: boolean;
+  email: string;
 }

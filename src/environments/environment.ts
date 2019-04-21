@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  googleMapsKey: ''
+  googleMapsKey: '',
+  apiRoot: 'https://localhost:8443/api',
 };
 
 /*

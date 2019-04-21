@@ -1,4 +1,4 @@
-<nav *ngVar="currentUser$ | async as user" class="navbar navbar-inverse navbar-expand-xl navbar-dark">
+<nav *ngVar="session$ | async as session" class="navbar navbar-inverse navbar-expand-xl navbar-dark">
   <div class="navbar-header d-flex col">
     <a class="navbar-brand" routerLink="/"><i class="fa fa-cube"></i>Rent<b>Cube</b></a>
     <button type="button" data-target="#navbarCollapse" data-toggle="collapse"
@@ -20,7 +20,7 @@
         </a>
       </li>
 
-      <li *ngIf="user" class="nav-item">
+      <li *ngIf="session" class="nav-item">
         <a href="#" class="nav-link">
           <i class="fa fa-envelope"></i>
           <span>Messages</span></a>
@@ -33,10 +33,10 @@
         </a>
       </li>
 
-      <li *ngIf="user" class="btn-group" dropdown>
+      <li *ngIf="session" class="btn-group" dropdown>
         <a id="button-basic" dropdownToggle class="nav-link dropdown-toggle user-action"
            aria-controls="dropdown-basic">
-          <img src="{{user.photoUrl}}" class="avatar" alt="Avatar">
+          <img src="{{session.user.photoUrl}}" class="avatar" alt="Avatar">
           <!--<b class="caret"></b>-->
         </a>
         <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right"
@@ -44,7 +44,7 @@
 
           <li role="menuitem">
             <a class="dropdown-item" routerLink="/profile">
-              <i class="fa fa-user-o"></i> {{user.firstName}}&nbsp;{{user.lastName}}</a>
+              <i class="fa fa-user-o"></i> {{session.user.name}}&nbsp;{{session.user.surname}}</a>
           </li>
 
           <li class="divider dropdown-divider">
@@ -70,7 +70,7 @@
         </ul>
       </li>
 
-      <li *ngIf="!user" class="nav-item">
+      <li *ngIf="!session" class="nav-item">
         <a class="nav-link" data-toggle="modal" data-target="#connectModal">
           <i class="fa fa-sign-in"></i>
           <span>Sign in / Booking</span>

@@ -16,7 +16,7 @@ export class AuthorizationGuard implements CanActivate {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<boolean> | Promise<boolean> | boolean  {
-    return this.auth.currentUser$.pipe(
+    return this.auth.session$.pipe(
       take(1),
       map(user => {
           return !!user;

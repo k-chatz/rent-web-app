@@ -18,8 +18,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  get currentUser$() {
-    return this.auth.currentUser$;
+  get session$() {
+    return this.auth.session$;
   }
 
 
@@ -41,4 +41,5 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.auth.logout();
   }
+
 }
