@@ -15,9 +15,11 @@ export class MockInterceptor implements HttpInterceptor {
         email: 'test@test.com',
         photoUrl: '',
         password: 'test',
-        firstName: 'Test',
-        lastName: 'User',
-        role: Role.User
+        name: 'Test',
+        surname: 'User',
+        role: Role.User,
+        birthday: '1960-03-02',
+        locked: false
       },
       {
         id: 2,
@@ -25,9 +27,11 @@ export class MockInterceptor implements HttpInterceptor {
         email: 'kwstarikanos@gmail.com',
         photoUrl: '',
         password: '123456',
-        firstName: 'Κώστας',
-        lastName: 'Χατζόπουλος',
-        role: Role.Admin
+        name: 'Κώστας',
+        surname: 'Χατζόπουλος',
+        role: Role.Admin,
+        birthday: '1960-03-02',
+        locked: false
       }
     ];
 
@@ -53,8 +57,8 @@ export class MockInterceptor implements HttpInterceptor {
           return ok({
             id: user.id,
             username: user.username,
-            firstName: user.firstName,
-            lastName: user.lastName,
+            firstName: user.name,
+            lastName: user.surname,
             token: `fake-jwt-token`
           });
         }
