@@ -5,6 +5,7 @@ import { RegisterRoutingModule } from './register-routing.module';
 import {RegisterComponent} from './register.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
 @NgModule({
   declarations: [RegisterComponent],
@@ -12,7 +13,8 @@ import {NgZorroAntdModule} from 'ng-zorro-antd';
     CommonModule,
     RegisterRoutingModule,
     NgZorroAntdModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFontAwesomeModule
   ]
 })
 export class RegisterModule { }

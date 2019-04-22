@@ -10,9 +10,9 @@ import {first} from 'rxjs/operators';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  @ViewChild('loginFormEmail') loginFormEmail: ElementRef;
+  @ViewChild('formEmail') formEmail: ElementRef;
   loginProgress = false;
-  loginForm: FormGroup;
+  form: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loginForm = this.fb.group(
+    this.form = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
@@ -31,24 +31,24 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  submit(data: LoginForm): void {
+  submit(data: any): void {
     console.log(data);
-    this.loginForm.markAsPristine();
+    this.form.markAsPristine();
     this.loginProgress = true;
     this.auth.login(data.email, data.password)
       .pipe(first())
       .subscribe((response: any) => {
           console.log(response);
           this.loginProgress = false;
-          this.loginForm.get('email').setValue('');
-          this.loginForm.get('password').setValue('');
+          this.form.get('email').setValue('');
+          this.form.get('password').setValue('');
           console.log('this.router', this.router);
         },
         error => {
           console.error(error);
           this.loginProgress = false;
-          this.loginForm.get('email').setValue('');
-          this.loginForm.get('password').setValue('');
+          this.form.get('email').setValue('');
+          this.form.get('password').setValue('');
         });
   }
 }
