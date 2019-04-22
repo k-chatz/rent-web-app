@@ -10,13 +10,13 @@
         </div>
       </div>
       <div class="card-body">
-        <form [formGroup]="loginForm" (ngSubmit)="submit(loginForm.value)">
+        <form [formGroup]="form" (ngSubmit)="submit(form.value)">
           <div class="input-group form-group">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa fa-user"></i></span>
             </div>
-            <input #loginFormEmail type="email" nz-input formControlName="email" placeholder="Email"/>
-            <span *ngIf="loginForm.get('email')?.dirty && loginForm.get('email')?.errors">
+            <input #formEmail type="email" nz-input formControlName="email" placeholder="Email"/>
+            <span *ngIf="form.get('email')?.dirty && form.get('email')?.errors">
               Please input your email!
             </span>
           </div>
@@ -25,7 +25,7 @@
               <span class="input-group-text"><i class="fa fa-key"></i></span>
             </div>
             <input type="password" nz-input formControlName="password" placeholder="Password"/>
-            <span *ngIf="loginForm.get('password')?.dirty && loginForm.get('password')?.errors">
+            <span *ngIf="form.get('password')?.dirty && form.get('password')?.errors">
               Please input your Password!
             </span>
           </div>
@@ -39,7 +39,7 @@
          -->
 
             <button
-              [disabled]="!loginForm.valid || loginProgress || loginForm.untouched"
+              [disabled]="!form.valid || loginProgress || form.untouched"
               nz-button class="btn float-right login_btn" [nzType]="'primary'">
               Sign in
               <fa *ngIf="loginProgress" name="cog" animation="spin"></fa>
@@ -67,13 +67,13 @@
 
 <!--
 
-<form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submit(loginForm.value)">
+<form nz-form [formGroup]="form" class="login-form" (ngSubmit)="submit(form.value)">
   <nz-form-item>
     <nz-form-control>
       <nz-input-group [nzPrefix]="prefixUser">
-        <input #loginFormEmail type="email" nz-input formControlName="email" placeholder="Email"/>
+        <input #formEmail type="email" nz-input formControlName="email" placeholder="Email"/>
       </nz-input-group>
-      <nz-form-explain *ngIf="loginForm.get('email')?.dirty && loginForm.get('email')?.errors">
+      <nz-form-explain *ngIf="form.get('email')?.dirty && form.get('email')?.errors">
         Please input your email!
       </nz-form-explain>
     </nz-form-control>
@@ -83,7 +83,7 @@
       <nz-input-group [nzPrefix]="prefixLock">
         <input type="password" nz-input formControlName="password" placeholder="Password"/>
       </nz-input-group>
-      <nz-form-explain *ngIf="loginForm.get('password')?.dirty && loginForm.get('password')?.errors">
+      <nz-form-explain *ngIf="form.get('password')?.dirty && form.get('password')?.errors">
         Please input your Password!
       </nz-form-explain>
     </nz-form-control>
@@ -95,7 +95,7 @@
       </label>
       <a class="login-form-forgot">Forgot password</a>
       <button
-        [disabled]="!loginForm.valid || loginProgress || loginForm.untouched"
+        [disabled]="!form.valid || loginProgress || form.untouched"
         nz-button class="login-form-button" [nzType]="'primary'">
         Sign in
         <fa *ngIf="loginProgress" name="cog" animation="spin"></fa>

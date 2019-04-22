@@ -39,6 +39,9 @@
         <input type="password" placeholder="Password" formControlName="password"/>
         <input type="password" placeholder="Confirm password" formControlName="confirmPassword"/>
       </div>
+
+
+
       <button
         [disabled]="!registerForm.valid || registerProgress || registerForm.untouched"
         type="submit" class="btn btn-outline-dark" style="margin-top: 10px">
@@ -48,6 +51,10 @@
       </button>
     </form>
   </div>
+
+
+
+
 
   <div class="form-container sign-in-container">
     <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit(loginForm.value)">

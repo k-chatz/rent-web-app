@@ -12,8 +12,8 @@ import {Subscription} from 'rxjs';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   @ViewChild('loginFormEmail') loginFormEmail: ElementRef;
-  loginProgress = false;
-  loginForm: FormGroup;
+  progress = false;
+  form: FormGroup;
   routeSub: Subscription;
   returnUrl: string = null;
 
@@ -23,18 +23,17 @@ export class LoginComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private auth: AuthenticationService
   ) {
-  }
-
-  ngOnInit(): void {
-    this.loginForm = this.fb.group(
+    this.form = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         remember: [true]
       }
     );
-    this.loginFormEmail.nativeElement.focus();
+  }
 
+  ngOnInit(): void {
+    this.loginFormEmail.nativeElement.focus();
     this.routeSub = this.route.queryParams
       .subscribe((params: any) => {
         this.returnUrl = params.returnUrl;
@@ -43,13 +42,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   submit(data: LoginForm): void {
     console.log(data);
-    this.loginForm.markAsPristine();
-    this.loginProgress = true;
+    this.form.markAsPristine();
+    this.progress = true;
     this.auth.login(data.email, data.password)
       .pipe(first())
       .subscribe((response: any) => {
           console.log('response', response);
-          this.loginProgress = false;
+          this.progress = false;
           if (this.returnUrl) {
             this.router.navigate([this.returnUrl]);
           } else {
@@ -58,8 +57,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         },
         error => {
           console.error('error', error);
-          this.loginProgress = false;
-          this.loginForm.reset();
+          this.progress = false;
+          this.form.reset();
         });
   }
 
