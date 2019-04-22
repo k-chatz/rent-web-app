@@ -1,0 +1,41 @@
+.search-widget {
+  width: 16em;
+  margin: 2em;
+  padding: 1em;
+  background-color: lightblue;
+  border-radius: 6px;
+}
+
+input {
+  margin-bottom: 0.5em;
+}
+
+.form-group {
+  margin: 0;
+}
+
+#searchLabel {
+  margin-left: 0.5em;
+}
+
+#destinationInput {
+  height: 1.6em;
+}
+
+nz-date-picker {
+  margin-bottom: 1em;
+}
+
+select {
+  height: 1.6em;
+  padding: 0 0 0 0.4em;
+  margin-bottom: 0.8em;
+}
+
+button {
+  margin-left: 5em;
+}
+
+label {
+  font-size: larger;
+}

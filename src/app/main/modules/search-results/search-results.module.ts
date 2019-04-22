@@ -8,9 +8,11 @@ import {SearchResultsComponent} from './search-results.component';
 import { HotelListItemComponent } from './components/hotel-list-item/hotel-list-item.component';
 import {BsDropdownModule} from 'ngx-bootstrap';
 import {FormsModule} from '@angular/forms';
+import {SearchWidgetComponent} from '../../../shared/components/search-widget/search-widget.component';
+import {NzDatePickerModule} from 'ng-zorro-antd';
 
 @NgModule({
-  declarations: [SearchResultsComponent, FiltersComponent, SearchFormComponent, HotelListItemComponent],
+  declarations: [SearchResultsComponent, FiltersComponent, SearchFormComponent, HotelListItemComponent, SearchWidgetComponent],
   exports: [
     FiltersComponent
   ],
@@ -18,7 +20,8 @@ import {FormsModule} from '@angular/forms';
     CommonModule,
     SearchResultsRoutingModule,
     BsDropdownModule,
-    FormsModule
+    FormsModule,
+    NzDatePickerModule
   ]
 })
 export class SearchResultsModule { }
