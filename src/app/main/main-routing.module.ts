@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {MainComponent} from './main.component';
 import {AuthenticationGuard} from '../shared/guards/authentication.guard';
+import {AccessGuard} from '../shared/guards/access.guard';
 
 const routes: Routes = [
   {
@@ -21,6 +22,22 @@ const routes: Routes = [
         path: 'search',
         loadChildren: './modules/search-results/search-results.module#SearchResultsModule',
       },
+      {
+        path: 'login',
+        loadChildren: './modules/login/login.module#LoginModule',
+        data: {
+          canAccessLogin: false
+        },
+        canActivate: [AccessGuard]
+      },
+      {
+        path: 'register',
+        loadChildren: './modules/register/register.module#RegisterModule',
+        data: {
+          canAccessLogin: false
+        },
+        canActivate: [AccessGuard]
+      }
     ]
   },
 ];

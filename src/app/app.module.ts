@@ -14,6 +14,7 @@ import {BsDropdownModule} from 'ngx-bootstrap';
 import {JwtInterceptor} from './shared/interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './shared/interceptors/error.interceptor';
 import {mockProvider} from './shared/interceptors/mock.interceptor';
+import {ToastrModule} from 'ngx-toastr';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -32,6 +33,13 @@ export const createTranslateLoader = (http: HttpClient) => {
     HttpClientModule,
     FormsModule,
     NgZorroAntdModule,
+    ToastrModule.forRoot({
+      progressBar: true,
+      progressAnimation: 'decreasing',
+      tapToDismiss: true,
+      positionClass: 'toast-bottom-right',
+      timeOut: 5000
+    }),
     BsDropdownModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: environment.googleMapsKey

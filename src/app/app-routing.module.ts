@@ -33,12 +33,17 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: '',
+    /* TODO: not found component */
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
+  exports: [
+    RouterModule
+  ]
 })
 export class AppRoutingModule {
 }

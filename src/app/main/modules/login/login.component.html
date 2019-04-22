@@ -1,4 +1,72 @@
 <div class="container">
+  <div class="jumbotron" style="margin-bottom: 1rem;">
+    <div class="login-form mx-auto d-block w-100">
+      <div class="page-header text-center">
+        <h1>Sign In</h1>
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="submit(loginForm.value)"
+            action="/astroidnew/index.php/pages/login?task=user.login" method="post" class="form-validate">
+        <div class="form-group">
+          <div class="control-label">
+            <label id="email-lbl" for="email" class="required">Email<span class="star"> *</span></label>
+          </div>
+          <div class="controls">
+            <input class="form-control"
+                   id="email"
+                   type="email"
+                   formControlName="email"
+                   #loginFormEmail
+                   [ngClass]="{'is-invalid': (loginForm.get('email').dirty) &&
+                                            !loginForm.get('email').valid }"/>
+            <span class="invalid-feedback">
+            <span *ngIf="(loginForm.get('email').errors?.email && loginForm.get('email').touched)">
+              The email format is wrong.
+            </span>
+          </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="control-label">
+            <label id="password-lbl" for="password" class="required">Password<span class="star"> *</span></label>
+          </div>
+          <div class="controls">
+            <input class="form-control"
+                   id="password"
+                   type="password"
+                   formControlName="password"
+                 />
+          </div>
+          <div class="d-flex justify-content-end">
+            <a class="float-right" routerLink="/forgot">Forgot your password?</a>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <div class="form-check form-group d-flex justify-content-end">
+            <label class="form-check-label">
+            <input type="checkbox" class="form-check-input">Check me out</label>
+          </div>
+          <div class="form-group d-flex justify-content-start">
+            <div class="controls">
+              <button
+                [disabled]="!loginForm.valid || loginProgress || loginForm.untouched"
+                type="submit"
+                class="btn btn-primary">
+                Log in
+                <fa *ngIf="loginProgress" name="cog" animation="spin"></fa>
+                <fa *ngIf="!loginProgress" name="sign-in"></fa>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="text-center">
+        <a routerLink="/register">Don't have an account yet?</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div class="container">
   <div class="d-flex justify-content-center h-100">
     <div class="card">
       <div class="card-header">
@@ -35,8 +103,8 @@
           <div class="form-group">
 
 
-            <!--         <input value="Login" class="btn float-right login_btn">
-         -->
+            &lt;!&ndash;         <input value="Login" class="btn float-right login_btn">
+         &ndash;&gt;
 
             <button
               [disabled]="!loginForm.valid || loginProgress || loginForm.untouched"
@@ -63,7 +131,7 @@
 
     </div>
   </div>
-</div>
+</div>-->
 
 <!--
 

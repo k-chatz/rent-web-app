@@ -3,21 +3,25 @@ import {HttpRequest, HttpHandler, HttpEvent, HttpInterceptor} from '@angular/com
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {AuthenticationService} from '../services/authentication.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(
+    private authenticationService: AuthenticationService,
+    private toastr: ToastrService
+  ) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
-      catchError(err => {
-        console.error('err', err);
-        if (err.status === 401) {
+      catchError(e => {
+        console.error('e', e);
+        this.toastr.error(e.error.message, e.error.status + ' ' + e.error.error);
+        if (e.status === 401) {
           this.authenticationService.logout();
-          location.reload(true);
         }
-        const error = err.error.message || err.statusText;
+        const error = e.error.message || e.statusText;
         return throwError(error);
       })
     );

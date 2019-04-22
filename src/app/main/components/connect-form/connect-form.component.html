@@ -14,6 +14,24 @@
         </a>
       </div>
       <span>or use your email for registration</span>
+
+<!--      <input class="form-control"
+             id="firstNameId"
+             type="text"
+             placeholder="First Name (required)"
+             formControlName="firstName"
+             [ngClass]="{'is-invalid': (customerForm.get('firstName').touched ||
+                                            customerForm.get('firstName').dirty) &&
+                                            !customerForm.get('firstName').valid }" />
+      <span class="invalid-feedback">
+            <span *ngIf="customerForm.get('firstName').errors?.required">
+              Please enter your first name.
+            </span>
+            <span *ngIf="customerForm.get('firstName').errors?.minlength">
+              The first name must be longer than 3 characters.
+            </span>
+          </span>-->
+
       <input type="text" placeholder="Username" class="form-control" formControlName="username"/>
       <input type="email" placeholder="Email" formControlName="email"/>
 

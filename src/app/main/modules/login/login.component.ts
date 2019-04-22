@@ -1,22 +1,26 @@
-import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {AuthenticationService} from '../../shared/services/authentication.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthenticationService} from '../../../shared/services/authentication.service';
 import {first} from 'rxjs/operators';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   @ViewChild('loginFormEmail') loginFormEmail: ElementRef;
   loginProgress = false;
   loginForm: FormGroup;
+  routeSub: Subscription;
+  returnUrl: string = null;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     private auth: AuthenticationService
   ) {
   }
@@ -29,6 +33,12 @@ export class LoginComponent implements OnInit {
         remember: [true]
       }
     );
+    this.loginFormEmail.nativeElement.focus();
+
+    this.routeSub = this.route.queryParams
+      .subscribe((params: any) => {
+        this.returnUrl = params.returnUrl;
+      });
   }
 
   submit(data: LoginForm): void {
@@ -38,17 +48,24 @@ export class LoginComponent implements OnInit {
     this.auth.login(data.email, data.password)
       .pipe(first())
       .subscribe((response: any) => {
-          console.log(response);
+          console.log('response', response);
           this.loginProgress = false;
-          this.loginForm.get('email').setValue('');
-          this.loginForm.get('password').setValue('');
-          console.log('this.router', this.router);
+          if (this.returnUrl) {
+            this.router.navigate([this.returnUrl]);
+          } else {
+            this.router.navigate(['/']);
+          }
         },
         error => {
-          console.error(error);
+          console.error('error', error);
           this.loginProgress = false;
-          this.loginForm.get('email').setValue('');
-          this.loginForm.get('password').setValue('');
+          this.loginForm.reset();
         });
+  }
+
+  ngOnDestroy(): void {
+    if (this.routeSub !== undefined) {
+      this.routeSub.unsubscribe();
+    }
   }
 }

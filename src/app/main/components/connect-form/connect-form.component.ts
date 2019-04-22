@@ -1,7 +1,9 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../../shared/services/authentication.service';
 import {first} from 'rxjs/operators';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 function passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null {
   const passwordControl = c.get('password');
@@ -22,15 +24,19 @@ function passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null 
   templateUrl: './connect-form.component.html',
   styleUrls: ['./connect-form.component.scss']
 })
-export class ConnectFormComponent implements OnInit {
+export class ConnectFormComponent implements OnInit, OnDestroy {
   @ViewChild('loginFormEmail') loginFormEmail: ElementRef;
   loginProgress = false;
   registerProgress = false;
   loginForm: FormGroup;
   registerForm: FormGroup;
+  routeSub: Subscription;
+  returnUrl: string;
 
   constructor(
     private auth: AuthenticationService,
+    private route: ActivatedRoute,
+    private router: Router,
     private rfb: FormBuilder,
     private lfb: FormBuilder
   ) {
@@ -56,6 +62,10 @@ export class ConnectFormComponent implements OnInit {
         ),
       }
     );
+    this.routeSub = this.route.queryParams
+      .subscribe((params: any) => {
+        this.returnUrl = params.returnUrl;
+      });
   }
 
   signIn($event: MouseEvent) {
@@ -80,6 +90,11 @@ export class ConnectFormComponent implements OnInit {
           this.loginForm.get('email').setValue('');
           this.loginForm.get('password').setValue('');
           document.getElementById('connectModal').click();
+          if (this.returnUrl) {
+            this.router.navigate([this.returnUrl]);
+          } else {
+            this.router.navigate(['/']);
+          }
         },
         error => {
           console.error(error);
@@ -96,5 +111,11 @@ export class ConnectFormComponent implements OnInit {
     this.registerForm.get('email').setValue('');
     this.registerForm.get('passwordGroup').get('password').setValue('');
     this.registerForm.get('passwordGroup').get('confirmPassword').setValue('');
+  }
+
+  ngOnDestroy(): void {
+    if (this.routeSub !== undefined) {
+      this.routeSub.unsubscribe();
+    }
   }
 }

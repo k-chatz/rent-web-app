@@ -12,11 +12,11 @@ const routes: Routes = [
         redirectTo: 'login'
       },
       {
-        path: 'login',
+        path: 'login1',
         loadChildren: './login/login.module#LoginModule'
       },
       {
-        path: 'register',
+        path: 'register1',
         loadChildren: './register/register.module#RegisterModule'
       }
     ]
