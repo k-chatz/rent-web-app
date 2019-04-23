@@ -1,0 +1,348 @@
+<div class="container">
+  <div class="jumbotron" style="margin-bottom: 1rem;">
+    <div class="login-form mx-auto d-block w-100">
+      <div class="page-header text-center">
+        <h1>Provider Application</h1>
+        <h5> To be able to rent your property, you have to enter your company information</h5>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="submit(form.value)" class="form-validate">
+
+        <fieldset class="scheduler-border">
+          <legend class="scheduler-border">Company Owner Information:</legend>
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <!--Name-->
+              <div class="form-group">
+                <div class="control-label">
+                  <label id="name-lbl" for="name" class="required">
+                    First name
+                    <span class="star"> *</span></label>
+                </div>
+                <div class="controls">
+                  <input class="form-control" id="name" type="text" formControlName="name" #registerFormName
+                         [ngClass]="{'is-invalid': (form.get('name').touched || form.get('name').dirty)
+                    && !form.get('name').valid }"/>
+                  <span class="invalid-feedback">
+              <span *ngIf="(form.get('name').errors?.required &&
+              form.get('name').touched)">
+                The name is required!
+              </span>
+              <span *ngIf="(form.get('name').errors?.minlength &&
+               form.get('name').touched)">
+                Too short!
+              </span>
+              <span *ngIf="(form.get('name').errors?.maxlength &&
+               form.get('name').touched)">
+                Too long!
+              </span>
+            </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <!--Surname-->
+              <div class="form-group">
+                <div class="control-label">
+                  <label id="surname-lbl" for="surname" class="required">
+                    Surname
+                    <span class="star"> *</span></label>
+                </div>
+                <div class="controls">
+                  <input class="form-control" id="surname" type="text" formControlName="surname"
+                         [ngClass]="{'is-invalid': (form.get('surname').touched || form.get('surname').dirty) &&
+                                         !form.get('surname').valid }"/>
+                  <span class="invalid-feedback">
+              <span *ngIf="(form.get('surname').errors?.required && form.get('surname').touched)">
+                The surname is required!
+              </span>
+              <span *ngIf="(form.get('surname').errors?.minlength && form.get('surname').touched)">
+                Too short!
+              </span>
+             <span *ngIf="(form.get('surname').errors?.maxlength && form.get('surname').touched)">
+                Too long!
+              </span>
+            </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <!--Patronym-->
+              <div class="form-group">
+                <div class="control-label">
+                  <label id="patronym-lbl" for="name" class="required">
+                    Patronym
+                    <span class="star"> *</span></label>
+                </div>
+                <div class="controls">
+                  <input class="form-control" id="patronym" type="text" formControlName="patronym"
+                         [ngClass]="{'is-invalid': (form.get('patronym').touched || form.get('patronym').dirty)
+                    && !form.get('name').valid }"/>
+                  <span class="invalid-feedback">
+              <span *ngIf="(form.get('patronym').errors?.required &&
+              form.get('patronym').touched)">
+                The patronym is required!
+              </span>
+              <span *ngIf="(form.get('patronym').errors?.minlength &&
+               form.get('patronym').touched)">
+                Too short!
+              </span>
+              <span *ngIf="(form.get('patronym').errors?.maxlength &&
+               form.get('patronym').touched)">
+                Too long!
+              </span>
+            </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Residence Address-->
+          <div class="form-group">
+            <div class="control-label">
+              <label id="residence-address-lbl" for="residence-address" class="required">
+                Residence Address
+                <span class="star"> *</span></label>
+            </div>
+            <div class="controls">
+              <input class="form-control" id="residence-address" type="text" formControlName="residence_address"
+                     [ngClass]="{'is-invalid': (form.get('residence_address').touched || form.get('residence_address').dirty) &&
+                                         !form.get('residence_address').valid }"/>
+              <span class="invalid-feedback">
+              <span *ngIf="(form.get('residence_address').errors?.required && form.get('residence_address').touched)">
+                The residence address is required!
+              </span>
+              <span *ngIf="(form.get('residence_address').errors?.minlength && form.get('residence_address').touched)">
+                Too short!
+              </span>
+             <span *ngIf="(form.get('residence_address').errors?.maxlength && form.get('residence_address').touched)">
+                Too long!
+              </span>
+            </span>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="scheduler-border">
+          <legend class="scheduler-border">Company Information:</legend>
+
+          <!--Company Name-->
+          <div class="form-group">
+            <div class="control-label">
+              <label id="company-name-lbl" for="company-name" class="required">
+                Company Name
+                <span class="star"> *</span></label>
+            </div>
+            <div class="controls">
+              <input class="form-control" id="company-name" type="text" formControlName="company_name"
+                     [ngClass]="{'is-invalid': (form.get('company_name').touched || form.get('company_name').dirty)
+                    && !form.get('company_name').valid }"/>
+              <span class="invalid-feedback">
+              <span *ngIf="(form.get('company_name').errors?.required &&
+              form.get('company_name').touched)">
+                The company name is required!
+              </span>
+              <span *ngIf="(form.get('company_name').errors?.minlength &&
+               form.get('company_name').touched)">
+                Too short!
+              </span>
+              <span *ngIf="(form.get('company_name').errors?.maxlength &&
+               form.get('company_name').touched)">
+                Too long!
+              </span>
+            </span>
+            </div>
+          </div>
+
+          <!--Company Address-->
+          <div class="form-group">
+            <div class="control-label">
+              <label id="company-address-lbl" for="company-address" class="required">
+                Company Address
+                <span class="star"> *</span></label>
+            </div>
+            <div class="controls">
+              <input class="form-control" id="company-address" type="text" formControlName="company_address"
+                     [ngClass]="{'is-invalid': (form.get('company_address').touched || form.get('company_address').dirty) &&
+                                         !form.get('company_address').valid }"/>
+              <span class="invalid-feedback">
+              <span *ngIf="(form.get('company_address').errors?.required && form.get('company_address').touched)">
+                The company address is required!
+              </span>
+              <span *ngIf="(form.get('company_address').errors?.minlength && form.get('company_address').touched)">
+                Too short!
+              </span>
+             <span *ngIf="(form.get('company_address').errors?.maxlength && form.get('company_address').touched)">
+                Too long!
+              </span>
+            </span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <!--Tax Number-->
+              <div class="form-group">
+                <div class="control-label">
+                  <label id="tax-number-lbl" for="tax-number" class="required">
+                    Tax Number
+                    <span class="star"> *</span></label>
+                </div>
+                <div class="controls">
+                  <input class="form-control" id="tax-number" type="text" formControlName="tax_number"
+                         [ngClass]="{'is-invalid': (form.get('tax_number').touched || form.get('tax_number').dirty) &&
+                                         !form.get('tax_number').valid }"/>
+                  <span class="invalid-feedback">
+              <span *ngIf="(form.get('tax_number').errors?.required && form.get('tax_number').touched)">
+                The company tax number is required!
+              </span>
+              <span *ngIf="(form.get('tax_number').errors?.minlength && form.get('tax_number').touched)">
+                Too short!
+              </span>
+             <span *ngIf="(form.get('tax_number').errors?.maxlength && form.get('tax_number').touched)">
+                Too long!
+              </span>
+            </span>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-6 mb-3">
+              <!--Tax Office-->
+              <div class="form-group">
+                <div class="control-label">
+                  <label id="tax-office-lbl" for="tax-office" class="required">
+                    Tax Office
+                    <span class="star"> *</span></label>
+                </div>
+                <div class="controls">
+                  <input class="form-control" id="tax-office" type="text" formControlName="tax_office"
+                         [ngClass]="{'is-invalid': (form.get('tax_office').touched || form.get('tax_office').dirty) &&
+                                         !form.get('tax_office').valid }"/>
+                  <span class="invalid-feedback">
+              <span *ngIf="(form.get('tax_office').errors?.required && form.get('tax_office').touched)">
+                The company tax office is required!
+              </span>
+              <span *ngIf="(form.get('tax_office').errors?.minlength && form.get('tax_office').touched)">
+                Too short!
+              </span>
+             <span *ngIf="(form.get('tax_office').errors?.maxlength && form.get('tax_office').touched)">
+                Too long!
+              </span>
+            </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <!--Id Card Number-->
+              <div class="form-group">
+                <div class="control-label">
+                  <label id="id-card-number-lbl" for="id-card-number" class="required">
+                    Id Card Number
+                    <span class="star"> *</span></label>
+                </div>
+                <div class="controls">
+                  <input class="form-control" id="id-card-number" type="text" formControlName="id_card_number"
+                         [ngClass]="{'is-invalid': (form.get('id_card_number').touched || form.get('id_card_number').dirty) &&
+                                         !form.get('id_card_number').valid }"/>
+                  <span class="invalid-feedback">
+              <span *ngIf="(form.get('id_card_number').errors?.required && form.get('id_card_number').touched)">
+                The id card number is required!
+              </span>
+              <span *ngIf="(form.get('id_card_number').errors?.minlength && form.get('id_card_number').touched)">
+                Too short!
+              </span>
+             <span *ngIf="(form.get('id_card_number').errors?.maxlength && form.get('id_card_number').touched)">
+                Too long!
+              </span>
+            </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <!--Id Card Publishing Authority-->
+              <div class="form-group">
+                <div class="control-label">
+                  <label id="id-card-publishing-authority-lbl" for="id-card-publishing-authority" class="required">
+                    Id Card Publishing Authority
+                    <span class="star"> *</span></label>
+                </div>
+                <div class="controls">
+                  <input class="form-control" id="id-card-publishing-authority" type="text"
+                         formControlName="id_card_publishing_authority"
+                         [ngClass]="{'is-invalid': (form.get('id_card_publishing_authority').touched || form.get('id_card_publishing_authority').dirty) &&
+                                         !form.get('id_card_publishing_authority').valid }"/>
+                  <span class="invalid-feedback">
+              <span
+                *ngIf="(form.get('id_card_publishing_authority').errors?.required && form.get('id_card_publishing_authority').touched)">
+                The id card publishing authority is required!
+              </span>
+              <span
+                *ngIf="(form.get('id_card_publishing_authority').errors?.minlength && form.get('id_card_publishing_authority').touched)">
+                Too short!
+              </span>
+             <span
+               *ngIf="(form.get('id_card_publishing_authority').errors?.maxlength && form.get('id_card_publishing_authority').touched)">
+                Too long!
+              </span>
+            </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <!--Id Card Date of Issue-->
+              <div class="form-group">
+                <div class="control-label">
+                  <label id="id-card-date-issue-lbl" for="id-card-date-issue" class="required">
+                    Id Card Date of Issue
+                    <span class="star"> *</span></label>
+                </div>
+                <div class="controls">
+                  <input class="form-control" id="id-card-date-issue" type="text"
+                         formControlName="id_card_date_of_issue"
+                         [ngClass]="{'is-invalid': (form.get('id_card_date_of_issue').touched || form.get('id_card_date_of_issue').dirty)
+                    && !form.get('id_card_date_of_issue').valid }"/>
+                  <span class="invalid-feedback">
+              <span *ngIf="(form.get('id_card_date_of_issue').errors?.required &&
+              form.get('id_card_date_of_issue').touched)">
+                The id card date of issue is required!
+              </span>
+              <span *ngIf="(form.get('id_card_date_of_issue').errors?.minlength &&
+               form.get('id_card_date_of_issue').touched)">
+                Too short!
+              </span>
+              <span *ngIf="(form.get('id_card_date_of_issue').errors?.maxlength &&
+               form.get('id_card_date_of_issue').touched)">
+                Too long!
+              </span>
+            </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!--Submit-->
+        <div class="d-flex justify-content-end">
+          <div class="form-group d-flex justify-content-start">
+            <div class="controls">
+              <button
+                [disabled]="!form.valid || progress || form.untouched"
+                type="submit"
+                class="btn btn-primary">
+                Apply
+                <fa *ngIf="progress" name="cog" animation="spin"></fa>
+                <fa *ngIf="!progress" name="sign-in"></fa>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

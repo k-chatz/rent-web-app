@@ -4,6 +4,7 @@ import {AuthenticationService} from '../../../shared/services/authentication.ser
 import {first} from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
+import {LoginForm} from '../../../shared/models/payload/login-form';
 
 function passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null {
   const passwordControl = c.get('password');
@@ -79,10 +80,9 @@ export class ConnectFormComponent implements OnInit, OnDestroy {
   }
 
   onLoginSubmit(data: LoginForm) {
-    console.log(data);
     this.loginForm.markAsPristine();
     this.loginProgress = true;
-    this.auth.login(data.email, data.password)
+    this.auth.login(data)
       .pipe(first())
       .subscribe((response: any) => {
           console.log('response', response);

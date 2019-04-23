@@ -31,6 +31,11 @@ const routes: Routes = [
         canActivate: [AccessGuard]
       },
       {
+        path: 'apply',
+        loadChildren: './modules/provider-application-form/provider-application-form.module#ProviderApplicationFormModule',
+        canActivate: [AuthenticationGuard]
+      },
+      {
         path: 'register',
         loadChildren: './modules/register/register.module#RegisterModule',
         data: {

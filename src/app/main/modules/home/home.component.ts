@@ -22,18 +22,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  login() {
-    this.auth.login('test', 'test')
-      .pipe(first())
-      .subscribe(
-        data => {
-          console.log(data);
-        },
-        error => {
-          console.error(error);
-        });
-  }
-
   logout() {
     this.auth.logout();
   }

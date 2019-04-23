@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../../../shared/services/authentication.service';
 import {first} from 'rxjs/operators';
 import {Subscription} from 'rxjs';
+import {LoginForm} from '../../../shared/models/payload/login-form';
 
 @Component({
   selector: 'app-login',
@@ -44,7 +45,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     console.log(data);
     this.form.markAsPristine();
     this.progress = true;
-    this.auth.login(data.email, data.password)
+    this.auth.login(data)
       .pipe(first())
       .subscribe((response: any) => {
           console.log('response', response);

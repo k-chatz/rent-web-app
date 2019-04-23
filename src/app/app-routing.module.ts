@@ -16,10 +16,6 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'auth',
-    loadChildren: './authentication/authentication.module#AuthenticationModule',
-  },
-  {
     path: 'management',
     loadChildren: './management/management.module#ManagementModule',
     canActivate: [AuthenticationGuard],

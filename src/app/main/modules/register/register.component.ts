@@ -1,8 +1,11 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../../../shared/services/authentication.service';
+import {first} from 'rxjs/internal/operators/first';
+import * as moment from 'moment';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +13,7 @@ import {AuthenticationService} from '../../../shared/services/authentication.ser
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit, OnDestroy {
-  @ViewChild('registerFormUsername') registerFormUsername: ElementRef;
+  @ViewChild('registerFormName') registerFormName: ElementRef;
   progress = false;
   form: FormGroup;
   routeSub: Subscription;
@@ -20,7 +23,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private auth: AuthenticationService
+    private auth: AuthenticationService,
+    private toastr: ToastrService
   ) {
     this.form = this.fb.group(
       {
@@ -31,7 +35,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
             confirmPassword: ['', Validators.required],
           }, {
             validator: (group: FormGroup) => {
-              console.log(group);
               const pass = group.controls.password.value;
               const confirmPassword = group.controls.confirmPassword.value;
               if (pass === confirmPassword) {
@@ -44,28 +47,38 @@ export class RegisterComponent implements OnInit, OnDestroy {
         ),
         name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]],
         surname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]],
-        remember: [true]
+        remember: [false]
       }
     );
   }
 
   ngOnInit(): void {
-    this.registerFormUsername.nativeElement.focus();
+    this.registerFormName.nativeElement.focus();
     this.routeSub = this.route.queryParams
       .subscribe((params: any) => {
+        console.log('params', params);
         this.returnUrl = params.returnUrl;
       });
   }
 
-  submit(data: LoginForm): void {
+  submit(data: any): void {
     console.log(data);
-    /*this.form.markAsPristine();
+    this.form.markAsPristine();
     this.progress = true;
-    this.auth.login(data.email, data.password)
+    this.auth.register({
+      username: data.username,
+      email: data.email,
+      password: data.passwordGroup.password,
+      name: data.name,
+      surname: data.surname,
+      birthday: moment().format('YYYY-MM-DD')
+    })
       .pipe(first())
       .subscribe((response: any) => {
           console.log('response', response);
           this.progress = false;
+          this.form.reset();
+          this.toastr.success('We are happy to have you!', 'Welcome aboard');
           if (this.returnUrl) {
             this.router.navigate([this.returnUrl]);
           } else {
@@ -75,8 +88,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         error => {
           console.error('error', error);
           this.progress = false;
-          this.form.reset();
-        });*/
+        });
   }
 
   ngOnDestroy(): void {

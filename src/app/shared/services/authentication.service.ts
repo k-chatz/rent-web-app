@@ -26,52 +26,56 @@ export class AuthenticationService {
     return this.sessionSubject$.value;
   }
 
-  login(email: string, password: string) {
-    console.log('login');
-
-    return this.http.post<any>(environment.apiRoot + '/auth/login', {email, password})
+  login(data: any) {
+    console.log('data', data);
+    return this.http.post<any>(environment.apiRoot + '/auth/login', data)
       .pipe(
-        map((data: any) => {
-          console.log('data', data);
+        map((response: any) => {
+          console.log('d', response);
           // login successful if there's a jwt token in the response
-          if (data && data.access.token) {
+          if (response && response.access.token) {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             const session = {
-              access: data.access,
+              access: response.access,
               user: {
-                ...data.user,
-                role: data.user.role.name,
-                photoUrl: 'https://ui-avatars.com/api/?name=' + data.user.name + '+' + data.user.surname +
+                ...response.user,
+                role: response.user.role.name,
+                photoUrl: 'https://ui-avatars.com/api/?name=' + response.user.name + '+' + response.user.surname +
                   '&rounded=true&%20bold=true&background=' + getRandomColor()
               }
             };
             localStorage.setItem('session', JSON.stringify(session));
             this.sessionSubject$.next(session);
           }
-          return data;
+          return response;
         })
       );
-    /*    return this.http.post<any>(`/users/authenticate`, {email, password})
-          .pipe(
-            map(user => {
-              console.log('user', user);
-              // login successful if there's a jwt token in the response
-              if (user && user.token) {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('session', JSON.stringify(user));
+  }
 
-                console.log('getRandomColor', getRandomColor());
-
-                this.sessionSubject$.next({
-                  ...user,
-                  photoUrl: user.photoUrl ? user.photoUrl : 'https://ui-avatars.com/api/?name=' +
-                    user.name + '+' + user.surname +
-                    '&rounded=true&%20bold=true&background=' + getRandomColor()
-                });
+  register(data: any) {
+    console.log('data', data);
+    return this.http.post<any>(environment.apiRoot + '/auth/register', data)
+      .pipe(
+        map((response: any) => {
+          console.log('d', response);
+          // login successful if there's a jwt token in the response
+          if (response && response.access.token) {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            const session = {
+              access: response.access,
+              user: {
+                ...response.user,
+                role: response.user.role.name,
+                photoUrl: 'https://ui-avatars.com/api/?name=' + response.user.name + '+' + response.user.surname +
+                  '&rounded=true&%20bold=true&background=' + getRandomColor()
               }
-              return user;
-            })
-          );*/
+            };
+            localStorage.setItem('session', JSON.stringify(session));
+            this.sessionSubject$.next(session);
+          }
+          return response;
+        })
+      );
   }
 
   logout() {
@@ -80,4 +84,31 @@ export class AuthenticationService {
     localStorage.removeItem('session');
     this.sessionSubject$.next(null);
   }
+
+  mockLogin(data: any) {
+    console.log('data', data);
+    return this.http.post<any>(`/users/authenticate`, data)
+      .pipe(
+        map((response: any) => {
+          console.log('d', response);
+          // login successful if there's a jwt token in the response
+          if (response && response.access.token) {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            const session = {
+              access: response.access,
+              user: {
+                ...response.user,
+                role: response.user.role.name,
+                photoUrl: 'https://ui-avatars.com/api/?name=' + response.user.name + '+' + response.user.surname +
+                  '&rounded=true&%20bold=true&background=' + getRandomColor()
+              }
+            };
+            localStorage.setItem('session', JSON.stringify(session));
+            this.sessionSubject$.next(session);
+          }
+          return response;
+        })
+      );
+  }
+
 }

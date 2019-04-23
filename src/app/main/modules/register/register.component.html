@@ -6,114 +6,6 @@
       </div>
       <form [formGroup]="form" (ngSubmit)="submit(form.value)" class="form-validate">
 
-        <!--Username-->
-        <div class="form-group">
-          <div class="control-label">
-            <label id="username-lbl" for="username" class="required">
-              Username
-              <span class="star"> *</span></label>
-          </div>
-          <div class="controls">
-            <input class="form-control" id="username" type="text" formControlName="username" #registerFormUsername
-                   [ngClass]="{'is-invalid': (form.get('username').touched || form.get('username').dirty) &&
-                                         !form.get('username').valid }"/>
-            <span class="invalid-feedback">
-              <span *ngIf="(form.get('username').errors?.required &&
-              form.get('username').touched)">
-                The username is required!
-              </span>
-              <span *ngIf="(form.get('username').errors?.minlength &&
-              form.get('username').touched)">
-                The short!
-              </span>
-              <span *ngIf="(form.get('username').errors?.maxlength &&
-               form.get('username').touched)">
-                Too long!
-              </span>
-            </span>
-          </div>
-        </div>
-
-        <!--Email-->
-        <div class="form-group">
-          <div class="control-label">
-            <label id="email-lbl" for="email" class="required">Email<span class="star"> *</span></label>
-          </div>
-          <div class="controls">
-            <input class="form-control" id="email" type="email" formControlName="email" #registerFormEmail
-                   [ngClass]="{'is-invalid': (form.get('email').touched || form.get('email').dirty) &&
-                                         !form.get('email').valid }"/>
-            <span class="invalid-feedback">
-              <span *ngIf="(form.get('email').errors?.email && form.get('email').touched)">
-                The email format is wrong!
-              </span>
-            </span>
-          </div>
-        </div>
-
-        <div formGroupName="passwordGroup">
-          <!--Password-->
-          <div class="form-group">
-            <div class="controls">
-              <div class="control-label">
-                <label for="password" class="required">Password<span class="star"> *</span></label>
-              </div>
-              <input class="form-control" id="password" type="password" formControlName="password"
-                     [ngClass]="{'is-invalid': (form.get('passwordGroup').get('password').touched || form.get('passwordGroup').get('password').dirty) &&
-                                         !form.get('passwordGroup').get('password').valid }"/>
-              <span class="invalid-feedback">
-               <span
-                 *ngIf="(form.get('passwordGroup').get('password').errors?.required &&
-                 form.get('passwordGroup').get('password').touched)">
-                 required
-               </span>
-               <span
-                 *ngIf="(form.get('passwordGroup').get('password').errors?.minlength &&
-                  form.get('passwordGroup').get('password').touched)">
-                   Too short!
-               </span>
-              <span
-                *ngIf="(form.get('passwordGroup').get('password').errors?.maxlength &&
-                form.get('passwordGroup').get('password').touched)">
-                   Too long!
-               </span>
-              </span>
-            </div>
-          </div>
-
-          <!--Confirm password-->
-          <div class="form-group">
-            <div class="controls">
-              <div class="control-label">
-                <label for="confirmPassword" class="required">Password Confirmation<span class="star"> *</span></label>
-              </div>
-              <input class="form-control" id="confirmPassword" type="password" formControlName="confirmPassword"
-                     [ngClass]="{'is-invalid': (
-
-
-                     form.get('passwordGroup').get('confirmPassword').touched &&
-                     form.get('passwordGroup').hasError('notSame')
-
-                     )}"/>
-
-                     <!--form.get('passwordGroup').get('confirmPassword').dirty) && form.get('passwordGroup').get('confirmPassword').valid-->
-
-              <span class="invalid-feedback">
-                 <span
-                   *ngIf="(form.get('passwordGroup').get('confirmPassword').errors?.required &&
-                   form.get('passwordGroup').get('confirmPassword').touched)">
-                 Enter a password.
-               </span>
-                <span
-                  *ngIf="(form.get('passwordGroup').hasError('notSame') &&
-                   form.get('passwordGroup').get('confirmPassword').touched)">
-                   Passwords don't match!
-                 </span>
-              </span>
-            </div>
-          </div>
-        </div>
-
         <!--Name-->
         <div class="form-group">
           <div class="control-label">
@@ -167,11 +59,120 @@
           </div>
         </div>
 
+        <!--Username-->
+        <div class="form-group">
+          <div class="control-label">
+            <label id="username-lbl" for="username" class="required">
+              Username
+              <span class="star"> *</span></label>
+          </div>
+          <div class="controls">
+            <input class="form-control" id="username" type="text" formControlName="username" #registerFormUsername
+                   [ngClass]="{'is-invalid': (form.get('username').touched || form.get('username').dirty) &&
+                                         !form.get('username').valid }"/>
+            <span class="invalid-feedback">
+              <span *ngIf="(form.get('username').errors?.required &&
+              form.get('username').touched)">
+                The username is required!
+              </span>
+              <span *ngIf="(form.get('username').errors?.minlength &&
+              form.get('username').touched)">
+                The short!
+              </span>
+              <span *ngIf="(form.get('username').errors?.maxlength &&
+               form.get('username').touched)">
+                Too long!
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <!--Email-->
+        <div class="form-group">
+          <div class="control-label">
+            <label id="email-lbl" for="email" class="required">Email<span class="star"> *</span></label>
+          </div>
+          <div class="controls">
+            <input class="form-control" id="email" type="email" formControlName="email" #registerFormEmail
+                   [ngClass]="{'is-invalid': (form.get('email').touched || form.get('email').dirty) &&
+                                         !form.get('email').valid }"/>
+            <span class="invalid-feedback">
+              <span *ngIf="(form.get('email').errors?.email && form.get('email').touched)">
+                The email format is wrong!
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <!--Password Group-->
+        <div formGroupName="passwordGroup">
+          <!--Password-->
+          <div class="form-group">
+            <div class="controls">
+              <div class="control-label">
+                <label for="password" class="required">Password<span class="star"> *</span></label>
+              </div>
+              <input class="form-control" id="password" type="password" formControlName="password"
+                     [ngClass]="{'is-invalid': (form.get('passwordGroup').get('password').touched || form.get('passwordGroup').get('password').dirty) &&
+                                         !form.get('passwordGroup').get('password').valid }"/>
+              <span class="invalid-feedback">
+               <span
+                 *ngIf="(form.get('passwordGroup').get('password').errors?.required &&
+                 form.get('passwordGroup').get('password').touched)">
+                 required
+               </span>
+               <span
+                 *ngIf="(form.get('passwordGroup').get('password').errors?.minlength &&
+                  form.get('passwordGroup').get('password').touched)">
+                   Too short!
+               </span>
+              <span
+                *ngIf="(form.get('passwordGroup').get('password').errors?.maxlength &&
+                form.get('passwordGroup').get('password').touched)">
+                   Too long!
+               </span>
+              </span>
+            </div>
+          </div>
+
+          <!--Confirm password-->
+          <div class="form-group">
+            <div class="controls">
+              <div class="control-label">
+                <label for="confirmPassword" class="required">Password Confirmation<span class="star"> *</span></label>
+              </div>
+              <input class="form-control" id="confirmPassword" type="password" formControlName="confirmPassword"
+                     [ngClass]="{'is-invalid': (
+
+
+                     form.get('passwordGroup').get('confirmPassword').touched &&
+                     form.get('passwordGroup').hasError('notSame')
+
+                     )}"/>
+
+              <!--form.get('passwordGroup').get('confirmPassword').dirty) && form.get('passwordGroup').get('confirmPassword').valid-->
+
+              <span class="invalid-feedback">
+                 <span
+                   *ngIf="(form.get('passwordGroup').get('confirmPassword').errors?.required &&
+                   form.get('passwordGroup').get('confirmPassword').touched)">
+                 Enter a password.
+               </span>
+                <span
+                  *ngIf="(form.get('passwordGroup').hasError('notSame') &&
+                   form.get('passwordGroup').get('confirmPassword').touched)">
+                   Passwords don't match!
+                 </span>
+              </span>
+            </div>
+          </div>
+        </div>
+
         <!--Submit-->
         <div class="d-flex justify-content-between">
           <div class="form-check form-group d-flex justify-content-end">
             <label class="form-check-label">
-              <input type="checkbox" class="form-check-input">Remember me!</label>
+              <input formControlName="remember" type="checkbox" class="form-check-input">Remember me!</label>
           </div>
           <div class="form-group d-flex justify-content-start">
             <div class="controls">
