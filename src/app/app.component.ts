@@ -16,10 +16,8 @@ export class AppComponent {
     private router: Router,
     private toastr: ToastrService,
   ) {
-
     translate.setDefaultLang('gr');
     this.router.events.subscribe((routerEvent: any) => {
-
       if (routerEvent instanceof GuardsCheckEnd) {
         if (!routerEvent.shouldActivate) {
           console.error('Route should activated', routerEvent.shouldActivate);

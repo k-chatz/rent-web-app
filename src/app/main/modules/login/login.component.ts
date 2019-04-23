@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.form.markAsPristine();
     this.progress = true;
     this.auth.login(data)
-      .pipe(first())
       .subscribe((response: any) => {
           console.log('response', response);
           this.progress = false;
