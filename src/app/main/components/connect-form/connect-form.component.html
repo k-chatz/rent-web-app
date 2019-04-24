@@ -14,47 +14,29 @@
         </a>
       </div>
       <span>or use your email for registration</span>
-
-<!--      <input class="form-control"
-             id="firstNameId"
-             type="text"
-             placeholder="First Name (required)"
-             formControlName="firstName"
-             [ngClass]="{'is-invalid': (customerForm.get('firstName').touched ||
-                                            customerForm.get('firstName').dirty) &&
-                                            !customerForm.get('firstName').valid }" />
-      <span class="invalid-feedback">
-            <span *ngIf="customerForm.get('firstName').errors?.required">
-              Please enter your first name.
-            </span>
-            <span *ngIf="customerForm.get('firstName').errors?.minlength">
-              The first name must be longer than 3 characters.
-            </span>
-          </span>-->
-
-      <input type="text" placeholder="Username" class="form-control" formControlName="username"/>
-      <input type="email" placeholder="Email" formControlName="email"/>
-
-      <div formGroupName="passwordGroup">
-        <input type="password" placeholder="Password" formControlName="password"/>
-        <input type="password" placeholder="Confirm password" formControlName="confirmPassword"/>
+      <input type="text" placeholder="Name" formControlName="r_name"/>
+      <input type="text" placeholder="Surname" formControlName="r_surname"/>
+      <input type="text" placeholder="Username" formControlName="r_username"/>
+      <input type="email" placeholder="Email"  formControlName="r_email"/>
+      <div formGroupName="r_passwordGroup">
+        <input type="password" placeholder="Password" formControlName="r_password"/>
+        <input type="password" placeholder="Confirm password" formControlName="r_confirmPassword"/>
       </div>
-
-
-
-      <button
-        [disabled]="!registerForm.valid || registerProgress || registerForm.untouched"
-        type="submit" class="btn btn-outline-dark" style="margin-top: 10px">
-        Sign Up
-        <fa *ngIf="registerProgress" name="cog" animation="spin"></fa>
-        <fa *ngIf="!registerProgress" name="sign-in"></fa>
-      </button>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="register_remember" formControlName="r_remember">
+        <label class="custom-control-label" for="register_remember">Remember me</label>
+      </div>
+      <div class="controls">
+        <button
+          [disabled]="!registerForm.valid || registerProgress || registerForm.untouched"
+          type="submit" class="btn btn-outline-dark" style="margin-top: 10px">
+          Sign Up
+          <fa *ngIf="registerProgress" name="cog" animation="spin"></fa>
+          <fa *ngIf="!registerProgress" name="sign-in"></fa>
+        </button>
+      </div>
     </form>
   </div>
-
-
-
-
 
   <div class="form-container sign-in-container">
     <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit(loginForm.value)">
@@ -70,16 +52,22 @@
         </a>
       </div>
       <span>or use your account</span>
-      <input #loginFormEmail type="email" placeholder="Email" formControlName="email"/>
-      <input type="password" placeholder="Password" formControlName="password"/>
+      <input #loginFormEmail type="email" placeholder="Email" formControlName="l_email"/>
+      <input type="password" placeholder="Password" formControlName="l_password"/>
       <a href="#">Forgot your password?</a>
-      <button
-        [disabled]="!loginForm.valid || loginProgress || loginForm.untouched"
-        type="submit" class="btn btn-outline-dark">
-        Sign In
-        <fa *ngIf="loginProgress" name="cog" animation="spin"></fa>
-        <fa *ngIf="!loginProgress" name="sign-in"></fa>
-      </button>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="login_remember" formControlName="l_remember">
+        <label class="custom-control-label" for="login_remember">Remember me</label>
+      </div>
+      <div class="controls">
+        <button
+          [disabled]="!loginForm.valid || loginProgress || loginForm.untouched"
+          type="submit" class="btn btn-outline-dark">
+          Sign In
+          <fa *ngIf="loginProgress" name="cog" animation="spin"></fa>
+          <fa *ngIf="!loginProgress" name="sign-in"></fa>
+        </button>
+      </div>
     </form>
   </div>
 

@@ -5,6 +5,7 @@ import {AuthenticationService} from '../../../shared/services/authentication.ser
 import {first} from 'rxjs/operators';
 import {Subscription} from 'rxjs';
 import {LoginForm} from '../../../shared/models/payload/login-form';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -19,16 +20,18 @@ export class LoginComponent implements OnInit, OnDestroy {
   returnUrl: string = null;
 
   constructor(
+    private titleService: Title,
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private auth: AuthenticationService
   ) {
+    titleService.setTitle('Login');
     this.form = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
-        remember: [true]
+        remember: [false]
       }
     );
   }
@@ -46,7 +49,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.form.markAsPristine();
     this.progress = true;
     this.auth.login(data)
-      .pipe(first())
       .subscribe((response: any) => {
           console.log('response', response);
           this.progress = false;

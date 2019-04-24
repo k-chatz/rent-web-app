@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-search',
@@ -9,8 +10,10 @@ import {ActivatedRoute} from '@angular/router';
 export class SearchResultsComponent implements OnInit {
 
   constructor(
+    private titleService: Title,
     private route: ActivatedRoute
   ) {
+    titleService.setTitle('Search');
   }
 
   ngOnInit() {

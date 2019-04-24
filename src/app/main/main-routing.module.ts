@@ -37,7 +37,7 @@ const routes: Routes = [
       {
         path: 'apply',
         loadChildren: './modules/provider-application-form/provider-application-form.module#ProviderApplicationFormModule',
-        canActivate: [AuthenticationGuard]
+        /*canActivate: [AuthenticationGuard]*/
       },
       {
         path: 'register',
@@ -46,7 +46,11 @@ const routes: Routes = [
           canAccessLogin: false
         },
         canActivate: [AccessGuard]
-      }
+      },
+      {
+        path: '**',
+        loadChildren: './modules/not-found/not-found.module#NotFoundModule',
+      },
     ]
   },
 ];

@@ -28,8 +28,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '',
-    /* TODO: not found component */
+     redirectTo: '',
   },
 ];
 
