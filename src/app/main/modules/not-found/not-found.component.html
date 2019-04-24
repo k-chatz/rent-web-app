@@ -1,11 +1,23 @@
-<div class="wrap">
-  <div class="logo">
-    <p>OOPS! - Could not Find it</p>
-    <img src="src/assets/images/404.png" />
-    <div class="sub">
-      <p><a class="btn btn-primary btn-lg btn-blue" (click)="backClicked()"><span class="glyphicon glyphicon-home"></span>
-        Take me back
-      </a></p>
+<main class="mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="error-template">
+          <h1>OOPS! - Could not Find it</h1>
+          <img class="logo" src="assets/images/404.png"  alt="404-image"/>
+          <div class="error-details">
+            Sorry, an error has occurred. The requested page could not be found!
+          </div>
+          <div class="error-actions">
+            <a class="btn btn-primary btn-lg" (click)="backClicked()"><span class="glyphicon glyphicon-home"></span>
+              Take me back
+            </a>
+            <a class="btn btn-primary btn-lg" routerLink=""><span class="glyphicon glyphicon-home"></span>
+              Go to homepage
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</main>
