@@ -3,6 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {MainComponent} from './main.component';
 import {AuthenticationGuard} from '../shared/guards/authentication.guard';
 import {AccessGuard} from '../shared/guards/access.guard';
+import {ProviderGuard} from '../shared/guards/provider.guard';
 
 const routes: Routes = [
   {
@@ -37,7 +38,7 @@ const routes: Routes = [
       {
         path: 'apply',
         loadChildren: './modules/provider-application-form/provider-application-form.module#ProviderApplicationFormModule',
-        /*canActivate: [AuthenticationGuard]*/
+        canActivate: [ProviderGuard]
       },
       {
         path: 'register',

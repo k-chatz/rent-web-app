@@ -4,9 +4,7 @@ import {Observable} from 'rxjs';
 import {map, take, tap} from 'rxjs/operators';
 import {AuthenticationService} from '../services/authentication.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 export class AuthorizationGuard implements CanActivate {
   constructor(
     private auth: AuthenticationService,
@@ -15,7 +13,7 @@ export class AuthorizationGuard implements CanActivate {
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot):
-    Observable<boolean> | Promise<boolean> | boolean  {
+    Observable<boolean> | Promise<boolean> | boolean {
     return this.auth.session$.pipe(
       take(1),
       map(user => {

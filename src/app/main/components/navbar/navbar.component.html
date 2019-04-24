@@ -1,4 +1,4 @@
-<nav *ngVar="session$ | async as session" class="navbar navbar-inverse navbar-expand-xl navbar-dark">
+<nav *ngVar="session$ | async as session" class="navbar navbar-inverse navbar-expand-md navbar-dark">
   <div class="navbar-header d-flex col">
     <a class="navbar-brand" routerLink="/"><i class="fa fa-cube"></i>Rent<b>Cube</b></a>
     <button type="button" data-target="#navbarCollapse" data-toggle="collapse"
@@ -13,8 +13,8 @@
   <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
     <ul class="nav navbar-nav navbar-right ml-auto">
 
-      <li class="nav-item">
-        <a routerLink="/management" class="nav-link">
+      <li *ngIf="!session || (session.user.role != 'ADMIN')" class="nav-item">
+        <a routerLink="/apply" class="nav-link">
           <i class="fa fa-futbol-o"></i>
           <span>Rent your property</span>
         </a>

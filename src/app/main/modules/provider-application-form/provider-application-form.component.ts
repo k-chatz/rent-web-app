@@ -50,6 +50,8 @@ export class ProviderApplicationFormComponent implements OnInit {
     console.log(data);
     this.form.markAsPristine();
     this.progress = true;
+    // Todo: request for provider to API
+    sessionStorage.setItem('pending_provider', null);
   }
 
 }
