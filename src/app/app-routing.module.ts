@@ -6,16 +6,6 @@ import {AuthenticationGuard} from './shared/guards/authentication.guard';
 
 const routes: Routes = [
   {
-    path: '',
-    component: AppComponent,
-    children: [
-      {
-        path: '',
-        loadChildren: './main/main.module#MainModule'
-      },
-    ]
-  },
-  {
     path: 'management',
     loadChildren: './management/management.module#ManagementModule',
     canActivate: [AuthenticationGuard],
@@ -27,9 +17,15 @@ const routes: Routes = [
     }
   },
   {
-    path: '**',
-     redirectTo: '',
-  },
+    path: '',
+    component: AppComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: './main/main.module#MainModule'
+      },
+    ]
+  }
 ];
 
 @NgModule({

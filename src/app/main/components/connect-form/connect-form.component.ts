@@ -81,10 +81,13 @@ export class ConnectFormComponent implements OnInit, OnDestroy {
     container.classList.add('right-panel-active');
   }
 
-  onLoginSubmit(data: LoginForm) {
+  onLoginSubmit(data: any) {
     this.loginForm.markAsPristine();
     this.loginProgress = true;
-    this.auth.login(data)
+    this.auth.login({
+      email: data.l_email,
+      password: data.l_password
+    })
       .pipe(first())
       .subscribe((response: any) => {
           console.log('response', response);
@@ -100,8 +103,7 @@ export class ConnectFormComponent implements OnInit, OnDestroy {
         error => {
           console.error(error);
           this.loginProgress = false;
-          this.loginForm.get('email').setValue('');
-          this.loginForm.get('password').setValue('');
+          this.loginForm.get('l_password').setValue('');
           this.loginFormEmail.nativeElement.focus();
         });
   }
@@ -123,6 +125,7 @@ export class ConnectFormComponent implements OnInit, OnDestroy {
           console.log('response', response);
           this.registerProgress = false;
           this.registerForm.reset();
+          document.getElementById('connectModal').click();
           this.toastr.success('We are happy to have you!', 'Welcome aboard');
           if (this.returnUrl) {
             this.router.navigate([this.returnUrl]);
