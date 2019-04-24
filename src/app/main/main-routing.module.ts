@@ -23,6 +23,10 @@ const routes: Routes = [
         loadChildren: './modules/search-results/search-results.module#SearchResultsModule',
       },
       {
+        path: 'hotel',
+        loadChildren: './modules/hotel/hotel.module#HotelModule',
+      },
+      {
         path: 'login',
         loadChildren: './modules/login/login.module#LoginModule',
         data: {

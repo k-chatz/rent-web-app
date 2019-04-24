@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {VarDirective} from '../shared/directives/VarDirective';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {ConnectFormComponent} from './components/connect-form/connect-form.component';
+
 @NgModule({
   declarations: [
     MainComponent,
