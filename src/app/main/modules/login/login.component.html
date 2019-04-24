@@ -29,11 +29,7 @@
             <label id="password-lbl" for="password" class="required">Password<span class="star"> *</span></label>
           </div>
           <div class="controls">
-            <input class="form-control"
-                   id="password"
-                   type="password"
-                   formControlName="password"
-                 />
+            <input class="form-control" id="password" type="password" formControlName="password"/>
           </div>
           <div class="d-flex justify-content-end">
             <a class="float-right" routerLink="/forgot">Forgot your password?</a>
@@ -42,7 +38,7 @@
         <div class="d-flex justify-content-between">
           <div class="form-check form-group d-flex justify-content-end">
             <label class="form-check-label">
-            <input type="checkbox" class="form-check-input">Check me out</label>
+            <input type="checkbox" class="form-check-input" formControlName="remember">Remember me</label>
           </div>
           <div class="form-group d-flex justify-content-start">
             <div class="controls">

@@ -18,8 +18,12 @@ export class AuthenticationService {
   private sessionSubject$: BehaviorSubject<Session>;
   session$: Observable<Session>;
 
-  constructor(private http: HttpClient) {
-    this.sessionSubject$ = new BehaviorSubject<Session>(JSON.parse(localStorage.getItem('session')));
+  constructor(
+    private http: HttpClient
+  ) {
+    const local = localStorage.getItem('session');
+    const session = sessionStorage.getItem('session');
+    this.sessionSubject$ = new BehaviorSubject<Session>(JSON.parse(local ? local : session));
     this.session$ = this.sessionSubject$.asObservable();
   }
 
@@ -55,8 +59,10 @@ export class AuthenticationService {
                   '&rounded=true&%20bold=true&background=' + getRandomColor()
               }
             };
-            /*TODO: only if remember me checkbox is true!*/
-            localStorage.setItem('session', JSON.stringify(session));
+            sessionStorage.setItem('session', JSON.stringify(session));
+            if (data.remember) {
+              localStorage.setItem('session', JSON.stringify(session));
+            }
             this.sessionSubject$.next(session);
           }
           return response;
@@ -95,8 +101,8 @@ export class AuthenticationService {
 
   logout() {
     console.log('logout');
-    // remove user from local storage to log user out
     localStorage.removeItem('session');
+    sessionStorage.removeItem('session');
     this.sessionSubject$.next(null);
   }
 
