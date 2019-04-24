@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {AuthenticationService} from '../../../shared/services/authentication.service';
-import {first} from 'rxjs/internal/operators/first';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +12,10 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private auth: AuthenticationService
+    private auth: AuthenticationService,
+    private titleService: Title,
   ) {
+    titleService.setTitle('RentCube');
   }
 
   ngOnInit() {

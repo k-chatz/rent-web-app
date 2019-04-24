@@ -44,8 +44,11 @@ export class LoginComponent implements OnInit, OnDestroy {
       });
   }
 
-  submit(data: LoginForm): void {
-    console.log(data);
+  submit(data: any): void {
+    console.log({
+      email: data.email,
+      password: data.password
+    });
     this.form.markAsPristine();
     this.progress = true;
     this.auth.login(data)

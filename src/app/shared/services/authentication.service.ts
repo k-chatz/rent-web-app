@@ -21,10 +21,19 @@ export class AuthenticationService {
   constructor(
     private http: HttpClient
   ) {
+    localStorage.removeItem('pending_provider');
     const local = localStorage.getItem('session');
     const session = sessionStorage.getItem('session');
     this.sessionSubject$ = new BehaviorSubject<Session>(JSON.parse(local ? local : session));
     this.session$ = this.sessionSubject$.asObservable();
+    if (this.sessionSubject$.value) {
+      const helper = new JwtHelperService();
+      const decodedToken: any = helper.decodeToken(this.sessionSubject$.value.access.token);
+      const pendingProvider = decodedToken.pending_provider;
+      if (pendingProvider) {
+        sessionStorage.setItem('pending_provider', null);
+      }
+    }
   }
 
   public get session(): any {
@@ -39,17 +48,6 @@ export class AuthenticationService {
           console.log('d', response);
           // login successful if there's a jwt token in the response
           if (response && response.access.token) {
-            console.log('jwt');
-            const helper = new JwtHelperService();
-            const decodedToken: any = helper.decodeToken(response.access.token);
-            const expirationDate = helper.getTokenExpirationDate(response.access.token);
-            const isExpired = helper.isTokenExpired(response.access.token);
-            console.log('helper', helper);
-            console.log('decodedToken', decodedToken);
-            console.log('pending_provider', decodedToken.pending_provider);
-            console.log('expirationDate', expirationDate);
-            console.log('isExpired', isExpired);
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
             const session = {
               access: response.access,
               user: {
@@ -59,6 +57,12 @@ export class AuthenticationService {
                   '&rounded=true&%20bold=true&background=' + getRandomColor()
               }
             };
+            const helper = new JwtHelperService();
+            const decodedToken: any = helper.decodeToken(session.access.token);
+            const pendingProvider = decodedToken.pending_provider;
+            if (pendingProvider) {
+              sessionStorage.setItem('pending_provider', null);
+            }
             sessionStorage.setItem('session', JSON.stringify(session));
             if (data.remember) {
               localStorage.setItem('session', JSON.stringify(session));

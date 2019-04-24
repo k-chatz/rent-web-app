@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-hotel',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HotelComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private titleService: Title,
+  ) {
+    titleService.setTitle('Hotel'); // TODO - To be replaced with the name of the hotel.
+  }
 
   ngOnInit() {
   }
