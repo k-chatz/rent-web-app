@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../../../shared/services/authentication.service';
 import {ToastrService} from 'ngx-toastr';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-provider-application-form',
@@ -16,12 +17,14 @@ export class ProviderApplicationFormComponent implements OnInit {
   returnUrl: string = null;
 
   constructor(
+    private titleService: Title,
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private auth: AuthenticationService,
     private toastr: ToastrService
   ) {
+    titleService.setTitle('Provider Application');
     this.form = this.fb.group(
       {
         company_name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30)]],
