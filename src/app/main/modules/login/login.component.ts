@@ -5,6 +5,7 @@ import {AuthenticationService} from '../../../shared/services/authentication.ser
 import {first} from 'rxjs/operators';
 import {Subscription} from 'rxjs';
 import {LoginForm} from '../../../shared/models/payload/login-form';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -19,11 +20,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   returnUrl: string = null;
 
   constructor(
+    private titleService: Title,
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private auth: AuthenticationService
   ) {
+    titleService.setTitle('Login');
     this.form = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],

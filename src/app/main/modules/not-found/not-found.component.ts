@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-not-found',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private titleService: Title,
+    private location: Location
+  ) {
+    titleService.setTitle('Not found');
+  }
 
   ngOnInit() {
+  }
+
+  backClicked() {
+    this.location.back();
   }
 
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from '../../../shared/models/user';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  private user: User;
+
+  public constructor(
+    private titleService: Title
+  ) {
+    titleService.setTitle('Profile');
+  }
 
   ngOnInit() {
   }

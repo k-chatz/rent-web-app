@@ -6,6 +6,7 @@ import {AuthenticationService} from '../../../shared/services/authentication.ser
 import {first} from 'rxjs/internal/operators/first';
 import * as moment from 'moment';
 import {ToastrService} from 'ngx-toastr';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -20,12 +21,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
   returnUrl: string = null;
 
   constructor(
+    private titleService: Title,
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private auth: AuthenticationService,
     private toastr: ToastrService
   ) {
+    titleService.setTitle('Register');
     this.form = this.fb.group(
       {
         username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
