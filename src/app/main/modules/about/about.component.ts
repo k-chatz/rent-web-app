@@ -8,12 +8,12 @@ import {Title} from '@angular/platform-browser';
 })
 export class AboutComponent implements OnInit {
 
+
   public constructor(
     private titleService: Title
   ) {
-      titleService.setTitle('About RentCube');
+    titleService.setTitle('About RentCube');
   }
-
   ngOnInit() {
   }
 
