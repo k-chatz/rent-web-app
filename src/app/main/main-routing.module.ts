@@ -4,6 +4,7 @@ import {MainComponent} from './main.component';
 import {AuthenticationGuard} from '../shared/guards/authentication.guard';
 import {AccessGuard} from '../shared/guards/access.guard';
 import {ProviderGuard} from '../shared/guards/provider.guard';
+import {AboutComponent} from './components/about/about.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,10 @@ const routes: Routes = [
           canAccessLogin: false
         },
         canActivate: [AccessGuard]
+      },
+      {
+        path: 'about',
+        component: AboutComponent
       },
       {
         path: '**',

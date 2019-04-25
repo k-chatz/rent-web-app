@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {VarDirective} from '../shared/directives/VarDirective';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {ConnectFormComponent} from './components/connect-form/connect-form.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {ConnectFormComponent} from './components/connect-form/connect-form.compo
     ThumbnailCarouselComponent,
     VarDirective,
     ConnectFormComponent,
+    AboutComponent,
   ],
   imports: [
     CommonModule,
