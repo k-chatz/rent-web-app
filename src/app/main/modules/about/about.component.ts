@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-about',
@@ -10,11 +11,16 @@ export class AboutComponent implements OnInit {
 
 
   public constructor(
-    private titleService: Title
+    private titleService: Title,
+    private location: Location
   ) {
     titleService.setTitle('About RentCube');
   }
+
   ngOnInit() {
   }
 
+  backClicked() {
+    this.location.back();
+  }
 }
