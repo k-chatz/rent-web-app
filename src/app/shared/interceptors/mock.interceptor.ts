@@ -77,9 +77,9 @@ export class MockInterceptor implements HttpInterceptor {
     )
     // call materialize and dematerialize to ensure delay even if an error is thrown
     // (https://github.com/Reactive-Extensions/RxJS/issues/648)
-      .pipe(materialize())
+/*      .pipe(materialize())
       .pipe(delay(0))
-      .pipe(dematerialize());
+      .pipe(dematerialize());*/
 
     // private helper functions
 
