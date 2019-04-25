@@ -7,6 +7,7 @@ import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {UsersListComponent} from './users-list/users-list.component';
 import {UsersDetailComponent} from './users-detail/users-detail.component';
 import {UsersInsertNewComponent} from './users-insert-new/users-insert-new.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {UsersInsertNewComponent} from './users-insert-new/users-insert-new.compo
   imports: [
     CommonModule,
     UsersRoutingModule,
-    NgZorroAntdModule
+    NgZorroAntdModule,
+    TranslateModule
   ]
 })
 export class UsersModule {

@@ -20,10 +20,10 @@ const routes: Routes = [
         },
         children: [
           {
-            path: ':uid',
+            path: ':id',
             component: UsersDetailComponent,
             resolve: {
-              observable: UsersDetailResolver
+              user: UsersDetailResolver
             }
           },
           {
