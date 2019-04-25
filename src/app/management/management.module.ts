@@ -6,6 +6,7 @@ import {BreadcrumbComponent} from './components/breadcrumb/breadcrumb.component'
 import {ManagementComponent} from './management.component';
 import {ManagementRoutingModule} from './management-routing.module';
 import {VarDirectiveModule} from '../shared/var-directive.module';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {VarDirectiveModule} from '../shared/var-directive.module';
     CommonModule,
     VarDirectiveModule,
     ManagementRoutingModule,
-    NgZorroAntdModule
+    NgZorroAntdModule,
+    AngularFontAwesomeModule
   ]
 })
 export class ManagementModule {
