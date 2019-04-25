@@ -1,3 +1,12 @@
-<p>
-  users-list works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <pre *ngFor="let user of users" class="jumbotron" (click)="userClicked(user.id)">
+        {{user | json}}
+      </pre>
+    </div>
+    <div class="col">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
