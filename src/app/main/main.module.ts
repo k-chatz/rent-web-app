@@ -9,7 +9,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {SearchResultsModule} from './modules/search-results/search-results.module';
 import {BsDropdownModule} from 'ngx-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {VarDirective} from '../shared/directives/VarDirective';
+import {VarDirectiveModule} from '../shared/var-directive.module';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {ConnectFormComponent} from './components/connect-form/connect-form.component';
 import { AboutComponent } from './components/about/about.component';
@@ -20,7 +20,6 @@ import { AboutComponent } from './components/about/about.component';
     FooterComponent,
     NavbarComponent,
     ThumbnailCarouselComponent,
-    VarDirective,
     ConnectFormComponent,
     AboutComponent,
   ],
@@ -32,7 +31,8 @@ import { AboutComponent } from './components/about/about.component';
     BsDropdownModule,
     FormsModule,
     NgZorroAntdModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    VarDirectiveModule
   ]
 })
 export class MainModule {

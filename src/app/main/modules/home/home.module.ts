@@ -8,12 +8,14 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtInterceptor} from '../../../shared/interceptors/jwt.interceptor';
 import {ErrorInterceptor} from '../../../shared/interceptors/error.interceptor';
 import {mockProvider} from '../../../shared/interceptors/mock.interceptor';
+import {VarDirectiveModule} from '../../../shared/var-directive.module';
 
 @NgModule({
   declarations: [HomeComponent, SearchBarComponent],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    VarDirectiveModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

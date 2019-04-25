@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from '../shared/services/authentication.service';
 
 @Component({
   selector: 'app-management',
@@ -7,8 +8,15 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ManagementComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    private auth: AuthenticationService,
+  ) {
   }
+
+  get session$() {
+    return this.auth.session$;
+  }
+
 
   ngOnInit() {
   }

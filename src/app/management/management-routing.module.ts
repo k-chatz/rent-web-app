@@ -19,6 +19,17 @@ const routes: Routes = [
         canActivate: [AuthenticationGuard]
       },
       {
+        path: 'hotels',
+        loadChildren: './modules/hotels/hotels.module#HotelsModule',
+        canActivate: [AuthenticationGuard],
+        data: {
+          roles: [
+            Role.Admin,
+            Role.Provider
+          ]
+        }
+      },
+      {
         path: 'users',
         loadChildren: './modules/users/users.module#UsersModule',
         canActivate: [AuthenticationGuard],
