@@ -1,0 +1,21 @@
+<div class="reviews">
+  <h2>Reviews:</h2>
+<!--  <ul class="list-group">-->
+<!--    <li *ngFor="let review of reviews" class="list-group-item">-->
+<!--      <p>{{review.name}}</p>-->
+<!--      <nz-rate [ngModel]="review.score" nzDisabled></nz-rate>-->
+<!--      <p>{{review.text}}</p>-->
+<!--    </li>-->
+<!--  </ul>-->
+  <div class="row">
+    <div *ngFor="let review of reviews"  class="col-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{review.name}}</h5>
+          <nz-rate [ngModel]="review.score" nzDisabled></nz-rate>
+          <p class="card-text">{{review.text}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,14 +8,15 @@ import { HotelDetailsComponent } from './components/hotel-details/hotel-details.
 import {NzRateModule} from 'ng-zorro-antd';
 import {FormsModule} from '@angular/forms';
 import { RoomsListComponent } from './components/rooms-list/rooms-list.component';
+import { HotelReviewsComponent } from './components/hotel-reviews/hotel-reviews.component';
 
 @NgModule({
-  declarations: [HotelComponent, ImagesCarouselComponent, HotelDetailsComponent, RoomsListComponent],
+  declarations: [HotelComponent, ImagesCarouselComponent, HotelDetailsComponent, RoomsListComponent, HotelReviewsComponent],
   imports: [
     CommonModule,
     HotelRoutingModule,
     NzRateModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class HotelModule { }
