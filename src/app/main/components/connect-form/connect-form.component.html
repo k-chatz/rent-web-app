@@ -3,13 +3,13 @@
     <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit(registerForm.value)">
       <h1>Create Account</h1>
       <div class="social-container">
-        <a href="#" class="social">
+        <a routerLink="" class="social">
           <i class="fa fa-facebook"></i>
         </a>
-        <a href="#" class="social">
+        <a routerLink="" class="social">
           <i class="fa fa-google-plus"></i>
         </a>
-        <a href="#" class="social">
+        <a routerLink="" class="social">
           <i class="fa fa-linkedin"></i>
         </a>
       </div>
@@ -42,19 +42,19 @@
     <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit(loginForm.value)">
       <h1>Sign in</h1>
       <div class="social-container">
-        <a href="#" class="social">
+        <a routerLink="" class="social">
           <i class="fa fa-facebook"></i></a>
-        <a href="#" class="social">
+        <a routerLink="" class="social">
           <i class="fa fa-google-plus"></i>
         </a>
-        <a href="#" class="social">
+        <a routerLink="" class="social">
           <i class="fa fa-linkedin"></i>
         </a>
       </div>
       <span>or use your account</span>
       <input #loginFormEmail type="email" placeholder="Email" formControlName="l_email"/>
       <input type="password" placeholder="Password" formControlName="l_password"/>
-      <a href="#">Forgot your password?</a>
+      <a routerLink="">Forgot your password?</a>
       <div class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input" id="login_remember" formControlName="l_remember">
         <label class="custom-control-label" for="login_remember">Remember me</label>
