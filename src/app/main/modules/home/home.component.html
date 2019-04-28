@@ -2,6 +2,8 @@
 
 <div *ngVar="session$ | async as session" class="container" style="margin-top: 5px;">
 
+  <teximate [text]="text" [enter]="enterAnimation"></teximate>
+
   <div id="debug-btn">
     <button routerLink="/login" type="button" class="btn btn-link">@Login</button>
     <button routerLink="/register" type="button" class="btn btn-link">@Register</button>

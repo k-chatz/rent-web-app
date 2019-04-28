@@ -9,13 +9,15 @@ import {JwtInterceptor} from '../../../shared/interceptors/jwt.interceptor';
 import {ErrorInterceptor} from '../../../shared/interceptors/error.interceptor';
 import {mockProvider} from '../../../shared/interceptors/mock.interceptor';
 import {VarDirectiveModule} from '../../../shared/var-directive.module';
+import {TeximateModule} from 'ngx-teximate';
 
 @NgModule({
   declarations: [HomeComponent, SearchBarComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    VarDirectiveModule
+    VarDirectiveModule,
+    TeximateModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
