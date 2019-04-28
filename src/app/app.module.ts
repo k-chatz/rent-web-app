@@ -15,6 +15,9 @@ import {JwtInterceptor} from './shared/interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './shared/interceptors/error.interceptor';
 import {mockProvider} from './shared/interceptors/mock.interceptor';
 import {ToastrModule} from 'ngx-toastr';
+import {TeximateModule} from 'ngx-teximate';
+import {NgProgressModule} from '@ngx-progressbar/core';
+import {NgProgressHttpModule} from '@ngx-progressbar/http';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -33,6 +36,14 @@ export const createTranslateLoader = (http: HttpClient) => {
     HttpClientModule,
     FormsModule,
     NgZorroAntdModule,
+    NgProgressModule.withConfig({
+      spinnerPosition: 'left',
+      spinner: false,
+      meteor: false,
+      thick: false,
+      color: '#e6ff00'
+    }),
+    NgProgressHttpModule,
     ToastrModule.forRoot({
       progressBar: true,
       progressAnimation: 'decreasing',
@@ -51,6 +62,7 @@ export const createTranslateLoader = (http: HttpClient) => {
         deps: [HttpClient]
       }
     }),
+    TeximateModule,
   ],
   providers: [
     {provide: NZ_I18N, useValue: en_US},

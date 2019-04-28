@@ -17,7 +17,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError(e => {
         console.error('e', e);
-        this.toastr.error(e.error.message, e.error.status + ' ' + e.error.error);
+        this.toastr.error(e.url + ':: ' + e.error.message, e.error.status + ' ' + e.error.error);
         if (e.status === 401) {
           this.authenticationService.logout();
         }

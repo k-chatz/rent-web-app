@@ -13,6 +13,7 @@ import {VarDirectiveModule} from '../shared/var-directive.module';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {ConnectFormComponent} from './components/connect-form/connect-form.component';
 import {Ng7BootstrapBreadcrumbModule} from 'ng7-bootstrap-breadcrumb';
+import {NgProgressModule} from '@ngx-progressbar/core';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {Ng7BootstrapBreadcrumbModule} from 'ng7-bootstrap-breadcrumb';
     NgZorroAntdModule,
     ReactiveFormsModule,
     VarDirectiveModule,
-    Ng7BootstrapBreadcrumbModule
+    Ng7BootstrapBreadcrumbModule,
+    NgProgressModule
   ]
 })
 export class MainModule {
