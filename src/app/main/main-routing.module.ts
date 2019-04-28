@@ -17,46 +17,144 @@ const routes: Routes = [
       {
         path: 'profile',
         loadChildren: './modules/profile/profile.module#ProfileModule',
-        canActivate: [AuthenticationGuard]
+        canActivate: [AuthenticationGuard],
+        data: {
+          title: 'profile',
+          breadcrumb: [
+            {
+              label: 'Home',
+              url: '/'
+            },
+            {
+              label: 'Profile',
+              url: ''
+            }
+          ]
+        },
       },
       {
         path: 'search',
         loadChildren: './modules/search-results/search-results.module#SearchResultsModule',
+        data: {
+          title: 'search',
+          breadcrumb: [
+            {
+              label: 'Home',
+              url: '/'
+            },
+            {
+              label: 'Search',
+              url: ''
+            }
+          ]
+        },
       },
       {
         path: 'hotel',
         loadChildren: './modules/hotel/hotel.module#HotelModule',
+        data: {
+          title: 'hotel',
+          breadcrumb: [
+            {
+              label: 'Home',
+              url: '/'
+            },
+            {
+              label: 'Hotel',
+              url: ''
+            }
+          ]
+        },
       },
       {
         path: 'login',
         loadChildren: './modules/login/login.module#LoginModule',
+        canActivate: [AccessGuard],
         data: {
-          canAccessLogin: false
+          canAccessLogin: false,
+          title: 'login',
+          breadcrumb: [
+            {
+              label: 'Home',
+              url: '/'
+            },
+            {
+              label: 'Sign In',
+              url: ''
+            }
+          ]
         },
-        canActivate: [AccessGuard]
       },
       {
         path: 'apply',
         loadChildren: './modules/provider-application-form/provider-application-form.module#ProviderApplicationFormModule',
-        canActivate: [ProviderGuard]
+        canActivate: [ProviderGuard],
+        data: {
+          canAccessLogin: false,
+          title: 'apply',
+          breadcrumb: [
+            {
+              label: 'Home',
+              url: '/'
+            },
+            {
+              label: 'Provider application request',
+              url: ''
+            }
+          ]
+        },
       },
       {
         path: 'register',
         loadChildren: './modules/register/register.module#RegisterModule',
+        canActivate: [AccessGuard],
         data: {
-          canAccessLogin: false
+          canAccessLogin: false,
+          title: 'register',
+          breadcrumb: [
+            {
+              label: 'Home',
+              url: '/'
+            },
+            {
+              label: 'Sign Up',
+              url: ''
+            }
+          ]
         },
-        canActivate: [AccessGuard]
       },
       {
         path: 'about',
         loadChildren: './modules/about/about.module#AboutModule',
+        data: {
+          canAccessLogin: false,
+          title: 'about',
+          breadcrumb: [
+            {
+              label: 'Home',
+              url: '/'
+            },
+            {
+              label: 'About',
+              url: ''
+            }
+          ]
+        }
       },
       {
         path: '**',
         loadChildren: './modules/not-found/not-found.module#NotFoundModule',
       },
-    ]
+    ],
+    data: {
+      title: 'home',
+      breadcrumb: [
+        {
+          label: 'Home',
+          url: ''
+        }
+      ]
+    },
   },
 ];
 

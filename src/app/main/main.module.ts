@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {VarDirectiveModule} from '../shared/var-directive.module';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {ConnectFormComponent} from './components/connect-form/connect-form.component';
+import {Ng7BootstrapBreadcrumbModule} from 'ng7-bootstrap-breadcrumb';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {ConnectFormComponent} from './components/connect-form/connect-form.compo
     FormsModule,
     NgZorroAntdModule,
     ReactiveFormsModule,
-    VarDirectiveModule
+    VarDirectiveModule,
+    Ng7BootstrapBreadcrumbModule
   ]
 })
 export class MainModule {

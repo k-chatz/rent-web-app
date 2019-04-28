@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Ng7BootstrapBreadcrumbService} from 'ng7-bootstrap-breadcrumb';
 
 @Component({
   selector: 'app-main',
@@ -7,10 +8,12 @@ import {Component, OnInit} from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() {
+  constructor(private ng7BootstrapBreadcrumbService: Ng7BootstrapBreadcrumbService) {
   }
 
   ngOnInit() {
+    const breadcrumb = {customText: 'This is Custom Text', dynamicText: 'Level 2 '};
+    this.ng7BootstrapBreadcrumbService.updateBreadcrumbLabels(breadcrumb);
   }
 
 }
