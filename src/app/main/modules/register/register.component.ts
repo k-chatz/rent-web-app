@@ -81,7 +81,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
           console.log('response', response);
           this.progress = false;
           this.form.reset();
-          this.toastr.success('We are happy to have you!', 'Welcome aboard');
+          this.toastr.success('We are happy to have you!', 'Welcome aboard ' + response.user.name + '!',
+            {
+              timeOut: 8000
+            });
           if (this.returnUrl) {
             this.router.navigate([this.returnUrl]);
           } else {

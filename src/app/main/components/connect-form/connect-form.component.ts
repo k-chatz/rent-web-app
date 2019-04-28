@@ -87,12 +87,14 @@ export class ConnectFormComponent implements OnInit, OnDestroy {
     this.auth.login({
       email: data.l_email,
       password: data.l_password
-    })
-      .pipe(first())
-      .subscribe((response: any) => {
+    }).pipe(first()).subscribe((response: any) => {
           console.log('response', response);
           this.loginProgress = false;
           this.registerForm.reset();
+          this.toastr.info('We are happy to have you!', 'Welcome back ' + response.user.name + '!',
+          {
+            timeOut: 8000
+          });
           document.getElementById('connectModal').click();
           if (this.returnUrl) {
             this.router.navigate([this.returnUrl]);
@@ -126,7 +128,10 @@ export class ConnectFormComponent implements OnInit, OnDestroy {
           this.registerProgress = false;
           this.registerForm.reset();
           document.getElementById('connectModal').click();
-          this.toastr.success('We are happy to have you!', 'Welcome aboard');
+          this.toastr.success('We are happy to have you!', 'Welcome aboard ' + response.user.name + '!',
+            {
+              timeOut: 8000
+            });
           if (this.returnUrl) {
             this.router.navigate([this.returnUrl]);
           } else {

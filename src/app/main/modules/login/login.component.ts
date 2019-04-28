@@ -6,6 +6,7 @@ import {first} from 'rxjs/operators';
 import {Subscription} from 'rxjs';
 import {LoginForm} from '../../../shared/models/payload/login-form';
 import {Title} from '@angular/platform-browser';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private auth: AuthenticationService
+    private auth: AuthenticationService,
+    private toastr: ToastrService
   ) {
     titleService.setTitle('Login');
     this.form = this.fb.group(
@@ -51,21 +53,24 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
     this.form.markAsPristine();
     this.progress = true;
-    this.auth.login(data)
-      .subscribe((response: any) => {
-          console.log('response', response);
-          this.progress = false;
-          if (this.returnUrl) {
-            this.router.navigate([this.returnUrl]);
-          } else {
-            this.router.navigate(['/']);
-          }
-        },
-        error => {
-          console.error('error', error);
-          this.progress = false;
-          this.form.reset();
-        });
+    this.auth.login(data).subscribe((response: any) => {
+        console.log('response', response);
+        this.progress = false;
+        this.toastr.info('We are happy to have you!', 'Welcome back ' + response.user.name + '!',
+          {
+            timeOut: 8000
+          });
+        if (this.returnUrl) {
+          this.router.navigate([this.returnUrl]);
+        } else {
+          this.router.navigate(['/']);
+        }
+      },
+      error => {
+        console.error('error', error);
+        this.progress = false;
+        this.form.reset();
+      });
   }
 
   ngOnDestroy(): void {
