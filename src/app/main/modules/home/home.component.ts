@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {AuthenticationService} from '../../../shared/services/authentication.service';
 import {Title} from '@angular/platform-browser';
-import {first} from 'rxjs/operators';
+import {first, timeout} from 'rxjs/operators';
 import {TextAnimation} from 'ngx-teximate';
 import {fadeIn} from 'ng-animate';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
   };
 
   constructor(
+    private http: HttpClient,
     private route: ActivatedRoute,
     private auth: AuthenticationService,
     private titleService: Title,
@@ -50,12 +52,16 @@ export class HomeComponent implements OnInit {
       email,
       password: '123456'
     }).pipe(first())
-      .subscribe((response: any) => {
-          console.log('response', response);
-        },
-        error => {
-          console.error(error);
-        });
+      .subscribe((response: any) => console.log('response', response));
+  }
+
+  forceTimeout() {
+    this.http.get('https://httpstat.us/200?sleep=5000')
+      .subscribe(response => {
+        console.log('forceTimeout', response);
+      }, (error) => {
+        console.log('Error', error);
+      });
   }
 
   logout() {
