@@ -16,14 +16,23 @@ export class ErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError(e => {
-        console.error('e', e);
-        this.toastr.error(e.url + ':: ' + e.error.message, e.error.status + ' ' + e.error.error);
-        if (e.status === 401) {
-          this.authenticationService.logout();
+          if (e instanceof HttpErrorResponse) {
+            this.toastr.error(e.message, 'Unreachable host...');
+            return throwError(e);
+          } else {
+            if (e.name && e.name === 'TimeoutError') {
+              this.toastr.error(request.url + ': ' + e.message, 'Request timeout...');
+              return throwError(e);
+            } else {
+              this.toastr.error(request.url + ':: ' + e.error ? e.error.message : '', e.error.status + ' ' + e.error.error);
+              if (e.status === 401) {
+                this.authenticationService.logout();
+              }
+              return throwError(e.error.message || e.statusText);
+            }
+          }
         }
-        const error = e.error.message || e.statusText;
-        return throwError(error);
-      })
+      )
     );
   }
 }

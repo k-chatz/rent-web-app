@@ -69,9 +69,6 @@ export class MockInterceptor implements HttpInterceptor {
           console.log('Mock request: ${environment.apiRoot}/users');
           return MockInterceptor.ok(users);
         }
-
-        console.log('request', request);
-
         if (request.url.endsWith(`${environment.apiRoot}/users/1`) && request.method === 'GET') {
           console.log('Mock request: ${environment.apiRoot}/users');
           return MockInterceptor.ok(users[1]);
