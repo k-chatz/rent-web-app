@@ -3,4 +3,9 @@ body {
   background-color: #f0f3f6 !important;
 }
 
+.breadcrumb {
+  background-color: #ffffff00 !important;
+  border-radius: 0.25rem !important;
+}
+
 @import '~ngx-toastr/toastr.css';
