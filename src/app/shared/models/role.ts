@@ -1,6 +1,6 @@
 ﻿export enum Role {
-  Guest = 'GUEST',
-  User = 'USER',
-  Admin = 'ADMIN',
-  Provider = 'PROVIDER'
+  Guest = 'ROLE_GUEST',
+  User = 'ROLE_USER',
+  Admin = 'ROLE_ADMIN',
+  Provider = 'ROLE_PROVIDER'
 }
