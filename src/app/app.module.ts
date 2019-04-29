@@ -5,19 +5,20 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {en_US, NgZorroAntdModule, NZ_I18N} from 'ng-zorro-antd';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {environment} from '../environments/environment';
 import {AgmCoreModule} from '@agm/core';
 import {BsDropdownModule} from 'ngx-bootstrap';
-import {JwtInterceptor} from './shared/interceptors/jwt.interceptor';
-import {ErrorInterceptor} from './shared/interceptors/error.interceptor';
+import {jwtProvider} from './shared/interceptors/jwt.interceptor';
+import {errorProvider} from './shared/interceptors/error.interceptor';
 import {mockProvider} from './shared/interceptors/mock.interceptor';
 import {ToastrModule} from 'ngx-toastr';
 import {TeximateModule} from 'ngx-teximate';
 import {NgProgressModule} from '@ngx-progressbar/core';
 import {NgProgressHttpModule} from '@ngx-progressbar/http';
+import {DEFAULT_TIMEOUT, timeoutProvider} from './shared/interceptors/timeout.interceptor';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -66,11 +67,11 @@ export const createTranslateLoader = (http: HttpClient) => {
   ],
   providers: [
     {provide: NZ_I18N, useValue: en_US},
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    jwtProvider,
+    errorProvider,
     mockProvider,
-     timeoutProvider,
-     {provide: DEFAULT_TIMEOUT, useValue: 3000}
+    timeoutProvider,
+    {provide: DEFAULT_TIMEOUT, useValue: 3000}
   ],
   bootstrap: [AppComponent]
 })

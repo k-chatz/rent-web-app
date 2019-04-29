@@ -81,9 +81,7 @@ export class MockInterceptor implements HttpInterceptor {
     ).pipe(materialize()).pipe(delay(0)).pipe(dematerialize());
   }
 }
-
 export let mockProvider = {
-  // use fake backend in place of Http service for backend-less development
   provide: HTTP_INTERCEPTORS,
   useClass: MockInterceptor,
   multi: true
