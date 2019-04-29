@@ -68,7 +68,9 @@ export const createTranslateLoader = (http: HttpClient) => {
     {provide: NZ_I18N, useValue: en_US},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-    mockProvider
+    mockProvider,
+     timeoutProvider,
+     {provide: DEFAULT_TIMEOUT, useValue: 3000}
   ],
   bootstrap: [AppComponent]
 })
