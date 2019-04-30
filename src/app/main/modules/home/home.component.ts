@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
   login(email: string) {
     this.auth.login({
       email,
-      password: '123456'
+      password: 'asdfk2.daADd'
     }).pipe(first())
       .subscribe((response: any) => console.log('response', response));
   }

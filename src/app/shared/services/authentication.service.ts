@@ -6,11 +6,6 @@ import {Session} from '../models/session';
 import {environment} from '../../../environments/environment';
 import {JwtHelperService} from '@auth0/angular-jwt';
 
-function getRandomColor() {
-  const color = Math.floor(0x1000000 * Math.random()).toString(16);
-  return ('000000' + color).slice(-6);
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -52,9 +47,7 @@ export class AuthenticationService {
               access: response.access,
               user: {
                 ...response.user,
-                role: response.user.role.name,
-                photoUrl: 'https://ui-avatars.com/api/?name=' + response.user.name + '+' + response.user.surname +
-                  '&rounded=true&%20bold=true&background=' + getRandomColor()
+                role: response.user.role.name
               }
             };
             const helper = new JwtHelperService();
@@ -90,9 +83,7 @@ export class AuthenticationService {
               },
               user: {
                 ...response.user,
-                role: response.user.role.name,
-                photoUrl: 'https://ui-avatars.com/api/?name=' + response.user.name + '+' + response.user.surname +
-                  '&rounded=true&%20bold=true&background=' + getRandomColor()
+                role: response.user.role.name
               }
             };
             localStorage.setItem('session', JSON.stringify(session));
@@ -123,9 +114,7 @@ export class AuthenticationService {
               access: response.access,
               user: {
                 ...response.user,
-                role: response.user.role.name,
-                photoUrl: 'https://ui-avatars.com/api/?name=' + response.user.name + '+' + response.user.surname +
-                  '&rounded=true&%20bold=true&background=' + getRandomColor()
+                role: response.user.role.name
               }
             };
             localStorage.setItem('session', JSON.stringify(session));
