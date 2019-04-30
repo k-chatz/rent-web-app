@@ -1,14 +1,12 @@
 import {Role} from './role';
+import {Profile} from './profile';
 
 export interface User {
   id: number;
   username: string;
-  name: string;
-  surname: string;
-  photoUrl: string;
   password: string;
   role: Role;
-  birthday: string;
   locked: boolean;
   email: string;
+  profile: Profile;
 }

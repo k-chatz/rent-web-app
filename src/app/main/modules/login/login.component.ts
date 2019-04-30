@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.auth.login(data).subscribe((response: any) => {
         console.log('response', response);
         this.progress = false;
-        this.toastr.info('We are happy to have you!', 'Welcome back ' + response.user.name + '!',
+        this.toastr.info('We are happy to have you!', 'Welcome back ' + response.user.profile.name + '!',
           {
             timeOut: 8000
           });

@@ -91,7 +91,7 @@ export class ConnectFormComponent implements OnInit, OnDestroy {
           console.log('response', response);
           this.loginProgress = false;
           this.registerForm.reset();
-          this.toastr.info('We are happy to have you!', 'Welcome back ' + response.user.name + '!',
+          this.toastr.info('We are happy to have you!', 'Welcome back ' + response.user.profile.name + '!',
           {
             timeOut: 8000
           });
@@ -128,7 +128,7 @@ export class ConnectFormComponent implements OnInit, OnDestroy {
           this.registerProgress = false;
           this.registerForm.reset();
           document.getElementById('connectModal').click();
-          this.toastr.success('We are happy to have you!', 'Welcome aboard ' + response.user.name + '!',
+          this.toastr.success('We are happy to have you!', 'Welcome aboard ' + response.user.profile.name + '!',
             {
               timeOut: 8000
             });

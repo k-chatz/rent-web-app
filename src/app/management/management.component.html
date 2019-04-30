@@ -18,12 +18,12 @@
       <div class="sidebar-header">
 
         <div class="user-pic">
-          <img class="img-responsive img-rounded" src="{{session.user.photoUrl}}" alt="User picture">
+          <img class="img-responsive img-rounded" src="{{session.user.profile.photo_url}}" alt="User picture">
         </div>
         <div class="user-info">
           <span class="user-name">
-            {{session.user.name}}
-            <strong>{{session.user.surname}}</strong>
+            {{session.user.profile.name}}
+            <strong>{{session.user.profile.surname}}</strong>
           </span>
           <span class="user-role">
             {{session.user.role}}
