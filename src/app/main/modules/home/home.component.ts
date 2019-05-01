@@ -6,6 +6,8 @@ import {first, timeout} from 'rxjs/operators';
 import {TextAnimation} from 'ngx-teximate';
 import {fadeIn} from 'ng-animate';
 import {HttpClient} from '@angular/common/http';
+import {FileReaderService} from '../../../shared/services/file-reader.service';
+import {FileUploaderService} from '../../../shared/services/file-uploader.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,6 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
 
   text = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s ' +
     'standard dummy text ever since the 1500s, when an unknown printer took a galley ' +
@@ -33,6 +34,8 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute,
     private auth: AuthenticationService,
     private titleService: Title,
+    public uploader: FileUploaderService,
+    public reader: FileReaderService
   ) {
     titleService.setTitle('RentCube');
   }
@@ -62,6 +65,10 @@ export class HomeComponent implements OnInit {
       }, (error) => {
         console.log('Error', error);
       });
+  }
+
+  onCompleteItem($event) {
+    console.log($event);
   }
 
   logout() {
