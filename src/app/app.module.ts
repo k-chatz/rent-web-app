@@ -50,7 +50,8 @@ export const createTranslateLoader = (http: HttpClient) => {
       progressAnimation: 'decreasing',
       tapToDismiss: true,
       positionClass: 'toast-bottom-right',
-      timeOut: 5000
+      timeOut: 5000,
+      enableHtml: true
     }),
     BsDropdownModule.forRoot(),
     AgmCoreModule.forRoot({
