@@ -6,18 +6,23 @@
       </div>
       <form [formGroup]="form" (ngSubmit)="submit(form.value)" class="form-validate">
 
-        <!--Name-->
-        <div class="form-group">
-          <div class="control-label">
-            <label id="firstname-lbl" for="name" class="required">
-              Name
-              <span class="star"> *</span></label>
-          </div>
-          <div class="controls">
-            <input class="form-control" id="name" type="text" formControlName="name" #registerFormName
-                   [ngClass]="{'is-invalid': (form.get('name').touched || form.get('name').dirty)
-                    && !form.get('name').valid }"/>
-            <span class="invalid-feedback">
+
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+
+            <!--Name-->
+            <div class="form-group">
+              <div class="control-label">
+                <label id="firstname-lbl" for="name" class="required">
+                  Name
+                  <span class="star"> *</span></label>
+              </div>
+              <div class="controls">
+                <input class="form-control" id="name" type="text" formControlName="name" #registerFormName
+                       [ngClass]="{'is-invalid': (form.get('name').touched || form.get('name').dirty) &&
+                   !form.get('name').valid, 'is-valid': form.get('name').valid }"
+                />
+                <span class="invalid-feedback">
               <span *ngIf="(form.get('name').errors?.required &&
               form.get('name').touched)">
                 The name is required!
@@ -31,21 +36,25 @@
                 Too long!
               </span>
             </span>
-          </div>
-        </div>
+              </div>
+            </div>
 
-        <!--Surname-->
-        <div class="form-group">
-          <div class="control-label">
-            <label id="surname-lbl" for="surname" class="required">
-              Surname
-              <span class="star"> *</span></label>
           </div>
-          <div class="controls">
-            <input class="form-control" id="surname" type="text" formControlName="surname" #registerFormSurname
-                   [ngClass]="{'is-invalid': (form.get('surname').touched || form.get('surname').dirty) &&
-                                         !form.get('surname').valid }"/>
-            <span class="invalid-feedback">
+
+          <div class="col-md-6 mb-3">
+
+            <!--Surname-->
+            <div class="form-group">
+              <div class="control-label">
+                <label id="surname-lbl" for="surname" class="required">
+                  Surname
+                  <span class="star"> *</span></label>
+              </div>
+              <div class="controls">
+                <input class="form-control" id="surname" type="text" formControlName="surname" #registerFormSurname
+                       [ngClass]="{'is-invalid': (form.get('surname').touched || form.get('surname').dirty) &&
+                   !form.get('surname').valid, 'is-valid': form.get('surname').valid }"/>
+                <span class="invalid-feedback">
               <span *ngIf="(form.get('surname').errors?.required && form.get('surname').touched)">
                 The surname is required!
               </span>
@@ -56,21 +65,39 @@
                 Too long!
               </span>
             </span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-md-4 mb-3">
+
           </div>
         </div>
 
-        <!--Username-->
-        <div class="form-group">
-          <div class="control-label">
-            <label id="username-lbl" for="username" class="required">
-              Username
-              <span class="star"> *</span></label>
-          </div>
-          <div class="controls">
-            <input class="form-control" id="username" type="text" formControlName="username" #registerFormUsername
-                   [ngClass]="{'is-invalid': (form.get('username').touched || form.get('username').dirty) &&
-                                         !form.get('username').valid }"/>
-            <span class="invalid-feedback">
+
+        <div class="form-row">
+
+          <div class="col-md-4 mb-3">
+            <!--Username-->
+            <div class="form-group">
+              <div class="control-label">
+                <label id="username-lbl" for="username" class="required">
+                  Username
+                  <span class="star"> *</span></label>
+              </div>
+              <div class="controls">
+                <input class="form-control" id="username" type="text" formControlName="username" #registerFormUsername
+                       [ngClass]="{'is-invalid': (form.get('username').touched || form.get('username').dirty) &&
+                                         !form.get('username').valid, 'is-valid': form.get('username').valid }"/>
+                <div *ngIf="form.get('username').status === 'PENDING'">
+                  <fa name="cog" animation="spin"></fa>
+                  Checking...
+                </div>
+                <span class="invalid-feedback">
+              <span *ngIf="form.get('username').errors && form.get('username').errors.usernameTaken">
+                😢 Oh noes, this username is already taken!
+              </span>
               <span *ngIf="(form.get('username').errors?.required &&
               form.get('username').touched)">
                 The username is required!
@@ -83,39 +110,71 @@
                form.get('username').touched)">
                 Too long!
               </span>
-            </span>
-          </div>
-        </div>
 
-        <!--Email-->
-        <div class="form-group">
-          <div class="control-label">
-            <label id="email-lbl" for="email" class="required">Email<span class="star"> *</span></label>
+            </span>
+
+              </div>
+            </div>
           </div>
-          <div class="controls">
-            <input class="form-control" id="email" type="email" formControlName="email" #registerFormEmail
-                   [ngClass]="{'is-invalid': (form.get('email').touched || form.get('email').dirty) &&
-                                         !form.get('email').valid }"/>
-            <span class="invalid-feedback">
+
+          <div class="col-md-8 mb-3">
+            <!--Email-->
+            <div class="form-group">
+              <div class="control-label">
+                <label id="email-lbl" for="email" class="required">Email<span class="star"> *</span></label>
+              </div>
+              <div class="controls">
+                <input class="form-control"
+                       id="email"
+                       type="email"
+                       formControlName="email"
+                       #registerFormEmail
+                       [ngClass]="{'is-invalid': (form.get('email').touched || form.get('email').dirty) &&
+                                         !form.get('email').valid, 'is-valid': form.get('email').valid }"/>
+                <div *ngIf="form.get('email').status === 'PENDING'">
+                  <fa name="cog" animation="spin"></fa>
+                  Checking...
+                </div>
+                <span class="invalid-feedback">
+              <div *ngIf="form.get('email').status === 'VALID'">
+                😺 Email is available!
+              </div>
+
+              <span *ngIf="form.get('email').errors && form.get('email').errors.emailTaken">
+                😢 Oh noes, this email is already taken!
+              </span>
+
               <span *ngIf="(form.get('email').errors?.email && form.get('email').touched)">
                 The email format is wrong!
               </span>
             </span>
+
+              </div>
+            </div>
+
           </div>
+
         </div>
+
 
         <!--Password Group-->
         <div formGroupName="passwordGroup">
-          <!--Password-->
-          <div class="form-group">
-            <div class="controls">
-              <div class="control-label">
-                <label for="password" class="required">Password<span class="star"> *</span></label>
-              </div>
-              <input class="form-control" id="password" type="password" formControlName="password"
-                     [ngClass]="{'is-invalid': (form.get('passwordGroup').get('password').touched || form.get('passwordGroup').get('password').dirty) &&
-                                         !form.get('passwordGroup').get('password').valid }"/>
-              <span class="invalid-feedback">
+
+          <div class="form-row">
+
+            <div class="col-md-6 mb-3">
+              <!--Password-->
+              <div class="form-group">
+                <div class="controls">
+                  <div class="control-label">
+                    <label for="password" class="required">Password<span class="star"> *</span></label>
+                  </div>
+                  <input class="form-control" id="password" type="password" formControlName="password"
+                         [ngClass]="{'is-invalid': (form.get('passwordGroup').get('password').touched ||
+                     form.get('passwordGroup').get('password').dirty) &&
+                     !form.get('passwordGroup').get('password').valid,
+                     'is-valid': form.get('passwordGroup').get('password').valid }"/>
+                  <span class="invalid-feedback">
                <span
                  *ngIf="(form.get('passwordGroup').get('password').errors?.required &&
                  form.get('passwordGroup').get('password').touched)">
@@ -132,27 +191,25 @@
                    Too long!
                </span>
               </span>
-            </div>
-          </div>
-
-          <!--Confirm password-->
-          <div class="form-group">
-            <div class="controls">
-              <div class="control-label">
-                <label for="confirmPassword" class="required">Password Confirmation<span class="star"> *</span></label>
+                </div>
               </div>
-              <input class="form-control" id="confirmPassword" type="password" formControlName="confirmPassword"
-                     [ngClass]="{'is-invalid': (
+            </div>
 
+            <div class="col-md-6 mb-3">
 
+              <!--Confirm password-->
+              <div class="form-group">
+                <div class="controls">
+                  <div class="control-label">
+                    <label for="confirmPassword" class="required">Password Confirmation<span
+                      class="star"> *</span></label>
+                  </div>
+                  <input class="form-control" id="confirmPassword" type="password" formControlName="confirmPassword"
+                         [ngClass]="{'is-invalid': (
                      form.get('passwordGroup').get('confirmPassword').touched &&
                      form.get('passwordGroup').hasError('notSame')
-
-                     )}"/>
-
-              <!--form.get('passwordGroup').get('confirmPassword').dirty) && form.get('passwordGroup').get('confirmPassword').valid-->
-
-              <span class="invalid-feedback">
+                     ), 'is-valid': form.get('passwordGroup').get('confirmPassword').valid }"/>
+                  <span class="invalid-feedback">
                  <span
                    *ngIf="(form.get('passwordGroup').get('confirmPassword').errors?.required &&
                    form.get('passwordGroup').get('confirmPassword').touched)">
@@ -164,9 +221,16 @@
                    Passwords don't match!
                  </span>
               </span>
+                </div>
+              </div>
+
             </div>
+
           </div>
+
+
         </div>
+
 
         <!--Submit-->
         <div class="d-flex justify-content-between">
@@ -184,9 +248,19 @@
                 <fa *ngIf="progress" name="cog" animation="spin"></fa>
                 <fa *ngIf="!progress" name="sign-in"></fa>
               </button>
+
+
+              <button
+                (click)="form.reset()"
+                [disabled]="form.pristine"
+                type="button"
+                class="btn btn-warning">
+                Reset
+              </button>
             </div>
           </div>
         </div>
+
 
       </form>
       <div class="text-center">
