@@ -7,6 +7,9 @@ import {first} from 'rxjs/internal/operators/first';
 import * as moment from 'moment';
 import {ToastrService} from 'ngx-toastr';
 import {Title} from '@angular/platform-browser';
+import {ValidateEmailNotTaken} from '../../../shared/validators/email-taken.validator';
+import {CheckService} from '../../../shared/services/check.service';
+import {ValidateUsernameNotTaken} from '../../../shared/validators/username-taken.validator';
 
 @Component({
   selector: 'app-register',
@@ -26,13 +29,22 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private auth: AuthenticationService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private check: CheckService
   ) {
     titleService.setTitle('Register');
     this.form = this.fb.group(
       {
-        username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
-        email: ['', [Validators.required, Validators.email]],
+        username: ['', {
+          validators: [Validators.required, Validators.minLength(5), Validators.maxLength(20)],
+          asyncValidators: [ValidateUsernameNotTaken.createValidator(this.check)],
+          updateOn: 'blur'
+        }],
+        email: ['', {
+          validators: [Validators.required, Validators.email],
+          asyncValidators: [ValidateEmailNotTaken.createValidator(this.check)],
+          updateOn: 'blur'
+        }],
         passwordGroup: this.fb.group({
             password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
             confirmPassword: ['', Validators.required],

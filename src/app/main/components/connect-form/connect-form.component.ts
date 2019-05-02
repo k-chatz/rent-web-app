@@ -7,6 +7,9 @@ import {Subscription} from 'rxjs';
 import {LoginForm} from '../../../shared/models/payload/login-form';
 import * as moment from 'moment';
 import {ToastrService} from 'ngx-toastr';
+import {ValidateUsernameNotTaken} from '../../../shared/validators/username-taken.validator';
+import {CheckService} from '../../../shared/services/check.service';
+import {ValidateEmailNotTaken} from '../../../shared/validators/email-taken.validator';
 
 @Component({
   selector: 'app-connect-form',
@@ -28,7 +31,8 @@ export class ConnectFormComponent implements OnInit, OnDestroy {
     private router: Router,
     private rfb: FormBuilder,
     private lfb: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private check: CheckService
   ) {
     this.loginForm = this.lfb.group(
       {
@@ -39,8 +43,16 @@ export class ConnectFormComponent implements OnInit, OnDestroy {
     );
     this.registerForm = this.rfb.group(
       {
-        r_username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
-        r_email: ['', [Validators.required, Validators.email]],
+        r_username: ['', {
+          validators: [Validators.required, Validators.minLength(5), Validators.maxLength(20)],
+          asyncValidators: [ValidateUsernameNotTaken.createValidator(this.check)],
+          updateOn: 'blur'
+        }],
+        r_email: ['', {
+          validators: [Validators.required, Validators.email],
+          asyncValidators: [ValidateEmailNotTaken.createValidator(this.check)],
+          updateOn: 'blur'
+        }],
         r_passwordGroup: this.rfb.group({
             r_password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
             r_confirmPassword: ['', Validators.required],
@@ -88,26 +100,26 @@ export class ConnectFormComponent implements OnInit, OnDestroy {
       email: data.l_email,
       password: data.l_password
     }).pipe(first()).subscribe((response: any) => {
-          console.log('response', response);
-          this.loginProgress = false;
-          this.registerForm.reset();
-          this.toastr.info('We are happy to have you!', 'Welcome back ' + response.user.profile.name + '!',
+        console.log('response', response);
+        this.loginProgress = false;
+        this.registerForm.reset();
+        this.toastr.info('We are happy to have you!', 'Welcome back ' + response.user.profile.name + '!',
           {
             timeOut: 8000
           });
-          document.getElementById('connectModal').click();
-          if (this.returnUrl) {
-            this.router.navigate([this.returnUrl]);
-          } else {
-            this.router.navigate(['/']);
-          }
-        },
-        error => {
-          console.error(error);
-          this.loginProgress = false;
-          this.loginForm.get('l_password').setValue('');
-          this.loginFormEmail.nativeElement.focus();
-        });
+        document.getElementById('connectModal').click();
+        if (this.returnUrl) {
+          this.router.navigate([this.returnUrl]);
+        } else {
+          this.router.navigate(['/']);
+        }
+      },
+      error => {
+        console.error(error);
+        this.loginProgress = false;
+        this.loginForm.get('l_password').setValue('');
+        this.loginFormEmail.nativeElement.focus();
+      });
   }
 
   onRegisterSubmit(data: any) {
