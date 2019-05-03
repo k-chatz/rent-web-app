@@ -8,7 +8,7 @@ export class ValidateEmailNotTaken {
       return check.checkEmailExists(control.value).pipe(
         map(res => {
           console.log('res', res);
-          return !res.available ? null : {emailTaken: true};
+          return res.exists ? {emailTaken: true} : null;
         })
       );
     };

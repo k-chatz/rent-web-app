@@ -8,7 +8,7 @@ export class ValidateUsernameNotTaken {
       return check.checkUsernameExists(control.value).pipe(
         map(res => {
           console.log('res', res);
-          return !res.available ? null : {usernameTaken: true};
+          return res.exists ? {usernameTaken: true} : null;
         })
       );
     };

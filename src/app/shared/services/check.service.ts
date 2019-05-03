@@ -12,11 +12,11 @@ export class CheckService {
   }
 
   checkEmailExists(email: string) {
-    return this.http.get<any>(environment.apiRoot + '/check/email/' + email);
+    return this.http.get<any>(environment.apiRoot + '/check/exists/email/' + email);
   }
 
   checkUsernameExists(username: string) {
-    return this.http.get<any>(environment.apiRoot + '/check/username/' + username);
+    return this.http.get<any>(environment.apiRoot + '/check/exists/username/' + username);
   }
 
   checkProviderApplicationStatus() {
