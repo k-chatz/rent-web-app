@@ -22,17 +22,19 @@
 
       <li *ngIf="session" class="nav-item">
         <a routerLink="" class="nav-link">
-          <i class="fa fa-envelope"></i>
+          <i class="fa fa-envelope">
+            <span class="badge badge-danger badge-pill" *ngIf="(messages != undefined) && (messages.length > 0)">{{messages.length}}</span>
+          </i>
           <span>Messages</span>
-          <span class="badge badge-danger badge-pill" *ngIf="(messages != undefined) && (messages.length > 0)">{{messages.length}}</span>
         </a>
       </li>
 
       <li class="nav-item">
         <a routerLink="" class="nav-link">
-          <i class="fa fa-bell"></i>
+          <i class="fa fa-bell">
+            <span class="badge badge-danger badge-pill" *ngIf="(notifications != undefined) && (notifications.length > 0)">{{notifications.length}}</span>
+          </i>
           <span>Notifications</span>
-          <span class="badge badge-danger badge-pill" *ngIf="(notifications != undefined) && (notifications.length > 0)">{{notifications.length}}</span>
         </a>
       </li>
 
@@ -58,7 +60,7 @@
           </li>
 
           <li role="menuitem">
-            <a class="dropdown-item" routerLink="">
+            <a class="dropdown-item" routerLink="/settings">
               <i class="fa fa-sliders"></i> Settings
             </a>
           </li>
