@@ -23,13 +23,16 @@
       <li *ngIf="session" class="nav-item">
         <a routerLink="" class="nav-link">
           <i class="fa fa-envelope"></i>
-          <span>Messages</span></a>
+          <span>Messages</span>
+          <span class="badge badge-danger badge-pill" *ngIf="(messages != undefined) && (messages.length > 0)">{{messages.length}}</span>
+        </a>
       </li>
 
       <li class="nav-item">
         <a routerLink="" class="nav-link">
           <i class="fa fa-bell"></i>
           <span>Notifications</span>
+          <span class="badge badge-danger badge-pill" *ngIf="(notifications != undefined) && (notifications.length > 0)">{{notifications.length}}</span>
         </a>
       </li>
 
