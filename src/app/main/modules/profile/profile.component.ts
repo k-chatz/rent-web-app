@@ -8,6 +8,12 @@ import {Title} from '@angular/platform-browser';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  username = 'antoni4040';
+  name = 'Antoni';
+  surname = 'Karvelas';
+  birthday = '03/05/1998';
+
+  editing = false;
 
   private user: User;
 
