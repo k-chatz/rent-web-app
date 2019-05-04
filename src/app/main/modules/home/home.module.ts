@@ -10,6 +10,8 @@ import {ErrorInterceptor} from '../../../shared/interceptors/error.interceptor';
 import {mockProvider} from '../../../shared/interceptors/mock.interceptor';
 import {VarDirectiveModule} from '../../../shared/var-directive.module';
 import {TeximateModule} from 'ngx-teximate';
+import {NgZorroAntdModule} from 'ng-zorro-antd';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [HomeComponent, SearchBarComponent],
@@ -17,7 +19,9 @@ import {TeximateModule} from 'ngx-teximate';
     CommonModule,
     HomeRoutingModule,
     VarDirectiveModule,
-    TeximateModule
+    TeximateModule,
+    FormsModule,
+    NgZorroAntdModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

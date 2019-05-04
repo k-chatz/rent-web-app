@@ -76,7 +76,6 @@ export class ConnectFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log('connect form ng on init');
     this.routeSub = this.route.queryParams
       .subscribe((params: any) => {
         this.returnUrl = params.returnUrl;

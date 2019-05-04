@@ -1,3 +1,16 @@
-<p>
-  search-bar works!
-</p>
+<nz-range-picker
+  [nzDateRender]="tplRender"
+  [(ngModel)]="dateRange"
+  [nzAllowClear]="true"
+  [nzDisabledDate]="disabledDate"
+  (ngModelChange)="onChange($event)">
+</nz-range-picker>
+
+<ng-template #tplRender let-current>
+  <div
+    style="cursor: pointer"
+    class="ant-calendar-date"
+    [class.border]="current.getDate() === 1">
+    {{ current.getDate() }}
+  </div>
+</ng-template>
