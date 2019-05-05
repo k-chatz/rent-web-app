@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {differenceInCalendarDays} from 'date-fns';
 import {Address} from 'ngx-google-places-autocomplete/objects/address';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -24,16 +24,13 @@ export class SearchBarComponent implements OnInit {
   ) {
     this.form = this.fb.group(
       {
-        place: ['', {
-          validators: [Validators.required]
-        }],
         daterange: ['', {
           validators: []
         }],
-        latitude: ['', {
+        latitude: [null, {
           validators: [Validators.required]
         }],
-        longitude: ['', {
+        longitude: [null, {
           validators: [Validators.required]
         }],
         visitors: [null, {
@@ -63,5 +60,12 @@ export class SearchBarComponent implements OnInit {
   submit(value: any) {
     console.log(value);
     this.progress = true;
+  }
+
+  valuechange(value: string) {
+    if (value === '') {
+      this.form.get('latitude').setValue(null);
+      this.form.get('longitude').setValue(null);
+    }
   }
 }

@@ -21,12 +21,14 @@
             [options]='placesOptions'
             #placesRef="ngx-places"
             (onAddressChange)="handleCheckAddressChange($event)"
+            (input)="valuechange(place.value)"
             type="text"
             class="form-control"
             placeholder="Where are you going?"
-            formControlName="place"
             aria-label="place"
-            aria-describedby="basic-addon1">
+            aria-describedby="basic-addon1"
+            #place
+          >
         </div>
 
         <!--Date Range Picker-->
