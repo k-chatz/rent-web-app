@@ -9,3 +9,35 @@ body {
 }
 
 @import '~ngx-toastr/toastr.css';
+
+.ant-input-lg {
+  height: 38px !important;
+}
+
+.ant-input {
+  border: 1px solid #ffffff;
+}
+
+.ant-calendar-picker:hover .ant-calendar-picker-input:not(.ant-input-disabled) {
+  border-color: #ffffff;
+}
+
+input::-webkit-input-placeholder {
+  color: #919191 !important;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+  color: #919191 !important;
+}
+
+input::-moz-placeholder { /* Firefox 19+ */
+  color: #919191 !important;
+}
+
+input:-ms-input-placeholder {
+  color: #919191 !important;
+}
+
+nz-range-picker > nz-picker > span > span > span.ant-calendar-picker-icon.ng-star-inserted > i > svg {
+  display: none !important;
+}

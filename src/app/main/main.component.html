@@ -1,6 +1,8 @@
 <app-navbar></app-navbar>
 <main role="main">
-  <app-ng7-bootstrap-breadcrumb></app-ng7-bootstrap-breadcrumb>
+  <!--[ngStyle]="{'visibility': (router.url==='/') ?'hidden': 'visible' }"-->
+  <app-ng7-bootstrap-breadcrumb
+    [hidden]="router.url==='/'"></app-ng7-bootstrap-breadcrumb>
   <router-outlet></router-outlet>
 </main>
 <app-footer></app-footer>

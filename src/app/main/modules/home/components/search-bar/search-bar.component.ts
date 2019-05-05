@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {differenceInCalendarDays} from 'date-fns';
+import {Address} from 'ngx-google-places-autocomplete/objects/address';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-search-bar',
@@ -7,22 +9,59 @@ import {differenceInCalendarDays} from 'date-fns';
   styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent implements OnInit {
+
+  private address: Address;
+
+  placesOptions: {
+    types: ['(cities)'],
+    componentRestrictions: { country: 'GR' }
+  };
+
+  form: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+  ) {
+    this.form = this.fb.group(
+      {
+        place: ['', {
+          validators: [Validators.required]
+        }],
+        daterange: ['', {
+          validators: []
+        }],
+        latitude: ['', {
+          validators: [Validators.required]
+        }],
+        longitude: ['', {
+          validators: [Validators.required]
+        }],
+        visitors: [null, {
+          validators: [Validators.min(1), Validators.max(20)]
+        }]
+      }
+    );
+
+  }
+
   today = new Date();
-  dateRange = [];
-
-  constructor() {
-  }
-
-  onChange(result: Date): void {
-    console.log('onChange: ', result);
-    console.log('dateRange: ', this.dateRange);
-  }
+  progress = false;
 
   ngOnInit(): void {
   }
 
-  disabledDate = (current: Date): boolean => {
+  disabledDate(current: Date): boolean {
     return differenceInCalendarDays(current, this.today) < 0 ||
       differenceInCalendarDays(current, this.today) > 60;
-  };
+  }
+
+  handleCheckAddressChange(address: Address) {
+    this.form.get('latitude').setValue(address.geometry.location.lat());
+    this.form.get('longitude').setValue(address.geometry.location.lng());
+  }
+
+  submit(value: any) {
+    console.log(value);
+    this.progress = true;
+  }
 }

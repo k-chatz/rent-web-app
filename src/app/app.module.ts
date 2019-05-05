@@ -19,6 +19,7 @@ import {TeximateModule} from 'ngx-teximate';
 import {NgProgressModule} from '@ngx-progressbar/core';
 import {NgProgressHttpModule} from '@ngx-progressbar/http';
 import {DEFAULT_TIMEOUT, timeoutProvider} from './shared/interceptors/timeout.interceptor';
+import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -65,6 +66,7 @@ export const createTranslateLoader = (http: HttpClient) => {
       }
     }),
     TeximateModule,
+    GooglePlaceModule
   ],
   providers: [
     {provide: NZ_I18N, useValue: en_US},

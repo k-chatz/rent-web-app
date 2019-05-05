@@ -11,7 +11,10 @@ import {mockProvider} from '../../../shared/interceptors/mock.interceptor';
 import {VarDirectiveModule} from '../../../shared/var-directive.module';
 import {TeximateModule} from 'ngx-teximate';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
+import {TypeaheadModule} from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [HomeComponent, SearchBarComponent],
@@ -21,7 +24,11 @@ import {FormsModule} from '@angular/forms';
     VarDirectiveModule,
     TeximateModule,
     FormsModule,
-    NgZorroAntdModule
+    ReactiveFormsModule,
+    NgZorroAntdModule,
+    AngularFontAwesomeModule,
+    GooglePlaceModule,
+    TypeaheadModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

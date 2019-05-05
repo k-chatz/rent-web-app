@@ -1,10 +1,95 @@
-<nz-range-picker
-  [nzDateRender]="tplRender"
-  [(ngModel)]="dateRange"
-  [nzAllowClear]="true"
-  [nzDisabledDate]="disabledDate"
-  (ngModelChange)="onChange($event)">
-</nz-range-picker>
+<div class="jumbotron">
+  <div class="container">
+    <form [formGroup]="form" (ngSubmit)="submit(form.value)" class="form-validate">
+
+      <h1 class="display-8">Find deals for any season</h1>
+      <p class="lead">From cosy country homes to funky city flats</p>
+      <hr class="my-4">
+
+      <div class="row">
+
+        <!--Autocomplete-->
+        <div class="input-group col-md-4">
+
+          <div class="input-group-prepend">
+        <span class="input-group-text">
+           <fa name="bed"></fa>
+        </span>
+          </div>
+          <input
+            ngx-google-places-autocomplete
+            [options]='placesOptions'
+            #placesRef="ngx-places"
+            (onAddressChange)="handleCheckAddressChange($event)"
+            type="text"
+            class="form-control"
+            placeholder="Where are you going?"
+            formControlName="place"
+            aria-label="place"
+            aria-describedby="basic-addon1">
+        </div>
+
+        <!--Date Range Picker-->
+        <div class="input-group col-md-3">
+
+          <div class="input-group-prepend">
+          <span class="input-group-text">
+             <fa name="calendar"></fa>
+          </span>
+          </div>
+          <!--[nzStyle]="{'width':'250px'}"-->
+          <nz-range-picker
+            [nzDateRender]="tplRender"
+            [nzAllowClear]="true"
+            [nzSize]="'large'"
+            [nzDisabledDate]="disabledDate"
+            [nzFormat]="'dd-MM-yyyy'"
+            [nzShowToday]="true"
+            formControlName="daterange"
+          >
+          </nz-range-picker>
+        </div>
+
+        <!--Visitors-->
+        <div class="input-group col-md-2">
+
+          <div class="input-group-prepend">
+        <span class="input-group-text">
+           <fa name="male"></fa>
+        </span>
+          </div>
+          <input
+            min="1"
+            type="number"
+            class="form-control"
+            placeholder="Visitors"
+            formControlName="visitors"
+            aria-label="place"
+            aria-describedby="basic-addon1">
+        </div>
+
+        <!--Search button-->
+        <div class="input-group col-md-2">
+          <button
+            [disabled]="!form.valid || progress || form.untouched"
+            style="width: 100%;"
+            type="submit"
+            class="btn btn-primary">
+            <fa *ngIf="progress" name="cog" animation="spin"></fa>
+            <fa *ngIf="!progress" name="search"></fa>
+            &nbsp;
+            Search
+          </button>
+        </div>
+
+      </div>
+
+      <br/>
+      <p>Whatever accommodation you’re looking for, we’ve got it…</p>
+
+    </form>
+  </div>
+</div>
 
 <ng-template #tplRender let-current>
   <div
