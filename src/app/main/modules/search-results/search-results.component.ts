@@ -8,7 +8,6 @@ import {Title} from '@angular/platform-browser';
   styleUrls: ['./search-results.component.scss']
 })
 export class SearchResultsComponent implements OnInit {
-
   constructor(
     private titleService: Title,
     private route: ActivatedRoute
@@ -19,6 +18,7 @@ export class SearchResultsComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data) => {
       console.log(data);
+
     });
   }
 }

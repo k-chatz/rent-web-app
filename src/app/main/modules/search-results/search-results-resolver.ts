@@ -13,10 +13,8 @@ export class SearchResultsResolver implements Resolve<Observable<any>> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
     console.log('route', route);
     const city = route.queryParams.city;
-    /* TODO: Get query params from url*/
-    /* TODO: Fetch data*/
-    return of(city).pipe(
-      delay(1000)
+    return of(route.queryParams).pipe(
+      delay(3000)
     );
   }
 }

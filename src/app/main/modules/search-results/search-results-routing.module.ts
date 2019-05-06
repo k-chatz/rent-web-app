@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component: SearchResultsComponent,
     resolve: {
-      observable: SearchResultsResolver
+      data: SearchResultsResolver
     },
   }
 ];

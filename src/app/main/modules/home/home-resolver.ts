@@ -14,8 +14,6 @@ export class HomeResolver implements Resolve<Observable<any>> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
     const key = route.paramMap.get('key');
-    return of(key).pipe(
-      delay(1000)
-    );
+    return of(null);
   }
 }

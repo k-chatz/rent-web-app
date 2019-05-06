@@ -18,9 +18,5 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     const breadcrumb = {customText: 'This is Custom Text', dynamicText: 'Level 2 '};
     this.ng7BootstrapBreadcrumbService.updateBreadcrumbLabels(breadcrumb);
-
-    console.log('router', this.router);
-
   }
-
 }

@@ -45,9 +45,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.data.subscribe((data) => {
-      console.log(data);
-    });
   }
 
   login(email: string) {
