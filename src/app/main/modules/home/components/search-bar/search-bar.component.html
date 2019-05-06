@@ -9,12 +9,11 @@
       <div class="row">
 
         <!--Autocomplete-->
-        <div class="input-group col-md-4">
-
+        <div class="input-group col-12 col-md-6 col-xl-4">
           <div class="input-group-prepend">
-        <span class="input-group-text">
-           <fa name="bed"></fa>
-        </span>
+            <span class="input-group-text">
+               <fa name="bed"></fa>
+            </span>
           </div>
           <input
             ngx-google-places-autocomplete
@@ -32,8 +31,7 @@
         </div>
 
         <!--Date Range Picker-->
-        <div class="input-group col-md-3">
-
+        <div class="input-group col-12 col-md-6 col-xl-3">
           <div class="input-group-prepend">
           <span class="input-group-text">
              <fa name="calendar"></fa>
@@ -53,12 +51,12 @@
         </div>
 
         <!--Visitors-->
-        <div class="input-group col-md-2">
+        <div class="input-group col-12 col-md-4 col-xl-2">
 
           <div class="input-group-prepend">
-        <span class="input-group-text">
-           <fa name="male"></fa>
-        </span>
+            <span class="input-group-text">
+               <fa name="male"></fa>
+            </span>
           </div>
           <input
             min="1"
@@ -72,7 +70,7 @@
         </div>
 
         <!--Search button-->
-        <div class="input-group col-md-2">
+        <div class="input-group col-12 col-md-4 col-xl-2">
           <button
             [disabled]="!form.valid || progress || form.untouched"
             style="width: 100%;"

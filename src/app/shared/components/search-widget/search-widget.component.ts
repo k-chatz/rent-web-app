@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-widget',
@@ -6,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-widget.component.scss']
 })
 export class SearchWidgetComponent implements OnInit {
-  destination = '';
+  @Input() destination;
+  @Input() visitors;
+  @Input() startDate;
+  @Input() endDate;
+
+  form: FormGroup;
 
   // For the number of adults select:
   adults = [{value: 1, label: '1 adult'}];
@@ -27,45 +34,33 @@ export class SearchWidgetComponent implements OnInit {
   travelingForWork = false;
 
   // Used by the date range picker, don't touch it:
-  startValue: Date | null = null;
-  endValue: Date | null = null;
   endOpen = false;
 
-  disabledStartDate = (startValue: Date): boolean => {
-    if (!startValue || !this.endValue) {
-      return false;
-    }
-    return startValue.getTime() > this.endValue.getTime();
+  constructor(private fb: FormBuilder,
+              private router: Router,
+  ) {
+    this.form = this.fb.group(
+      {
+        destination: ['', {
+          validators: [Validators.required]
+        }],
+        daterangeGroup: this.fb.group({
+            startDate: [null, {validators: []}],
+            endDate: [null, {validators: []}]
+          }
+        ),
+        latitude: [null, {
+          validators: [Validators.required]
+        }],
+        longitude: [null, {
+          validators: [Validators.required]
+        }],
+        visitors: [null, {
+          validators: [Validators.min(1), Validators.max(15)]
+        }]
+      }
+    );
   }
-
-  disabledEndDate = (endValue: Date): boolean => {
-    if (!endValue || !this.startValue) {
-      return false;
-    }
-    return endValue.getTime() <= this.startValue.getTime();
-  }
-
-  onStartChange(date: Date): void {
-    this.startValue = date;
-  }
-
-  onEndChange(date: Date): void {
-    this.endValue = date;
-  }
-
-  handleStartOpenChange(open: boolean): void {
-    if (!open) {
-      this.endOpen = true;
-    }
-    // console.log('handleStartOpenChange', open, this.endOpen);
-  }
-
-  handleEndOpenChange(open: boolean): void {
-    // console.log(open);
-    this.endOpen = open;
-  }
-
-  constructor() { }
 
   ngOnInit() {
     let i;
@@ -81,6 +76,72 @@ export class SearchWidgetComponent implements OnInit {
     for (i = 2; i <= this.maxRooms; i++) {
       this.rooms.push({value: i, label: i + ' rooms'});
     }
+
+    console.log('----Start:', this.startDate);
+    console.log('----End:', this.endDate);
+
+
+    const start = this.startDate.split('-');
+    const end = this.endDate.split('-');
+
+
+    this.form.get('destination').setValue(this.destination);
+    this.form.get('daterangeGroup').get('startDate').setValue(new Date(Number(start[2]), Number(start[1]) - 1, Number(start[0])));
+    this.form.get('daterangeGroup').get('endDate').setValue(new Date(Number(end[2]), Number(end[1]) - 1, Number(end[0])));
+
+    console.log('----Start:', this.form.get('daterangeGroup').get('startDate').value);
+    console.log('----End:', this.form.get('daterangeGroup').get('endDate').value);
+
+    this.form.get('visitors').setValue(this.visitors);
+
+    console.log('Search widget -> destination: ', this.destination);
   }
+
+  /*disabledStartDate(): boolean {
+    if (!this.startDate || !this.endDate) {
+      return false;
+    }
+    return this.endDate.getTime() > this.startDate.getTime();
+  }
+
+  disabledEndDate(): boolean {
+    if (!this.endDate || !this.startDate) {
+      return false;
+    }
+    return this.endDate.getTime() <= this.startDate.getTime();
+  }
+
+  onStartChange(date: Date): void {
+    this.form.get('daterangeGroup').get('startDate').setValue(date);
+  }
+
+  onEndChange(date: Date): void {
+    this.form.get('daterangeGroup').get('endDate').setValue(date);
+  }
+
+  handleStartOpenChange(open: boolean): void {
+    if (!open) {
+      this.endOpen = true;
+    }
+    // console.log('handleStartOpenChange', open, this.endOpen);
+  }
+
+  handleEndOpenChange(open: boolean): void {
+    // console.log(open);
+    this.endOpen = open;
+  }
+
+  get startDate() {
+    return this.form.get('daterangeGroup').get('startDate').value;
+  }
+
+  get endDate() {
+    return this.form.get('daterangeGroup').get('endDate').value;
+  }
+*/
+  submit(value: any) {
+    console.log(value);
+  }
+
 
 }

@@ -7,9 +7,10 @@ import {SearchFormComponent} from './components/search-form/search-form.componen
 import {SearchResultsComponent} from './search-results.component';
 import {HotelListItemComponent} from './components/hotel-list-item/hotel-list-item.component';
 import {BsDropdownModule} from 'ngx-bootstrap';
-import {FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {SearchWidgetComponent} from '../../../shared/components/search-widget/search-widget.component';
-import {NzDatePickerModule} from 'ng-zorro-antd';
+import { NgZorroAntdModule, NzDatePickerModule } from 'ng-zorro-antd';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,10 @@ import {NzDatePickerModule} from 'ng-zorro-antd';
     SearchResultsRoutingModule,
     BsDropdownModule,
     FormsModule,
-    NzDatePickerModule
+    NzDatePickerModule,
+    ReactiveFormsModule,
+    NgZorroAntdModule,
+    AngularFontAwesomeModule
   ]
 })
 export class SearchResultsModule {
