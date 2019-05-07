@@ -4,6 +4,8 @@ import {HttpClient, HttpErrorResponse, HttpRequest, HttpResponse} from '@angular
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Subscription} from 'rxjs';
 import {HttpEventType} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
+
 
 export enum FileQueueStatus {
   Pending,
@@ -46,7 +48,8 @@ export class FileQueueObject {
 })
 export class FileUploaderService {
 
-  public url: string = 'https://localhost:8443/api/files/upload';
+  public singleUploadUrl: string = environment.apiRoot + '/files/upload';
+  public multipleUploadUrl: string = environment.apiRoot + '/files/multiple';
 
   private _queue: BehaviorSubject<FileQueueObject[]>;
   private _files: FileQueueObject[] = [];
@@ -109,7 +112,7 @@ export class FileUploaderService {
     form.append('file', queueObj.file, queueObj.file.name);
 
     // upload file and report progress
-    const req = new HttpRequest('POST', this.url, form, {
+    const req = new HttpRequest('POST', this.singleUploadUrl, form, {
       reportProgress: true,
     });
 
