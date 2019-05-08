@@ -69,14 +69,6 @@ export class MockInterceptor implements HttpInterceptor {
             token: `fake-jwt-token`
           });
         }
-        if (request.url.endsWith(`${environment.apiRoot}/users`) && request.method === 'GET') {
-          console.log('Mock request: ${environment.apiRoot}/users');
-          return MockInterceptor.ok(users);
-        }
-        if (request.url.endsWith(`${environment.apiRoot}/users/1`) && request.method === 'GET') {
-          console.log('Mock request: ${environment.apiRoot}/users');
-          return MockInterceptor.ok(users[1]);
-        }
         return next.handle(request);
       })
     ).pipe(materialize()).pipe(delay(0)).pipe(dematerialize());

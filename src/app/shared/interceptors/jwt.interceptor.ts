@@ -18,10 +18,10 @@ export class JwtInterceptor implements HttpInterceptor {
         }
       });
     }
-
     return next.handle(request);
   }
 }
+
 export let jwtProvider = {
   provide: HTTP_INTERCEPTORS,
   useClass: JwtInterceptor,
