@@ -4,7 +4,6 @@ import {HomeComponent} from './home.component';
 import {HomeResolver} from './home-resolver';
 import {FileUploaderComponent} from '../../../shared/components/file-uploader/file-uploader.component';
 import {CommonModule} from '@angular/common';
-import { TooltipModule } from 'ngx-bootstrap';
 
 const routes: Routes = [
   {
@@ -23,7 +22,6 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
-    TooltipModule
   ],
   exports: [
     RouterModule,

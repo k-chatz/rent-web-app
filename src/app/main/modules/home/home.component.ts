@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
     delay: 5,
     type: 'letter'
   };
+  private users: any;
 
   constructor(
     private http: HttpClient,
@@ -70,5 +71,15 @@ export class HomeComponent implements OnInit {
 
   logout() {
     this.auth.logout();
+  }
+
+  getUsers() {
+    this.http.get('https://localhost:8443/api/users')
+      .subscribe(response => {
+        console.log('forceTimeout', response);
+        this.users = response;
+      }, (error) => {
+        console.log('Error', error);
+      });
   }
 }
