@@ -8,7 +8,7 @@
 
 .navbar {
   color: #fff;
-  background: linear-gradient(to right, #3654c5, #3e69d4);
+  background: #31353d;
   padding: 5px 16px;
   border-radius: 0;
   border: none;
@@ -24,7 +24,7 @@
   right: 12px;
   position: absolute !important;
   border-radius: 10rem;
-  border: 2px solid #3857c8;
+  border: 2px solid #31353d;
   font-size: 65%;
 }
 
@@ -33,7 +33,7 @@
   width: 36px;
   height: 36px;
   margin-right: 10px;
-  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.43)
+  box-shadow: 0 0 0 1px #818896
 }
 
 .navbar .navbar-brand {
