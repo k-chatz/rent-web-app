@@ -16,7 +16,7 @@ import {VarDirectiveModule} from '../../../shared/var-directive.module';
     UsersComponent,
     UsersListComponent,
     UsersDetailComponent,
-    UsersInsertNewComponent,
+    UsersInsertNewComponent
   ],
   imports: [
     CommonModule,
