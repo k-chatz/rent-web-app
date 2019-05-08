@@ -3,4 +3,6 @@ export interface Profile {
   surname: string;
   photo_url: string;
   birthday: string;
+  createdAt?: Date;
+  updateAt?: Date;
 }

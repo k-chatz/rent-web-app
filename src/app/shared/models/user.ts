@@ -4,9 +4,12 @@ import {Profile} from './profile';
 export interface User {
   id: number;
   username: string;
-  password: string;
+  email: string;
+  password?: string;
+  pending_provider?: boolean;
   role: Role;
   locked: boolean;
-  email: string;
   profile: Profile;
+  createdAt?: Date;
+  updateAt?: Date;
 }
