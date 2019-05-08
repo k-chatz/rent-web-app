@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search-widget',
@@ -76,25 +76,12 @@ export class SearchWidgetComponent implements OnInit {
     for (i = 2; i <= this.maxRooms; i++) {
       this.rooms.push({value: i, label: i + ' rooms'});
     }
-
-    console.log('----Start:', this.startDate);
-    console.log('----End:', this.endDate);
-
-
     const start = this.startDate.split('-');
     const end = this.endDate.split('-');
-
-
     this.form.get('destination').setValue(this.destination);
     this.form.get('daterangeGroup').get('startDate').setValue(new Date(Number(start[2]), Number(start[1]) - 1, Number(start[0])));
     this.form.get('daterangeGroup').get('endDate').setValue(new Date(Number(end[2]), Number(end[1]) - 1, Number(end[0])));
-
-    console.log('----Start:', this.form.get('daterangeGroup').get('startDate').value);
-    console.log('----End:', this.form.get('daterangeGroup').get('endDate').value);
-
     this.form.get('visitors').setValue(this.visitors);
-
-    console.log('Search widget -> destination: ', this.destination);
   }
 
   /*disabledStartDate(): boolean {
