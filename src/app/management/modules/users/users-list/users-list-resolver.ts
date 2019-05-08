@@ -15,10 +15,12 @@ export class UsersListResolver implements Resolve<any> {
   constructor(
     private service: UserService
   ) {
-
   }
 
   resolve(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-    return this.service.getAll();
+    return this.service.getAll({
+      size: 10,
+      page: 0,
+    });
   }
 }

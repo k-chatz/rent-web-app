@@ -16,14 +16,14 @@ const routes: Routes = [
         path: '',
         component: UsersListComponent,
         resolve: {
-          users: UsersListResolver
+          data: UsersListResolver
         },
         children: [
           {
             path: ':id',
             component: UsersDetailComponent,
             resolve: {
-              user: UsersDetailResolver
+              data: UsersDetailResolver
             }
           },
           {
