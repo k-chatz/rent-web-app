@@ -29,6 +29,20 @@ export class HomeComponent implements OnInit {
     type: 'letter'
   };
   private users: any;
+  destinations = [
+    {
+      title: 'Meteora',
+      image: '../../../../assets/images/forest-1906850_640.jpg'
+    },
+    {
+      title: 'Volos',
+      image: '../../../../assets/images/greece-4181705_640.jpg'
+    },
+    {
+      title: 'Athens',
+      image: '../../../../assets/images/acropolis-12044_640.jpg'
+    },
+  ];
 
   constructor(
     private http: HttpClient,

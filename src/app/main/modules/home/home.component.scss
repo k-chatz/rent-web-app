@@ -3,3 +3,34 @@
     margin: 5px;
   }
 }
+
+.card-title {
+  color: #f0f3f6;
+  padding: 15px;
+  text-shadow: 0 0 2px #0000007a;
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-overlay {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  transition: background-color 250ms linear;
+}
+
+.card-overlay:hover {
+  background-color: #51a2f936;
+}
+
+.card {
+  cursor: pointer;
+  transition: border 250ms ease-in-out;
+}
+
+.card:hover {
+  border: 1px solid #096dd999;
+}
