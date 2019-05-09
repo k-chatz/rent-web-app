@@ -3,20 +3,20 @@ import {CommonModule} from '@angular/common';
 
 import {SearchResultsRoutingModule} from './search-results-routing.module';
 import {FiltersComponent} from './components/filters/filters.component';
-import {SearchFormComponent} from './components/search-form/search-form.component';
 import {SearchResultsComponent} from './search-results.component';
 import {HotelListItemComponent} from './components/hotel-list-item/hotel-list-item.component';
 import {BsDropdownModule} from 'ngx-bootstrap';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SearchWidgetComponent} from '../../../shared/components/search-widget/search-widget.component';
-import { NgZorroAntdModule, NzDatePickerModule } from 'ng-zorro-antd';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import {NgZorroAntdModule} from 'ng-zorro-antd';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import {AgmCoreModule} from '@agm/core';
+import {Ng5SliderModule} from 'ng5-slider';
 
 @NgModule({
   declarations: [
     SearchResultsComponent,
     FiltersComponent,
-    SearchFormComponent,
     HotelListItemComponent,
     SearchWidgetComponent
   ],
@@ -28,10 +28,11 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     SearchResultsRoutingModule,
     BsDropdownModule,
     FormsModule,
-    NzDatePickerModule,
     ReactiveFormsModule,
     NgZorroAntdModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    AgmCoreModule,
+    Ng5SliderModule
   ]
 })
 export class SearchResultsModule {

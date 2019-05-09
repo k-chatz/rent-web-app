@@ -1,10 +1,24 @@
-<app-search-widget
-  [destination]="destination"
-  [startDate]="startDate"
-  [endDate]="endDate"
-  [visitors]="visitors"
-></app-search-widget>
+<div class="container">
+  <div class="row">
+    <div id="left-content" class="col-3">
+      <div class="row">
+        <app-search-widget
+          [destination]="destination"
+          [startDate]="startDate"
+          [endDate]="endDate"
+          [visitors]="visitors"
+        ></app-search-widget>
+      </div>
+      <div class="row" style="margin-top: 30px;">
+        <app-filters [minPrice]="minPrice" [maxPrice]="maxPrice"></app-filters>
+      </div>
+    </div>
 
-<app-filters></app-filters>
-
-<app-hotel-list-item></app-hotel-list-item>
+    <div id="right-content" class="col-9">
+      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="12">
+        <!--  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>-->
+      </agm-map>
+      <app-hotel-list-item></app-hotel-list-item>
+    </div>
+  </div>
+</div>
