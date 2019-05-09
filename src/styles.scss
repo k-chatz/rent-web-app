@@ -23,11 +23,6 @@ agm-map > div.agm-map-container-inner.sebm-google-map-container-inner {
   width: 238px !important;
 }
 
-#startDate > nz-picker > span > input:focus, #endDate > nz-picker > span > input:focus{
-  border-color: #FFC107;
-  box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.3);
-}
-
 .ant-calendar-picker:hover .ant-calendar-picker-input:not(.ant-input-disabled) {
   border-color: #ffffff;
 }
@@ -80,15 +75,4 @@ ng5-slider > span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-min:afte
   height: 6px;
   top: 8px;
   left: 8px;
-}
-
-date-range-popup > div{
-  top: 42px;
-}
-
-@media(max-width: 768px){
-  date-range-popup > div{
-    top: 42px;
-    right:50px;
-  }
 }
