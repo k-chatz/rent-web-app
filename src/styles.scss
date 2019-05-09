@@ -10,12 +10,17 @@ body {
 
 @import '~ngx-toastr/toastr.css';
 
-.ant-input-lg {
+.ant-input {
+  border: 1px solid #ffffff;
   height: 38px !important;
 }
 
-.ant-input {
-  border: 1px solid #ffffff;
+agm-map > div.agm-map-container-inner.sebm-google-map-container-inner {
+  border: 1px solid #e2aa11;
+}
+
+#startDate > nz-picker > span, #endDate > nz-picker > span {
+  width: 238px !important;
 }
 
 .ant-calendar-picker:hover .ant-calendar-picker-input:not(.ant-input-disabled) {
@@ -40,4 +45,34 @@ input:-ms-input-placeholder {
 
 nz-range-picker > nz-picker > span > span > span.ant-calendar-picker-icon.ng-star-inserted > i > svg {
   display: none !important;
+}
+
+.ng5-slider .ng5-slider-bubble {
+  font-size: 13px !important;
+}
+
+ng5-slider > span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-min {
+  width: 22px;
+  height: 22px;
+  top: -10px;
+}
+
+ng5-slider > span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max {
+  width: 22px;
+  height: 22px;
+  top: -10px;
+}
+
+ng5-slider > span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-max:after {
+  width: 6px;
+  height: 6px;
+  top: 8px;
+  left: 8px;
+}
+
+ng5-slider > span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-min:after {
+  width: 6px;
+  height: 6px;
+  top: 8px;
+  left: 8px;
 }
