@@ -1,3 +1,69 @@
-<p>
-  filters works!
-</p>
+<div class="search-widget">
+  <form (ngSubmit)="submit(form.value)" [formGroup]="form" class="form-validate">
+    <h4 id="searchLabel">Filter by:</h4>
+    <nz-divider></nz-divider>
+    <div class="form-group">
+      <ng5-slider
+        [(value)]="minValue"
+        [(highValue)]="maxValue"
+        [options]="options"
+        (userChangeEnd)="onUserChangeEnd($event)"
+      ></ng5-slider>
+    </div>
+
+    <div nz-row class="form-group">
+      <div nz-col nzSpan="19">
+        <label formControlName="petsAllowed" nz-checkbox [(ngModel)]="checked">Pets Allowed</label>
+      </div>
+      <div nz-col nzSpan="4">
+        <div nz-row nzType="flex" nzJustify="end">
+          <div nz-col>
+            <span>45</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div nz-row class="form-group">
+      <div nz-col nzSpan="19">
+        <label formControlName="freeWifi" nz-checkbox [(ngModel)]="checked">Free Wifi</label>
+      </div>
+      <div nz-col nzSpan="4">
+        <div nz-row nzType="flex" nzJustify="end">
+          <div nz-col>
+            <span>66</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div nz-row class="form-group">
+      <div nz-col nzSpan="19">
+        <label formControlName="view" nz-checkbox [(ngModel)]="checked">View</label>
+      </div>
+      <div nz-col nzSpan="4">
+        <div nz-row nzType="flex" nzJustify="end">
+          <div nz-col>
+            <span>33</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- <div class="form-group">
+       <div class="controls">
+         <div class="control-label">
+           <label for="destination">Destination:</label>
+         </div>
+         <input class="form-control"
+                formControlName="destination"
+                id="destination"
+                placeholder="Type your destination"
+                type="text">
+       </div>
+     </div>-->
+    <br/>
+  </form>
+</div>
