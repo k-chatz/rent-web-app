@@ -1,5 +1,5 @@
-<div>
-  <form (ngSubmit)="submit(form.value)" [formGroup]="form" class="search-widget form-validate">
+<div class="search-widget">
+  <form (ngSubmit)="submit(form.value)" [formGroup]="form" class="form-validate">
     <h4 id="searchLabel">Search</h4>
     <div class="form-group">
       <div class="controls">
@@ -54,9 +54,13 @@
 
     <div class="form-group">
       <div class="controls">
+        <div class="control-label">
+          <label for="visitors">Visitors:</label>
+        </div>
         <input
           min="1"
           max="15"
+          id="visitors"
           type="number"
           class="form-control"
           placeholder="Visitors"
@@ -66,34 +70,18 @@
       </div>
     </div>
 
-    <!--<div class="form-group">
-      <label for="adultsNumInput">Adults:</label>
-      <select [(ngModel)]="selectedAdultsNum" class="custom-select" formControlName="" id="adultsNumInput"
-              name="selectedAdultsNum">
-        <option *ngFor="let i of adults" [value]="i">{{i.label}}</option>
-      </select>
+    <br/>
+
+    <div class="text-right">
+      <button
+        [disabled]="!form.valid || progress || form.untouched"
+        type="submit"
+        class="btn btn-primary">
+        <fa *ngIf="progress" name="cog" animation="spin"></fa>
+        <fa *ngIf="!progress" name="search"></fa>
+        &nbsp;
+        Search
+      </button>
     </div>
-
-    <div class="form-group">
-      <label for="childrenNumInput">Children:</label>
-      <select [(ngModel)]="selectedChildrenNum" class="custom-select" formControlName="" id="childrenNumInput"
-              name="selectedChildrenNum">
-        <option *ngFor="let i of children" [value]="i">{{i.label}}</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="roomsNumInput">Rooms:</label>
-      <select [(ngModel)]="selectedRoomsNum" class="custom-select" formControlName="" id="roomsNumInput"
-              name="selectedRoomsNum">
-        <option *ngFor="let i of rooms" [value]="i">{{i.label}}</option>
-      </select>
-    </div>
-
-    <label><input [(ngModel)]="travelingForWork" formControlName="" name="travelingForWork" type="checkbox"> I'm
-      travelling for work.</label>-->
-
-    <button class="btn btn-primary" type="submit">Submit</button>
-
   </form>
 </div>

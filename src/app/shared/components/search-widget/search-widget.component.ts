@@ -35,6 +35,7 @@ export class SearchWidgetComponent implements OnInit {
 
   // Used by the date range picker, don't touch it:
   endOpen = false;
+  progress: boolean;
 
   constructor(private fb: FormBuilder,
               private router: Router,
