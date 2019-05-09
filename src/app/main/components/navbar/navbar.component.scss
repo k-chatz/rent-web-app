@@ -212,6 +212,14 @@
   .input-group {
     width: 100%;
   }
+
+  #dropdown-basic{
+    background: #31353d;
+  }
+
+  #dropdown-basic > li > a{
+    color: #ffffff !important;
+  }
 }
 
 @media (min-width: 992px) {
