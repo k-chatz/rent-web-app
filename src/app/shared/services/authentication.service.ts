@@ -48,7 +48,8 @@ export class AuthenticationService {
               user: {
                 ...response.user,
                 role: response.user.role.name
-              }
+              },
+              profile: response.profile
             };
             const helper = new JwtHelperService();
             const decodedToken: any = helper.decodeToken(session.access.token);
@@ -84,7 +85,8 @@ export class AuthenticationService {
               user: {
                 ...response.user,
                 role: response.user.role.name
-              }
+              },
+              profile: response.profile
             };
             localStorage.setItem('session', JSON.stringify(session));
             this.sessionSubject$.next(session);
@@ -115,7 +117,8 @@ export class AuthenticationService {
               user: {
                 ...response.user,
                 role: response.user.role.name
-              }
+              },
+              profile: response.profile
             };
             localStorage.setItem('session', JSON.stringify(session));
             this.sessionSubject$.next(session);

@@ -7,9 +7,8 @@ export interface User {
   email: string;
   password?: string;
   pending_provider?: boolean;
-  role: Role;
+  role: any;
   locked: boolean;
-  profile: Profile;
   createdAt?: Date;
-  updateAt?: Date;
+  updatedAt?: Date;
 }

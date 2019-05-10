@@ -46,7 +46,7 @@
       <li *ngIf="session" class="btn-group" dropdown>
         <a id="button-basic" dropdownToggle class="nav-link dropdown-toggle user-action"
            aria-controls="dropdown-basic">
-          <img src="{{session.user.profile.photo_url}}" class="avatar" alt="Avatar">
+          <img src="{{session.profile.photo_url}}" class="avatar" alt="Avatar">
           <!--<b class="caret"></b>-->
         </a>
         <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right"
@@ -54,7 +54,7 @@
 
           <li role="menuitem">
             <a class="dropdown-item" routerLink="/profile">
-              <i class="fa fa-user-o"></i> {{session.user.profile.name}}&nbsp;{{session.user.profile.surname}}</a>
+              <i class="fa fa-user-o"></i> {{session.profile.name}}&nbsp;{{session.profile.surname}}</a>
           </li>
 
           <li class="divider dropdown-divider">
@@ -88,7 +88,6 @@
       </li>
     </ul>
   </div>
-  <ng-progress></ng-progress>
 </nav>
 
 <!-- Modal -->
