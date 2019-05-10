@@ -35,6 +35,11 @@ export class ErrorInterceptor implements HttpInterceptor {
               this.authenticationService.logout();
               break;
             }
+            case HttpStatus.NOT_FOUND : {
+              this.toastr.warning('<strong>URL:&nbsp;</strong>' + request.url +
+                '<br/><strong>REASON:&nbsp;</strong>' + e.error.errors, e.status + ' NOT FOUND');
+              break;
+            }
             default: {
               this.toastr.error(request.url + ':: ' + e.error.errors, e.error.status + ' ');
               break;
