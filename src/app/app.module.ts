@@ -43,7 +43,7 @@ export const createTranslateLoader = (http: HttpClient) => {
       spinner: false,
       meteor: false,
       thick: false,
-      color: '#e6ff00'
+      color: '#a8d267'
     }),
     NgProgressHttpModule,
     ToastrModule.forRoot({
