@@ -33,4 +33,8 @@ export class UserService {
   getById(id: string) {
     return this.http.get<User>(`${environment.apiRoot}/users/${id}`);
   }
+
+  getProfileByUsername(username: string) {
+    return this.http.get<PagedResponse<User>>(`${environment.apiRoot}/users/${username}/profile`);
+  }
 }
