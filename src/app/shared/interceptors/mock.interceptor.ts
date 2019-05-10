@@ -14,12 +14,6 @@ const users: User[] = [
     password: 'test',
     role: Role.User,
     locked: false,
-    profile: {
-      photo_url: '',
-      name: 'Test',
-      surname: 'User',
-      birthday: '1960-03-02',
-    }
   },
   {
     id: 2,
@@ -28,12 +22,6 @@ const users: User[] = [
     password: '123456',
     role: Role.Admin,
     locked: false,
-    profile: {
-      photo_url: '',
-      name: 'Κώστας',
-      surname: 'Χατζόπουλος',
-      birthday: '1960-03-02',
-    }
   }
 ];
 
@@ -63,9 +51,6 @@ export class MockInterceptor implements HttpInterceptor {
           const user = users.find(x => x.email === request.body.email && x.password === request.body.password);
           return MockInterceptor.ok({
             id: user.id,
-            username: user.username,
-            firstName: user.profile.name,
-            lastName: user.profile.surname,
             token: `fake-jwt-token`
           });
         }
