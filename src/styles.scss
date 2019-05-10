@@ -92,3 +92,29 @@ date-range-popup > div{
     right:50px;
   }
 }
+
+.ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td,
+.ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td,
+.ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td,
+.ant-table-thead > tr:hover:not(.ant-table-expanded-row) > td {
+  background: #0000000f !important;
+}
+
+
+.ant-table table {
+  table-layout: fixed;
+}
+
+.ant-table-tbody > tr > td, .ant-table-thead > tr > th {
+  padding: 6px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.ant-table-thead > tr:first-child > th:last-child {
+  border-top-right-radius: 0;
+}
+
+.ant-table-thead > tr:first-child > th:first-child {
+  border-top-left-radius: 0;
+}
