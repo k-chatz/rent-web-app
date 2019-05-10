@@ -34,7 +34,6 @@ export class AppComponent {
       }
       if (routerEvent instanceof NavigationError) {
         console.error('Access denied');
-        this.toastr.error(routerEvent.error.message, 'Access denied: ' + routerEvent.error.message.name);
       }
     });
   }

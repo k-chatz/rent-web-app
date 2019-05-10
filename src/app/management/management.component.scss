@@ -108,10 +108,12 @@ body {
   left: 0;
 }
 
+.page-wrapper.toggled .page-content {
+  padding-left: 225px;
+}
+
 @media screen and (min-width: 768px) {
-  .page-wrapper.toggled .page-content {
-    padding-left: 225px;
-  }
+
 }
 
 /*----------------show sidebar button----------------*/
