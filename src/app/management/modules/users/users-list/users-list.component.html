@@ -1,6 +1,6 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
+<div class="row">
+  <div class="col" style="padding: 0 4px 0 14px;">
+    <nz-card>
       <nz-table
         #ajaxTable
         nzShowSizeChanger
@@ -15,40 +15,51 @@
       >
         <thead (nzSortChange)="sort($event)" nzSingleSort>
         <tr>
+          <th
+            nzShowCheckbox
+            nzShowRowSelection
+            [nzSelections]="listOfSelection"
+            [(nzChecked)]="isAllDisplayDataChecked"
+            [nzIndeterminate]="isIndeterminate"
+            (nzCheckedChange)="checkAll($event)"
+          ></th>
           <th nzShowSort nzSortKey="name">ID</th>
           <th nzShowSort nzSortKey="username">Username</th>
           <th nzShowSort nzSortKey="email">Email</th>
           <th nzShowSort nzSortKey="role">Role</th>
-          <th nzShowSort nzSortKey="pending_provider">pending_provider</th>
-          <th nzShowSort nzSortKey="name">Name</th>
-          <th nzShowSort nzSortKey="surname">Surname</th>
-          <th nzShowSort nzSortKey="birthday">Birthday</th>
-          <th nzShowSort nzSortKey="createdAt">createdAt</th>
-
-          <!--      <th nzShowFilter [nzFilters]="filterGender" (nzFilterChange)="updateFilter($event)">Gender</th>
-                    <th nzShowSort nzSortKey="email"><span>Email</span></th>-->
-
+          <th nzShowSort nzSortKey="pending_provider">Role status</th>
+          <th nzShowSort nzSortKey="updatedAt">Lock</th>
+          <!--
+          <th nzShowFilter [nzFilters]="filterGender" (nzFilterChange)="updateFilter($event)">Gender</th>
+          <th nzShowSort nzSortKey="email"><span>Email</span></th>
+          -->
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let data of ajaxTable.data">
-          <td>{{ data.id }}</td>
-          <td>{{ data.username }}</td>
-          <td>{{ data.email }}</td>
-          <td>{{ data.role.name }}</td>
-          <td>{{ data.pending_provider }}</td>
-          <td>{{ data.profile.name }}</td>
-          <td>{{ data.profile.surname }}</td>
-          <td>{{ data.profile.birthday }}</td>
-          <td>{{ data.createdAt | date }}</td>
-          <!--      <td>{{ data.gender }}</td>
-                    <td>{{ data.email }}</td>-->
+        <tr *ngFor="let data of ajaxTable.data" class="user-row"
+            [ngClass]="{'user-pending-provider-row': data.pending_provider, 'user-selected-row': data.username==selected }">
+          <td nzShowCheckbox [(nzChecked)]="mapOfCheckedId[data.id]" (nzCheckedChange)="refreshStatus()"></td>
+          <td (click)="userClicked(data.username)">{{ data.id }}</td>
+          <td (click)="userClicked(data.username)">{{ data.username }}</td>
+          <td (click)="userClicked(data.username)">{{ data.email }}</td>
+          <td (click)="userClicked(data.username)">
+            <nz-tag [nzColor]="'blue'">{{ data.role }}</nz-tag>
+          </td>
+          <td (click)="userClicked(data.username)">
+            <nz-tag *ngIf="data.pending_provider" [nzColor]="'volcano'">Pending</nz-tag>
+          </td>
+          <td>
+            <nz-switch [(ngModel)]="switchValue" [nzControl]="true" (click)="clickSwitch()"
+                       [nzLoading]="loading"></nz-switch>
+          </td>
         </tr>
         </tbody>
       </nz-table>
-    </div>
-    <div class="col">
+    </nz-card>
+  </div>
+  <div class="col" style="padding: 0 14px 0 1px;">
+    <nz-card>
       <router-outlet></router-outlet>
-    </div>
+    </nz-card>
   </div>
 </div>

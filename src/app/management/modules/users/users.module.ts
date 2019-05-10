@@ -9,6 +9,8 @@ import {UsersDetailComponent} from './users-detail/users-detail.component';
 import {UsersInsertNewComponent} from './users-insert-new/users-insert-new.component';
 import {TranslateModule} from '@ngx-translate/core';
 import {VarDirectiveModule} from '../../../shared/var-directive.module';
+import {FormsModule} from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import {VarDirectiveModule} from '../../../shared/var-directive.module';
     UsersRoutingModule,
     NgZorroAntdModule,
     TranslateModule,
-    VarDirectiveModule
+    VarDirectiveModule,
+    FormsModule
   ]
 })
 export class UsersModule {

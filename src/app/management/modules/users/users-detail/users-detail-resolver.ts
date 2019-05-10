@@ -18,7 +18,7 @@ export class UsersDetailResolver implements Resolve<any> {
   }
 
   resolve(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-    const id = next.paramMap.get('id');
-    return this.service.getById(id);
+    const username = next.paramMap.get('username');
+    return this.service.getProfileByUsername(username);
   }
 }

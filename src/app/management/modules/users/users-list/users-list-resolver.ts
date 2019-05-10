@@ -19,7 +19,7 @@ export class UsersListResolver implements Resolve<any> {
 
   resolve(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
     return this.service.getAll({
-      size: 10,
+      size: 17,
       page: 0,
     });
   }

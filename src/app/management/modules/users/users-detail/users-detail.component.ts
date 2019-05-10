@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../../../shared/services/user.service';
-import {User} from '../../../../shared/models/user';
+import {Profile} from '../../../../shared/models/profile';
 
 @Component({
   selector: 'app-users-detail',
@@ -9,7 +9,7 @@ import {User} from '../../../../shared/models/user';
   styleUrls: ['./users-detail.component.scss']
 })
 export class UsersDetailComponent implements OnInit {
-  user: User;
+  profile: Profile;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,7 +21,7 @@ export class UsersDetailComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data: any) => {
       console.log('route data: ', data);
-      this.user = data.user;
+      this.profile = data.data;
     });
   }
 

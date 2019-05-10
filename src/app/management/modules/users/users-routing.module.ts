@@ -20,7 +20,7 @@ const routes: Routes = [
         },
         children: [
           {
-            path: ':id',
+            path: ':username',
             component: UsersDetailComponent,
             resolve: {
               data: UsersDetailResolver
