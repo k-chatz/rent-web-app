@@ -42,6 +42,18 @@ export class HomeComponent implements OnInit {
       title: 'Athens',
       image: '../../../../assets/images/acropolis-12044_640.jpg'
     },
+    {
+      title: 'Rome',
+      image: '../../../../assets/images/rome-173472_640.jpg'
+    },
+    {
+      title: 'London',
+      image: '../../../../assets/images/london-3078109_640.jpg'
+    },
+    {
+      title: 'Paris',
+      image: '../../../../assets/images/eiffel-tower-498378_640.jpg'
+    },
   ];
 
   constructor(
