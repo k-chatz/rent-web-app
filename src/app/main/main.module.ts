@@ -9,7 +9,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {SearchResultsModule} from './modules/search-results/search-results.module';
 import {BsDropdownModule} from 'ngx-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {VarDirectiveModule} from '../shared/var-directive.module';
+import {VarDirectiveModule} from '../shared/directives/var-directive.module';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {ConnectFormComponent} from './components/connect-form/connect-form.component';
 import {Ng7BootstrapBreadcrumbModule} from 'ng7-bootstrap-breadcrumb';

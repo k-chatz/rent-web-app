@@ -8,7 +8,7 @@ import {UsersListComponent} from './users-list/users-list.component';
 import {UsersDetailComponent} from './users-detail/users-detail.component';
 import {UsersInsertNewComponent} from './users-insert-new/users-insert-new.component';
 import {TranslateModule} from '@ngx-translate/core';
-import {VarDirectiveModule} from '../../../shared/var-directive.module';
+import {VarDirectiveModule} from '../../../shared/directives/var-directive.module';
 import {FormsModule} from '@angular/forms';
 
 

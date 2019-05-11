@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {VarDirective} from './directives/VarDirective';
+import {VarDirective} from './VarDirective';
 import {CommonModule} from '@angular/common';
 
 @NgModule({
