@@ -1,3 +1,11 @@
+.jumbotron {
+  background-image: url(/assets/images/mountains.png);
+  border-radius: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 .border {
   border: 1px solid #1890ff;
   border-radius: 50%;
@@ -23,4 +31,23 @@ nz-range-picker {
 
 .input-group {
   padding: 5px 5px 0 5px;
+}
+
+.container {
+  background: #0000000f;
+  border-radius: 10px;
+  padding: 27px;
+}
+
+h1 {
+  color: #ffffff;
+  text-shadow: 0 0 1px black;
+  font-weight: bolder;
+}
+
+p.lead {
+  font-size: 1.25rem;
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: 0 0 1px black;
 }

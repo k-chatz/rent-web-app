@@ -8,7 +8,7 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtInterceptor} from '../../../shared/interceptors/jwt.interceptor';
 import {ErrorInterceptor} from '../../../shared/interceptors/error.interceptor';
 import {mockProvider} from '../../../shared/interceptors/mock.interceptor';
-import {VarDirectiveModule} from '../../../shared/var-directive.module';
+import {VarDirectiveModule} from '../../../shared/directives/var-directive.module';
 import {TeximateModule} from 'ngx-teximate';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
