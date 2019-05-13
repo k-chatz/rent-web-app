@@ -8,7 +8,8 @@ export const environment = {
   production: false,
   googleMapsKey: '',
   apiRoot,
-  usersEndpoint: apiRoot + '/users'
+  usersEndpoint: apiRoot + '/users',
+  hotelsEndpoint: apiRoot + '/hotels'
 };
 
 /*

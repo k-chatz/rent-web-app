@@ -4,5 +4,6 @@ export const environment = {
   production: true,
   googleMapsKey: '',
   apiRoot,
-  usersEndpoint: apiRoot + '/users'
+  usersEndpoint: apiRoot + '/users',
+  hotelsEndpoint: apiRoot + '/hotels'
 };
