@@ -5,6 +5,13 @@
   }
 }
 
+.tile-box {
+  height: 230px;
+  padding: 0;
+  overflow: hidden;
+  border: 4px solid transparent;
+}
+
 .card-title {
   color: #f0f3f6;
   padding: 15px;
@@ -30,8 +37,20 @@
 .card {
   cursor: pointer;
   transition: border 250ms ease-in-out;
+
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  transition: -webkit-transform .3s;
+  transition: transform .3s;
+
 }
 
 .card:hover {
   border: 1px solid #096dd999;
+
+  -webkit-transform: scale(1.04);
+  -ms-transform: scale(1.04);
+  transform: scale(1.04);
 }
+
