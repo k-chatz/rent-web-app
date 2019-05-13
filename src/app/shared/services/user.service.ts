@@ -5,6 +5,7 @@ import {environment} from '../../../environments/environment';
 import {PagedResponse} from '../models/payload/PagedResponse';
 import {map} from 'rxjs/operators';
 import * as moment from 'moment';
+import {Profile} from '../models/profile';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
@@ -13,7 +14,7 @@ export class UserService {
 
   getAll(filters) {
     const params = new HttpParams({fromObject: filters});
-    return this.http.get<PagedResponse<User>>(`${environment.apiRoot}/users`, {params}).pipe(
+    return this.http.get<PagedResponse<User>>(`${environment.usersEndpoint}`, {params}).pipe(
       map((users: PagedResponse<User>) => {
         return {
           ...users,
@@ -31,10 +32,10 @@ export class UserService {
   }
 
   getById(id: string) {
-    return this.http.get<User>(`${environment.apiRoot}/users/${id}`);
+    return this.http.get<User>(`${environment.usersEndpoint}/${id}`);
   }
 
   getProfileByUsername(username: string) {
-    return this.http.get<PagedResponse<User>>(`${environment.apiRoot}/users/${username}/profile`);
+    return this.http.get<Profile>(`${environment.usersEndpoint}/${username}/profile`);
   }
 }

@@ -11,7 +11,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 })
 export class AuthenticationService {
   private sessionSubject$: BehaviorSubject<Session>;
-  session$: Observable<Session>;
+  public session$: Observable<Session>;
 
   constructor(
     private http: HttpClient

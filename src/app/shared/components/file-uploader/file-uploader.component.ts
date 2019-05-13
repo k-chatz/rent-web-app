@@ -10,6 +10,7 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./file-uploader.component.scss']
 })
 export class FileUploaderComponent implements OnInit {
+  // tslint:disable-next-line:no-output-on-prefix
   @Output() onCompleteItem = new EventEmitter();
 
   @ViewChild('fileInput') fileInput;

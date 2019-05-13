@@ -1,5 +1,3 @@
-import {Role} from './role';
-import {Profile} from './profile';
 
 export interface User {
   id: number;

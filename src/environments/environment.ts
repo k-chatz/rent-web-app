@@ -2,10 +2,13 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const apiRoot = 'https://localhost:8443/api';
+
 export const environment = {
   production: false,
   googleMapsKey: '',
-  apiRoot: 'https://localhost:8443/api',
+  apiRoot,
+  usersEndpoint: apiRoot + '/users'
 };
 
 /*
