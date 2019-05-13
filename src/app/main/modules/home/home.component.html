@@ -11,14 +11,14 @@
 
 <div class="container">
   <div class="row">
-    <div *ngFor="let dst of destinations" class="col-md-4" style="padding: 5px;">
+    <div *ngFor="let dst of destinations" class="col-md-4 tile-box">
       <div class="card mb-4 box-shadow">
         <div class="card-overlay">
           <h2 class="card-title">{{dst.title}}</h2>
         </div>
         <img class="card-img-top"
              data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
-             alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
+             alt="Thumbnail [100%x225]" style="width: 100%; display: block;"
              src="{{dst.image}}"
              data-holder-rendered="true">
       </div>
