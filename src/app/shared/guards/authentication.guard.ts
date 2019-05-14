@@ -16,7 +16,6 @@ export class AuthenticationGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
   Observable<boolean> | Promise<boolean> | boolean {
     const session = this.auth.session;
-    console.log('session', session);
     if (session) {
       if (route.data.roles && route.data.roles.indexOf(session.user.role) === -1) {
         this.toastr.warning('No rights to access this route!', 'Protected route');
