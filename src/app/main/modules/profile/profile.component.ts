@@ -14,6 +14,8 @@ export class ProfileComponent implements OnInit {
 
   public session: Session;
 
+  username: string;
+
   public constructor(
     private titleService: Title,
     private auth: AuthenticationService
@@ -24,6 +26,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.auth.session$.subscribe( session => {
       this.session = session;
+      this.username = this.session.user.username;
     });
   }
 
