@@ -13,7 +13,7 @@
   <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
     <ul class="nav navbar-nav navbar-right ml-auto">
 
-      <li *ngIf="!session || (session.user.role != 'ADMIN')" class="nav-item">
+      <li *ngIf="!session || (session.user.role != 'ROLE_ADMIN')" class="nav-item">
         <a routerLink="/management" class="nav-link">
           <i class="fa fa-futbol-o"></i>
           <span>Rent your property</span>
@@ -59,15 +59,9 @@
 
           <li class="divider dropdown-divider">
 
-          <li role="menuitem">
-            <a class="dropdown-item" routerLink="">
-              <i class="fa fa-calendar-o"></i> Calendar</a>
-          </li>
-
-          <li role="menuitem">
-            <a class="dropdown-item" routerLink="/settings">
-              <i class="fa fa-sliders"></i> Settings
-            </a>
+          <li *ngIf="(session.user.role == 'ROLE_ADMIN')" role="menuitem">
+            <a class="dropdown-item" routerLink="/management">
+              <i class="fa fa-sliders"></i> Management</a>
           </li>
           <li class="divider dropdown-divider">
 
