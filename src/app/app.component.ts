@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {GuardsCheckEnd, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 import {ToastrService} from 'ngx-toastr';
-import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -15,8 +14,7 @@ export class AppComponent {
   constructor(
     private translate: TranslateService,
     private router: Router,
-    private toastr: ToastrService,
-    private http: HttpClient,
+    private toastr: ToastrService
   ) {
     translate.setDefaultLang('gr');
     this.router.events.subscribe((routerEvent: any) => {

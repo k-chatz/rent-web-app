@@ -89,6 +89,31 @@ export class FileUploaderService {
     });
   }
 
+  public uploadProfilePhoto(file: File, userId: number) {
+
+    const form = new FormData();
+    form.append('file', file, file.name);
+
+    const profilePhotoUrl = environment.usersEndpoint + '/' + userId.toString() + '/profile_photo';
+
+    console.log('Filename: ' + file.name + '\nprofilePhotoUrl: ' + profilePhotoUrl);
+
+    const req = new HttpRequest('POST', profilePhotoUrl, form);
+
+    this.http.request(req).subscribe(
+      (event: any) => {
+        if (event instanceof HttpResponse) {
+          this.onCompleteItem(new FileQueueObject(event.body), event.body);
+        }
+      },
+      (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+          console.error('Error when uploading the profile photo!');
+        }
+      }
+    );
+  }
+
   // private functions
   private _addToQueue(file: any) {
     const queueObj = new FileQueueObject(file);
