@@ -5,6 +5,7 @@ import {PagedResponse} from '../../../../shared/models/payload/PagedResponse';
 import {User} from '../../../../shared/models/user';
 import {catchError, map} from 'rxjs/operators';
 import {throwError} from 'rxjs';
+import {UsersRouteDataProvider} from '../users-route-data.provider';
 
 @Component({
   selector: 'app-users-list',
@@ -12,11 +13,12 @@ import {throwError} from 'rxjs';
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
+  mapOfExpandData: { [key: string]: boolean } = {};
   switchValue = false;
   pageIndex = 1;
   pageSize = 17;
   total = 1;
-  listOfData = [];
+  users = [];
   loading = true;
   sortValue: string | null = null;
   sortKey: string | null = null;
@@ -86,7 +88,8 @@ export class UsersListComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private routeDataProvider: UsersRouteDataProvider
   ) {
   }
 
@@ -94,10 +97,17 @@ export class UsersListComponent implements OnInit {
     this.route.data.subscribe((resolve: any) => {
       this.pagedResponse = resolve.data;
       this.total = this.pagedResponse.totalElements;
-      this.pageIndex = 1;
+      this.pageIndex = this.pagedResponse.page + 1;
       this.pageSize = this.pagedResponse.size;
-      this.listOfData = this.pagedResponse.content;
+      this.users = this.pagedResponse.content;
       this.loading = false;
+      this.selected = this.router.url.substr(18);
+      console.log('this.selected', this.selected);
+      if (this.selected !== undefined) {
+        const selectedUser = this.users.find(r => r.username === this.selected);
+        this.routeDataProvider.setUser(selectedUser);
+        console.log('selectedUser', selectedUser);
+      }
     });
   }
 
@@ -117,7 +127,7 @@ export class UsersListComponent implements OnInit {
         return throwError(error);
       })
     ).subscribe((data: any) => {
-        this.listOfData = data.content;
+      this.users = data.content;
         this.total = data.totalElements;
         this.loading = false;
       },
@@ -129,8 +139,9 @@ export class UsersListComponent implements OnInit {
     this.searchData(true);
   }
 
-  userClicked(username: string) {
-    this.selected = username;
-    this.router.navigate(['management/users', username]);
+  userClicked(data: any) {
+    this.selected = data.username;
+    this.routeDataProvider.setUser(data);
+    this.router.navigate(['management/users', data.username]);
   }
 }

@@ -10,6 +10,7 @@ import {UsersInsertNewComponent} from './users-insert-new/users-insert-new.compo
 import {TranslateModule} from '@ngx-translate/core';
 import {VarDirectiveModule} from '../../../shared/directives/var-directive.module';
 import {FormsModule} from '@angular/forms';
+import {UsersRouteDataProvider} from './users-route-data.provider';
 
 
 @NgModule({
@@ -26,6 +27,9 @@ import {FormsModule} from '@angular/forms';
     TranslateModule,
     VarDirectiveModule,
     FormsModule
+  ],
+  providers: [
+    UsersRouteDataProvider
   ]
 })
 export class UsersModule {

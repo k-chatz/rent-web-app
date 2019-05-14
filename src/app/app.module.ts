@@ -20,6 +20,7 @@ import {NgProgressModule} from '@ngx-progressbar/core';
 import {NgProgressHttpModule} from '@ngx-progressbar/http';
 import {DEFAULT_TIMEOUT, timeoutProvider} from './shared/interceptors/timeout.interceptor';
 import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
+import {UsersRouteDataProvider} from './management/modules/users/users-route-data.provider';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -74,7 +75,8 @@ export const createTranslateLoader = (http: HttpClient) => {
     errorProvider,
     mockProvider,
     timeoutProvider,
-    {provide: DEFAULT_TIMEOUT, useValue: 3000}
+    {provide: DEFAULT_TIMEOUT, useValue: 3000},
+    UsersRouteDataProvider
   ],
   bootstrap: [AppComponent]
 })

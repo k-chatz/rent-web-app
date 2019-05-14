@@ -11,9 +11,8 @@ import {UserService} from '../../../../shared/services/user.service';
   providedIn: 'root'
 })
 export class UsersDetailResolver implements Resolve<any> {
-
   constructor(
-    private service: UserService
+    private service: UserService,
   ) {
   }
 

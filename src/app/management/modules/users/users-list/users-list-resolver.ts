@@ -11,6 +11,7 @@ import {UserService} from '../../../../shared/services/user.service';
   providedIn: 'root'
 })
 export class UsersListResolver implements Resolve<any> {
+  private username: string;
 
   constructor(
     private service: UserService
@@ -18,9 +19,8 @@ export class UsersListResolver implements Resolve<any> {
   }
 
   resolve(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-    return this.service.getAll({
-      size: 17,
-      page: 0,
-    });
+    this.username = state.url.substr(18);
+    console.log('this.selected', this.username);
+    return this.service.getAll({size: 17, page: 0, username: this.username});
   }
 }
