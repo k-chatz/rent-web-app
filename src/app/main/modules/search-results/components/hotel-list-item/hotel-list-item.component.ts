@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-hotel-list-item',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hotel-list-item.component.scss']
 })
 export class HotelListItemComponent implements OnInit {
+
+  @Input() hotels;
 
   constructor() { }
 

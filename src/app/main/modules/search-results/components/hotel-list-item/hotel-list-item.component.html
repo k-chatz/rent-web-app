@@ -1,3 +1,9 @@
-<p>
-  hotel-list-item works!
-</p>
+<div *ngFor="let hotel of hotels">
+  <nz-card nzHoverable [nzCover]="coverTemplate" style="margin: 5px;">
+    <nz-card-meta nzTitle="{{hotel.description_short}}" nzDescription="{{hotel.description_long}}"></nz-card-meta>
+  </nz-card>
+</div>
+
+<ng-template #coverTemplate>
+  <img style="height: 400px;" alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />
+</ng-template>
