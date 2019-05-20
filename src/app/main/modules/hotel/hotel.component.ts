@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {HotelService} from '../../../shared/services/hotel.service';
-import {Hotel} from '../../../shared/models/hotel';
+import { HotelService } from '../../../shared/services/hotel.service';
+import { Hotel } from '../../../shared/models/hotel';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-hotel',
@@ -13,11 +14,16 @@ export class HotelComponent implements OnInit {
     description_short: '', lat: '', lng: '', number_of_rooms: 0
   };
 
-  constructor(private hotelService: HotelService
-  ) { }
+  constructor(private hotelService: HotelService,
+              private route: ActivatedRoute
+  ) {
+  }
 
   ngOnInit() {
-    this.hotelService.getHotelDetails(1).subscribe(data => this.hotel = data);
+    this.hotelService.getHotelDetails(this.route.snapshot.paramMap.get('id')).subscribe(data => {
+      // TODO: Server should return not found if the hotel with the given id doesn't exist
+      this.hotel = data;
+    });
   }
 
 }

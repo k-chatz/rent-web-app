@@ -5,7 +5,7 @@ import { HotelRoutingModule } from './hotel-routing.module';
 import { HotelComponent } from './hotel.component';
 import { ImagesCarouselComponent } from './components/images-carousel/images-carousel.component';
 import { HotelDetailsComponent } from './components/hotel-details/hotel-details.component';
-import {NzRateModule} from 'ng-zorro-antd';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 import {FormsModule} from '@angular/forms';
 import { RoomsListComponent } from './components/rooms-list/rooms-list.component';
 import { HotelReviewsComponent } from './components/hotel-reviews/hotel-reviews.component';
@@ -15,8 +15,8 @@ import { HotelReviewsComponent } from './components/hotel-reviews/hotel-reviews.
   imports: [
     CommonModule,
     HotelRoutingModule,
-    NzRateModule,
     FormsModule,
+    NgZorroAntdModule,
   ]
 })
 export class HotelModule { }

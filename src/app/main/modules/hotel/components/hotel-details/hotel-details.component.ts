@@ -1,6 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import * as $ from 'jquery';
-import {Hotel} from '../../../../../shared/models/hotel';
 
 @Component({
   selector: 'app-hotel-details',
@@ -11,6 +9,7 @@ export class HotelDetailsComponent implements OnInit {
   @Input() name;
   @Input() stars;
   @Input() longDescription;
+  @Input() shortDescription;
 
   constructor() { }
 

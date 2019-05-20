@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
-
 
 @Component({
   selector: 'app-images-carousel',
@@ -8,15 +6,17 @@ import * as $ from 'jquery';
   styleUrls: ['./images-carousel.component.scss']
 })
 export class ImagesCarouselComponent implements OnInit {
-   images = ['https://t-ec.bstatic.com/images/hotel/max1024x768/626/62687652.jpg',
-  'https://t-ec.bstatic.com/images/hotel/max1024x768/626/62687642.jpg',
-  'https://s-ec.bstatic.com/images/hotel/max1024x768/626/62687650.jpg',
-  'https://s-ec.bstatic.com/images/hotel/max1024x768/626/62687659.jpg',
-  'https://s-ec.bstatic.com/images/hotel/max1024x768/626/62687647.jpg',
-  'https://t-ec.bstatic.com/images/hotel/max1280x900/626/62687644.jpg',
-  'https://s-ec.bstatic.com/images/hotel/max1280x900/626/62687645.jpg',
-  'https://t-ec.bstatic.com/images/hotel/max1280x900/626/62687646.jpg',
-  'https://s-ec.bstatic.com/images/hotel/max1280x900/626/62687648.jpg'];
+  images = [
+    'https://t-ec.bstatic.com/images/hotel/max1024x768/626/62687652.jpg',
+    'https://t-ec.bstatic.com/images/hotel/max1024x768/626/62687642.jpg',
+    'https://s-ec.bstatic.com/images/hotel/max1024x768/626/62687650.jpg',
+    'https://s-ec.bstatic.com/images/hotel/max1024x768/626/62687659.jpg',
+    'https://s-ec.bstatic.com/images/hotel/max1024x768/626/62687647.jpg',
+    'https://t-ec.bstatic.com/images/hotel/max1280x900/626/62687644.jpg',
+    'https://s-ec.bstatic.com/images/hotel/max1280x900/626/62687645.jpg',
+    'https://t-ec.bstatic.com/images/hotel/max1280x900/626/62687646.jpg',
+    'https://s-ec.bstatic.com/images/hotel/max1280x900/626/62687648.jpg'
+  ];
   thumbnails = [];
   currentSlide = 0;
   totalSlides = 0;
@@ -41,7 +41,8 @@ export class ImagesCarouselComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     let i;
