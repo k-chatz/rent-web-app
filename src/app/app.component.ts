@@ -1,5 +1,6 @@
-import {  Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
+  Event,
   GuardsCheckEnd,
   NavigationCancel,
   NavigationEnd,
@@ -21,13 +22,13 @@ export class AppComponent implements OnInit {
   constructor(
     private translate: TranslateService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
   ) {
     translate.setDefaultLang('gr');
   }
 
   ngOnInit() {
-    this.router.events.subscribe((routerEvent: any) => {
+    this.router.events.subscribe((routerEvent: Event) => {
       if (routerEvent instanceof GuardsCheckEnd) {
         if (!routerEvent.shouldActivate) {
           console.error('Route should activated', routerEvent.shouldActivate);
