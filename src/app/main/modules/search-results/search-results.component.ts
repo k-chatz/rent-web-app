@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-search',
@@ -8,14 +9,15 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./search-results.component.scss']
 })
 export class SearchResultsComponent implements OnInit {
-  destination: string;
-  startDate: any;
-  endDate: any;
-  visitors: any;
-  hotels: any;
 
-  lat = 37.9829819;
-  lng = 23.7697477;
+  destination: string;
+  startDate: string;
+  endDate: string;
+  visitors: number;
+  hotelPagedResults: any;
+  lat: number;
+  lng: number;
+
   maxPrice: number;
   minPrice: number;
 
@@ -27,50 +29,25 @@ export class SearchResultsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.data.subscribe((data) => {
-      console.log(data);
-      this.destination = data.data.destination;
-      this.startDate = data.data.start;
-      this.endDate = data.data.end;
-      this.visitors = data.data.visitors;
-      /* TODO: Molis par8oyn ta data apton router, na ginontai featch
-       *  ta 3enodoxeia paginated kai epeita na ginontai feed ta input twn katallhlwn components */
+    this.route.data.subscribe((response: any) => {
+      /* Get all the params from the activated route snapshot and add some default values to them if they are not defined */
+      this.destination = this.route.snapshot.queryParamMap.get('destination') == null ? '' :
+        this.route.snapshot.queryParamMap.get('destination');
+
+      this.startDate = this.route.snapshot.queryParamMap.get('start') == null ?
+        moment(new Date()).format('YYYY-MM-DD') : this.route.snapshot.queryParamMap.get('start');
+
+      this.endDate = this.route.snapshot.queryParamMap.get('end') == null ?
+        moment(new Date()).add(2, 'days').format('YYYY-MM-DD') : this.route.snapshot.queryParamMap.get('end');
+
+      this.visitors = this.route.snapshot.queryParamMap.get('visitors') == null ? 2 : parseInt(this.route.snapshot.queryParamMap.get('visitors'), 10);
+      this.lat = this.route.snapshot.queryParamMap.get('lat') == null ? 37.983810 : parseFloat(this.route.snapshot.queryParamMap.get('lat'));
+      this.lng = this.route.snapshot.queryParamMap.get('lng') == null ? 23.727539 : parseFloat(this.route.snapshot.queryParamMap.get('lng'));
+
       this.minPrice = 123;
       this.maxPrice = 456;
-      this.hotels = [
-        {
-          id: 1,
-          name: 'hotel_1',
-          number_of_rooms: 4,
-          stars: '4.5',
-          lat: '100',
-          lng: '100',
-          description_short: '--Short Description--',
-          description_long: '--Long Description--'
-        },
-
-        {
-          id: 2,
-          name: 'hotel_1',
-          number_of_rooms: 5,
-          stars: '4.5',
-          lat: '100',
-          lng: '101',
-          description_short: '--Short Description--',
-          description_long: '--Long Description--'
-        },
-
-        {
-          id: 3,
-          name: 'hotel_1',
-          number_of_rooms: 6,
-          stars: '4.5',
-          lat: '102',
-          lng: '103',
-          description_short: '--Short Description--',
-          description_long: '--Long Description--'
-        }
-      ];
+      /* Get the hotels from the route data after the resolver fetched them */
+      this.hotelPagedResults = response.data;
     });
   }
 }

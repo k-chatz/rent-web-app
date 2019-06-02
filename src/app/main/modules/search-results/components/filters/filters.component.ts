@@ -10,6 +10,17 @@ import {ChangeContext, LabelType, Options, PointerType} from 'ng5-slider';
 })
 export class FiltersComponent implements OnInit {
 
+  form: FormGroup;
+  progress: boolean;
+  @Input() minPrice: number;
+  @Input() maxPrice: number;
+
+  minValue: number;
+  maxValue: number;
+  options: Options;
+
+  logText = '';
+  checked = true;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -31,18 +42,6 @@ export class FiltersComponent implements OnInit {
       }
     );
   }
-
-  form: FormGroup;
-  progress: boolean;
-  @Input() minPrice: number;
-  @Input() maxPrice: number;
-
-  minValue: number;
-  maxValue: number;
-  options: Options;
-
-  logText = '';
-  checked = true;
 
   ngOnInit() {
     this.options = {

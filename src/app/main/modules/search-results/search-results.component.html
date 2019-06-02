@@ -15,13 +15,13 @@
     </div>
 
     <div id="right-content" class="col-9">
-      <h3><b>{{destination}}: {{hotels.length}} hotels found</b></h3>
-      <hr>
       <agm-map [latitude]="lat" [longitude]="lng" [zoom]="12">
-        <!--  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>-->
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
       </agm-map>
       <hr>
-      <app-hotel-list-item [hotels]="hotels"></app-hotel-list-item>
+      <h3><b>{{destination}}: {{hotelPagedResults.content.length}} hotels found</b></h3>
+      <hr>
+      <app-hotel-list-item [hotels]="hotelPagedResults"></app-hotel-list-item>
     </div>
   </div>
 </div>
