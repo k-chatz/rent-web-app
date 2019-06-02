@@ -50,10 +50,10 @@ export class SearchWidgetComponent implements OnInit {
             endDate: [null, {validators: []}]
           }
         ),
-        latitude: [null, {
+        lat: [null, {
           validators: [Validators.required]
         }],
-        longitude: [null, {
+        lng: [null, {
           validators: [Validators.required]
         }],
         visitors: [null, {

@@ -127,7 +127,7 @@ export class UsersListComponent implements OnInit {
         return throwError(error);
       })
     ).subscribe((data: any) => {
-      this.users = data.content;
+        this.users = data.content;
         this.total = data.totalElements;
         this.loading = false;
       },

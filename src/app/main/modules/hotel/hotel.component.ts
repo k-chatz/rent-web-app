@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HotelService } from '../../../shared/services/hotel.service';
-import { Hotel } from '../../../shared/models/hotel';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,10 +8,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./hotel.component.scss']
 })
 export class HotelComponent implements OnInit {
-  public hotel: Hotel = {
-    id: 0, name: '', stars: '0', description_long: '',
-    description_short: '', lat: '', lng: '', number_of_rooms: 0
-  };
+
+  hotel: any;
 
   constructor(private hotelService: HotelService,
               private route: ActivatedRoute
@@ -20,9 +17,9 @@ export class HotelComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.hotelService.getHotelDetails(this.route.snapshot.paramMap.get('id')).subscribe(data => {
+    this.route.data.subscribe(response => {
       // TODO: Server should return not found if the hotel with the given id doesn't exist
-      this.hotel = data;
+      this.hotel = response.data.hotel;
     });
   }
 

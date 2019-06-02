@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-hotel-details',
@@ -11,7 +11,8 @@ export class HotelDetailsComponent implements OnInit {
   @Input() longDescription;
   @Input() shortDescription;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

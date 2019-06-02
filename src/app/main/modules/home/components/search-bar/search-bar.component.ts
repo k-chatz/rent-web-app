@@ -33,10 +33,10 @@ export class SearchBarComponent implements OnInit {
         destination: ['', {
           validators: [Validators.required]
         }],
-        latitude: [null, {
+        lat: [null, {
           validators: [Validators.required]
         }],
-        longitude: [null, {
+        lng: [null, {
           validators: [Validators.required]
         }],
         visitors: [null, {
@@ -59,8 +59,8 @@ export class SearchBarComponent implements OnInit {
   }
 
   handleCheckAddressChange(address: Address) {
-    this.form.get('latitude').setValue(address.geometry.location.lat());
-    this.form.get('longitude').setValue(address.geometry.location.lng());
+    this.form.get('lat').setValue(address.geometry.location.lat());
+    this.form.get('lng').setValue(address.geometry.location.lng());
     this.form.get('destination').setValue(address.formatted_address);
   }
 
@@ -72,17 +72,17 @@ export class SearchBarComponent implements OnInit {
         start: moment(value.daterange[0]).format('DD-MM-YYYY'),
         end: moment(value.daterange[1]).format('DD-MM-YYYY'),
         destination: value.destination,
-        lat: value.latitude,
-        lng: value.longitude,
-        visitors: value.visitors,
+        lat: value.lat,
+        lng: value.lng,
+        visitors: parseInt(value.visitors, 10),
       }
     });
   }
 
   valuechange(value: string) {
     if (value === '') {
-      this.form.get('latitude').setValue(null);
-      this.form.get('longitude').setValue(null);
+      this.form.get('lat').setValue(null);
+      this.form.get('lng').setValue(null);
     }
   }
 }
