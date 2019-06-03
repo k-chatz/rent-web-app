@@ -7,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HotelReviewsComponent implements OnInit {
   reviews = [
-    {name: 'Toni', score: 4.3, text: 'Excellent hotel.'},
-    {name: 'Nick', score: 3.2, text: 'Shitty experience.'},
     {name: 'Helen', score: 5.0, text: 'I MET MY BOYFRIEND HERE!'},
-    {name: 'Mary', score: 2.5, text: 'It\'s fucking haunted'}
+    {name: 'Toni', score: 4.3, text: 'Excellent hotel.'},
+    {name: 'Mary', score: 2.5, text: 'It\'s fucking haunted'},
+    {name: 'Nick', score: 1.0, text: 'Shitty experience.'}
   ];
 
   constructor() { }

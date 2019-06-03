@@ -8,8 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HotelDetailsComponent implements OnInit {
   @Input() name;
   @Input() stars;
-  @Input() longDescription;
   @Input() shortDescription;
+  @Input() longDescription;
 
   constructor() {
   }
