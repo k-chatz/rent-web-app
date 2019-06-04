@@ -10,7 +10,8 @@ export class HotelItemComponent implements OnInit {
 
   @Input() hotel: Hotel;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

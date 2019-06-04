@@ -4,7 +4,6 @@ import {Title} from '@angular/platform-browser';
 import * as moment from 'moment';
 import {AmenitiesCount} from '../../../shared/models/AmenitiesCount';
 import {Filters} from '../../../shared/models/Filters';
-import {SimpleSmoothScrollService} from 'ng2-simple-smooth-scroll';
 import {PagedResponse} from '../../../shared/models/payload/PagedResponse';
 import {Hotel} from '../../../shared/models/hotel';
 
@@ -25,18 +24,149 @@ export class SearchResultsComponent implements OnInit {
   minPrice: number;
   amenitiesCount: AmenitiesCount;
   filters: Filters;
+  mapStyle = [
+    {
+      featureType: 'administrative.land_parcel',
+      elementType: 'labels',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
+    },
+    {
+      featureType: 'landscape',
+      stylers: [
+        {
+          color: '#0078ff'
+        },
+        {
+          visibility: 'off'
+        }
+      ]
+    },
+    {
+      featureType: 'landscape',
+      elementType: 'geometry.fill',
+      stylers: [
+        {
+          color: '#ffeabb'
+        },
+        {
+          saturation: 100
+        },
+        {
+          lightness: 35
+        },
+        {
+          visibility: 'on'
+        }
+      ]
+    },
+    {
+      featureType: 'landscape.man_made',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
+    },
+    {
+      featureType: 'landscape.natural.landcover',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
+    },
+    {
+      featureType: 'landscape.natural.terrain',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
+    },
+    {
+      featureType: 'poi',
+      elementType: 'labels.text',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
+    },
+    {
+      featureType: 'poi.business',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
+    },
+    {
+      featureType: 'poi.park',
+      elementType: 'labels.text',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
+    },
+    {
+      featureType: 'road.arterial',
+      elementType: 'labels',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
+    },
+    {
+      featureType: 'road.highway',
+      elementType: 'labels',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
+    },
+    {
+      featureType: 'road.local',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
+    },
+    {
+      featureType: 'road.local',
+      elementType: 'labels',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
+    },
+    {
+      featureType: 'transit.station',
+      stylers: [
+        {
+          visibility: 'off'
+        }
+      ]
+    }
+  ];
 
   constructor(
     private titleService: Title,
     private route: ActivatedRoute,
-    private smooth: SimpleSmoothScrollService
   ) {
     titleService.setTitle('Search - RentCube');
   }
 
   ngOnInit() {
     this.route.data.subscribe((response: any) => {
-      this.smooth.smoothScrollToAnchor({duration: 500, easing: 'easeOutQuint'});
       /* Get all the params from the activated route snapshot and add some default values to them if they are not defined */
       this.destination = this.route.snapshot.queryParamMap.get('destination') == null ? '' :
         this.route.snapshot.queryParamMap.get('destination');
@@ -56,8 +186,8 @@ export class SearchResultsComponent implements OnInit {
       this.hotelPagedResults = response.data.results;
       this.amenitiesCount = response.data.amenitiesCount;
       this.filters = {
-        floorPrice: 45,//response.data.floorPrice,
-        ceilPrice: 78,//response.data.ceilPrice,
+        floorPrice: 45, // response.data.floorPrice,
+        ceilPrice: 78, // response.data.ceilPrice,
         minPrice: response.data.minPrice,
         maxPrice: response.data.maxPrice,
         wifi: this.route.snapshot.queryParamMap.get('wifi') === 'true',

@@ -1,9 +1,11 @@
 <div class="media">
   <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
   </div>
-  <img class="d-flex align-self-start"
-       src="{{hotel.photo}}"
-       alt="Generic placeholder image">
+  <a routerLink="/hotels/{{hotel.id}}">
+    <img class="d-flex align-self-start"
+         src="{{hotel.photo}}"
+         alt="Generic placeholder image">
+  </a>
   <div class="media-body pl-3">
     <div class="price">{{hotel.description_short}}
       <small></small>

@@ -12,6 +12,7 @@ import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {AgmCoreModule} from '@agm/core';
 import {Ng5SliderModule} from 'ng5-slider';
+import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {Ng5SliderModule} from 'ng5-slider';
     NgZorroAntdModule,
     AngularFontAwesomeModule,
     AgmCoreModule,
-    Ng5SliderModule
+    Ng5SliderModule,
+    GooglePlaceModule
   ]
 })
 export class SearchResultsModule {

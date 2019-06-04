@@ -7,6 +7,8 @@
           [startDate]="startDate"
           [endDate]="endDate"
           [visitors]="visitors"
+          [latitude]="lat"
+          [longitude]="lng"
         ></app-search-widget>
       </div>
       <div class="row" style="margin-top: 30px;">
@@ -14,7 +16,7 @@
       </div>
     </div>
     <div id="right-content" class="col-9">
-      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="12">
+      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="12" [styles]="mapStyle">
         <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
       </agm-map>
       <hr>

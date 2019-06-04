@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   Event,
   GuardsCheckEnd,
@@ -8,8 +8,9 @@ import {
   NavigationStart,
   Router
 } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { ToastrService } from 'ngx-toastr';
+import {TranslateService} from '@ngx-translate/core';
+import {ToastrService} from 'ngx-toastr';
+import {SimpleSmoothScrollService} from 'ng2-simple-smooth-scroll';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit {
     private translate: TranslateService,
     private router: Router,
     private toastr: ToastrService,
+    private smooth: SimpleSmoothScrollService
   ) {
     translate.setDefaultLang('gr');
   }
@@ -40,10 +42,16 @@ export class AppComponent implements OnInit {
       }
       if (routerEvent instanceof NavigationEnd || routerEvent instanceof NavigationCancel || routerEvent instanceof NavigationError) {
         this.showLoadingIndicator = false;
+        if (this.router.url.includes('search')) {
+          this.smooth.smoothScrollToTop({duration: 1000, easing: 'easeOutQuint', offset: 600});
+        } else {
+          this.smooth.smoothScrollToTop({duration: 0, easing: 'easeOutQuint', offset: 0});
+        }
       }
       if (routerEvent instanceof NavigationError) {
         console.error('Access denied');
       }
+
     });
   }
 }

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {Address} from 'ngx-google-places-autocomplete/objects/address';
 
 @Component({
   selector: 'app-search-widget',
@@ -9,36 +10,26 @@ import {Router} from '@angular/router';
 })
 export class SearchWidgetComponent implements OnInit {
   @Input() destination;
+  @Input() latitude;
+  @Input() longitude;
   @Input() visitors;
   @Input() startDate;
   @Input() endDate;
 
   form: FormGroup;
 
-  // For the number of adults select:
-  adults = [{value: 1, label: '1 adult'}];
-  maxAdults = 20;
-  selectedAdultsNum = this.adults[0];
-
-  // For the number of children select:
-  children = [{value: 0, label: 'No children'}, {value: 1, label: '1 child'}];
-  maxChildren = 20;
-  selectedChildrenNum = this.children[0];
-
-  // For the number of rooms select:
-  rooms = [{value: 1, label: '1 room'}];
-  maxRooms = 20;
-  selectedRoomsNum = this.rooms[0];
-
-  // This will show options for wifi, parking etc.
-  travelingForWork = false;
-
   // Used by the date range picker, don't touch it:
   endOpen = false;
   progress: boolean;
 
-  constructor(private fb: FormBuilder,
-              private router: Router,
+  placesOptions: {
+    types: ['(cities)'],
+    componentRestrictions: { country: 'GR' }
+  };
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router
   ) {
     this.form = this.fb.group(
       {
@@ -64,25 +55,43 @@ export class SearchWidgetComponent implements OnInit {
   }
 
   ngOnInit() {
-    let i;
-    // Create options for adults select menu:
-    for (i = 2; i <= this.maxAdults; i++) {
-      this.adults.push({value: i, label: i + ' adults'});
-    }
-    // Create options for children select menu:
-    for (i = 2; i <= this.maxChildren; i++) {
-      this.children.push({value: i, label: i + ' children'});
-    }
-    // Create options for rooms select menu:
-    for (i = 2; i <= this.maxRooms; i++) {
-      this.rooms.push({value: i, label: i + ' rooms'});
-    }
     const start = this.startDate.split('-');
     const end = this.endDate.split('-');
     this.form.get('destination').setValue(this.destination);
     this.form.get('daterangeGroup').get('startDate').setValue(new Date(Number(start[2]), Number(start[1]) - 1, Number(start[0])));
     this.form.get('daterangeGroup').get('endDate').setValue(new Date(Number(end[2]), Number(end[1]) - 1, Number(end[0])));
     this.form.get('visitors').setValue(this.visitors);
+    this.form.get('lat').setValue(this.latitude);
+    this.form.get('lng').setValue(this.longitude);
+  }
+
+  valuechange(value: string) {
+    if (value === '') {
+      this.form.get('lat').setValue(null);
+      this.form.get('lng').setValue(null);
+    }
+  }
+
+  handleCheckAddressChange(address: Address) {
+    this.form.get('lat').setValue(address.geometry.location.lat());
+    this.form.get('lng').setValue(address.geometry.location.lng());
+    this.form.get('destination').setValue(address.formatted_address);
+  }
+
+  submit(value: any) {
+    console.log(value);
+    this.router.navigate(['/search'],
+      {
+        queryParams: {
+          start: value.daterangeGroup.startDate,
+          end: value.daterangeGroup.endDate,
+          destination: value.destination,
+          lat: value.lat,
+          lng: value.lng,
+          visitors: value.visitors,
+        },
+        queryParamsHandling: 'merge'
+      });
   }
 
   /*disabledStartDate(): boolean {
@@ -127,9 +136,5 @@ export class SearchWidgetComponent implements OnInit {
     return this.form.get('daterangeGroup').get('endDate').value;
   }
 */
-  submit(value: any) {
-    console.log(value);
-  }
-
 
 }

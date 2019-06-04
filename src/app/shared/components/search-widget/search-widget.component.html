@@ -6,8 +6,20 @@
         <div class="control-label">
           <label for="destination">Destination:</label>
         </div>
-        <input class="form-control" formControlName="destination" id="destination"
-               placeholder="Type your destination" type="text">
+        <input
+          id="destination"
+          ngx-google-places-autocomplete
+          formControlName="destination"
+          [options]='placesOptions'
+          #placesRef="ngx-places"
+          (onAddressChange)="handleCheckAddressChange($event)"
+          (input)="valuechange(place.value)"
+          type="text"
+          class="form-control"
+          placeholder="Where are you going?"
+          aria-label="place"
+          aria-describedby="basic-addon1"
+          #place>
       </div>
     </div>
     <!--     (ngModelChange)="onStartChange($event)"

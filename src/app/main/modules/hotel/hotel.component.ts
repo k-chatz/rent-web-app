@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { HotelService } from '../../../shared/services/hotel.service';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {HotelService} from '../../../shared/services/hotel.service';
+import {ActivatedRoute} from '@angular/router';
 import {Title} from '@angular/platform-browser';
+import {SimpleSmoothScrollService} from 'ng2-simple-smooth-scroll';
 
 @Component({
   selector: 'app-hotel',
@@ -15,7 +16,8 @@ export class HotelComponent implements OnInit {
   constructor(
     private hotelService: HotelService,
     private route: ActivatedRoute,
-    private titleService: Title
+    private titleService: Title,
+    private smooth: SimpleSmoothScrollService
   ) {
   }
 
