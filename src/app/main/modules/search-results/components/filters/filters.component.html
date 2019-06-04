@@ -1,69 +1,134 @@
 <div class="search-widget">
-  <form (ngSubmit)="submit(form.value)" [formGroup]="form" class="form-validate">
-    <h4 id="searchLabel">Filter by:</h4>
-    <nz-divider></nz-divider>
-    <div class="form-group">
-      <ng5-slider
-        [(value)]="minValue"
-        [(highValue)]="maxValue"
-        [options]="options"
-        (userChangeEnd)="onUserChangeEnd($event)"
-      ></ng5-slider>
-    </div>
 
-    <div nz-row class="form-group">
-      <div nz-col nzSpan="19">
-        <label formControlName="petsAllowed" nz-checkbox [(ngModel)]="checked">Pets Allowed</label>
-      </div>
-      <div nz-col nzSpan="4">
-        <div nz-row nzType="flex" nzJustify="end">
-          <div nz-col>
-            <span>45</span>
-          </div>
+  <h4 id="searchLabel">Filter by:</h4>
+  <nz-divider></nz-divider>
+  <div class="form-group">
+    <ng5-slider
+      [(value)]="filters.minPrice"
+      [(highValue)]="filters.maxPrice"
+      [options]="sliderOptions"
+      (userChangeEnd)="onUserChangeEnd($event)"
+      [manualRefresh]="manualRefresh">
+    </ng5-slider>
+  </div>
+
+  <div nz-row class="form-group">
+    <div nz-col nzSpan="19">
+      <label nz-checkbox [(ngModel)]="filters.petsAllowed" (ngModelChange)="filter('petsAllowed')">Pets Allowed</label>
+    </div>
+    <div nz-col nzSpan="4">
+      <div nz-row nzType="flex" nzJustify="end">
+        <div nz-col>
+          <span>{{amenitiesCount.petsAllowed}}</span>
         </div>
       </div>
     </div>
+  </div>
 
-    <div nz-row class="form-group">
-      <div nz-col nzSpan="19">
-        <label formControlName="freeWifi" nz-checkbox [(ngModel)]="checked">Free Wifi</label>
-      </div>
-      <div nz-col nzSpan="4">
-        <div nz-row nzType="flex" nzJustify="end">
-          <div nz-col>
-            <span>66</span>
-          </div>
+  <div nz-row class="form-group">
+    <div nz-col nzSpan="19">
+      <label nz-checkbox [(ngModel)]="filters.wifi" (ngModelChange)="filter('wifi')">Free Wifi</label>
+    </div>
+    <div nz-col nzSpan="4">
+      <div nz-row nzType="flex" nzJustify="end">
+        <div nz-col>
+          <span>{{amenitiesCount.wifi}}</span>
         </div>
       </div>
     </div>
+  </div>
 
 
-    <div nz-row class="form-group">
-      <div nz-col nzSpan="19">
-        <label formControlName="view" nz-checkbox [(ngModel)]="checked">View</label>
-      </div>
-      <div nz-col nzSpan="4">
-        <div nz-row nzType="flex" nzJustify="end">
-          <div nz-col>
-            <span>33</span>
-          </div>
+  <div nz-row class="form-group">
+    <div nz-col nzSpan="19">
+      <label nz-checkbox [(ngModel)]="filters.swimmingPool" (ngModelChange)="filter('swimmingPool')">Swimming
+        pool</label>
+    </div>
+    <div nz-col nzSpan="4">
+      <div nz-row nzType="flex" nzJustify="end">
+        <div nz-col>
+          <span>{{amenitiesCount.swimmingPool}}</span>
         </div>
       </div>
     </div>
+  </div>
 
+  <div nz-row class="form-group">
+    <div nz-col nzSpan="19">
+      <label nz-checkbox [(ngModel)]="filters.gym" (ngModelChange)="filter('gym')">Gym</label>
+    </div>
+    <div nz-col nzSpan="4">
+      <div nz-row nzType="flex" nzJustify="end">
+        <div nz-col>
+          <span>{{amenitiesCount.gym}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <!-- <div class="form-group">
-       <div class="controls">
-         <div class="control-label">
-           <label for="destination">Destination:</label>
-         </div>
-         <input class="form-control"
-                formControlName="destination"
-                id="destination"
-                placeholder="Type your destination"
-                type="text">
-       </div>
-     </div>-->
-    <br/>
-  </form>
+  <div nz-row class="form-group">
+    <div nz-col nzSpan="19">
+      <label nz-checkbox [(ngModel)]="filters.spa" (ngModelChange)="filter('spa')">Spa</label>
+    </div>
+    <div nz-col nzSpan="4">
+      <div nz-row nzType="flex" nzJustify="end">
+        <div nz-col>
+          <span>{{amenitiesCount.spa}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div nz-row class="form-group">
+    <div nz-col nzSpan="19">
+      <label nz-checkbox [(ngModel)]="filters.bar" (ngModelChange)="filter('bar')">Bar</label>
+    </div>
+    <div nz-col nzSpan="4">
+      <div nz-row nzType="flex" nzJustify="end">
+        <div nz-col>
+          <span>{{amenitiesCount.bar}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div nz-row class="form-group">
+    <div nz-col nzSpan="19">
+      <label nz-checkbox [(ngModel)]="filters.restaurant" (ngModelChange)="filter('restaurant')">Restaurant</label>
+    </div>
+    <div nz-col nzSpan="4">
+      <div nz-row nzType="flex" nzJustify="end">
+        <div nz-col>
+          <span>{{amenitiesCount.restaurant}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div nz-row class="form-group">
+    <div nz-col nzSpan="19">
+      <label nz-checkbox [(ngModel)]="filters.parking" (ngModelChange)="filter('parking')">Parking</label>
+    </div>
+    <div nz-col nzSpan="4">
+      <div nz-row nzType="flex" nzJustify="end">
+        <div nz-col>
+          <span>{{amenitiesCount.parking}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div nz-row class="form-group">
+    <div nz-col nzSpan="19">
+      <label nz-checkbox [(ngModel)]="filters.roomService" (ngModelChange)="filter('roomService')">Room service</label>
+    </div>
+    <div nz-col nzSpan="4">
+      <div nz-row nzType="flex" nzJustify="end">
+        <div nz-col>
+          <span>{{amenitiesCount.roomService}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
 </div>

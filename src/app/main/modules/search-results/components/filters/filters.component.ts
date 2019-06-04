@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {ChangeContext, LabelType, Options, PointerType} from 'ng5-slider';
+import {Component, EventEmitter, Input, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ChangeContext, LabelType, Options} from 'ng5-slider';
+import {AmenitiesCount} from '../../../../../shared/models/AmenitiesCount';
+import {Filters} from '../../../../../shared/models/Filters';
 
 @Component({
   selector: 'app-filters',
@@ -9,44 +10,33 @@ import {ChangeContext, LabelType, Options, PointerType} from 'ng5-slider';
   styleUrls: ['./filters.component.scss']
 })
 export class FiltersComponent implements OnInit {
+  @Input() filters: Filters;
+  @Input() sliderOptions: Options;
+  @Input() amenitiesCount: AmenitiesCount;
 
-  form: FormGroup;
+  manualRefresh: EventEmitter<void> = new EventEmitter<void>();
   progress: boolean;
-  @Input() minPrice: number;
-  @Input() maxPrice: number;
 
-  minValue: number;
-  maxValue: number;
-  options: Options;
-
-  logText = '';
-  checked = true;
   constructor(
-    private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute
   ) {
-    this.form = this.fb.group(
-      {
-        slider: ['', {
-          validators: []
-        }],
-        petsAllowed: ['', {
-          validators: []
-        }],
-        freeWifi: ['', {
-          validators: []
-        }],
-        view: ['', {
-          validators: []
-        }],
-      }
-    );
   }
 
+  filter(key) {
+    console.log(key, this.filters[key]);
+    this.router.navigate(['/search'],
+      {
+        queryParams: {[key]: this.filters[key]},
+        queryParamsHandling: 'merge'
+      });
+  }
+
+
   ngOnInit() {
-    this.options = {
-      floor: this.minPrice,
-      ceil: this.maxPrice,
+    this.sliderOptions = {
+      floor: this.filters.floorPrice,
+      ceil: this.filters.ceilPrice,
       translate: (value: number, label: LabelType): string => {
         switch (label) {
           case LabelType.Low:
@@ -58,16 +48,33 @@ export class FiltersComponent implements OnInit {
         }
       }
     };
-    this.minValue = this.minPrice;
-    this.maxValue = this.maxPrice;
+    this.route.queryParams.subscribe(() => {
+      this.sliderOptions = {
+        floor: this.filters.floorPrice,
+        ceil: this.filters.ceilPrice,
+        translate: (value: number, label: LabelType): string => {
+          switch (label) {
+            case LabelType.Low:
+              return '<b>Min price:</b> $' + value;
+            case LabelType.High:
+              return '<b>Max price:</b> $' + value;
+            default:
+              return '$' + value;
+          }
+        }
+      };
+      this.manualRefresh.emit();
+    });
   }
 
   onUserChangeEnd(changeContext: ChangeContext): void {
-    console.log('end', changeContext);
-    // TODO change router query params
+    console.log('onUserChangeEnd', changeContext);
+    if (!changeContext.pointerType) {
+      this.filters.minPrice = changeContext.value;
+      this.filter('minPrice');
+    } else {
+      this.filters.maxPrice = changeContext.highValue;
+      this.filter('maxPrice');
+    }
   }
-
-  submit(value: any) {
-  }
-
 }
