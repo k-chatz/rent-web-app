@@ -5,6 +5,8 @@ import * as moment from 'moment';
 import {AmenitiesCount} from '../../../shared/models/AmenitiesCount';
 import {Filters} from '../../../shared/models/Filters';
 import {SimpleSmoothScrollService} from 'ng2-simple-smooth-scroll';
+import {PagedResponse} from '../../../shared/models/payload/PagedResponse';
+import {Hotel} from '../../../shared/models/hotel';
 
 @Component({
   selector: 'app-search',
@@ -16,7 +18,7 @@ export class SearchResultsComponent implements OnInit {
   startDate: string;
   endDate: string;
   visitors: number;
-  hotelPagedResults: any;
+  hotelPagedResults: PagedResponse<Hotel>;
   lat: number;
   lng: number;
   maxPrice: number;
@@ -29,12 +31,12 @@ export class SearchResultsComponent implements OnInit {
     private route: ActivatedRoute,
     private smooth: SimpleSmoothScrollService
   ) {
-    titleService.setTitle('Search');
+    titleService.setTitle('Search - RentCube');
   }
 
   ngOnInit() {
     this.route.data.subscribe((response: any) => {
-      this.smooth.smoothScrollToTop({duration: 500, easing: 'easeOutQuint'});
+      this.smooth.smoothScrollToAnchor({duration: 500, easing: 'easeOutQuint'});
       /* Get all the params from the activated route snapshot and add some default values to them if they are not defined */
       this.destination = this.route.snapshot.queryParamMap.get('destination') == null ? '' :
         this.route.snapshot.queryParamMap.get('destination');

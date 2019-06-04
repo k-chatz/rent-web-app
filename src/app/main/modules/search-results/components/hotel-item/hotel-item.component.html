@@ -1,9 +1,21 @@
-<div>
-  <nz-card nzHoverable [nzCover]="coverTemplate" style="margin: 5px;">
-    <nz-card-meta nzTitle="{{hotel.description_short}}" nzDescription="{{hotel.description_long}}"></nz-card-meta>
-  </nz-card>
+<div class="media">
+  <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
+  </div>
+  <img class="d-flex align-self-start"
+       src="{{hotel.photo}}"
+       alt="Generic placeholder image">
+  <div class="media-body pl-3">
+    <div class="price">{{hotel.description_short}}
+      <small></small>
+    </div>
+    <div class="stats">
+      <span>
+        <i class="fa fa-arrows-alt"></i>1678 Sq ft
+      </span>
+      <span><i class="fa fa-bath"></i>{{hotel.number_of_rooms}} Rooms
+      </span>
+    </div>
+    <div class="address">{{hotel.address}}
+    </div>
+  </div>
 </div>
-
-<ng-template #coverTemplate>
-  <img style="height: 400px;" alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />
-</ng-template>

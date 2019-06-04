@@ -1,17 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
+import {Hotel} from '../../../../../shared/models/hotel';
 
 @Component({
   selector: 'app-hotel-item',
   templateUrl: './hotel-item.component.html',
   styleUrls: ['./hotel-item.component.scss']
 })
-export class HotelListItemComponent implements OnInit {
+export class HotelItemComponent implements OnInit {
 
-  @Input() hotel;
+  @Input() hotel: Hotel;
 
   constructor() { }
 
   ngOnInit() {
   }
-
 }

@@ -13,7 +13,6 @@
         <app-filters [filters]="filters" [amenitiesCount]="amenitiesCount"></app-filters>
       </div>
     </div>
-
     <div id="right-content" class="col-9">
       <agm-map [latitude]="lat" [longitude]="lng" [zoom]="12">
         <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
@@ -21,10 +20,14 @@
       <hr>
       <h3><b>{{destination}}: {{hotelPagedResults.content.length}} hotels found</b></h3>
       <hr>
-      <pre>
-        {{hotelPagedResults | json}}
-      </pre>
-      <app-hotel-item *ngFor="let hotel of hotelPagedResults.content" [hotel]="hotel"></app-hotel-item>
+      <section class="search-box">
+        <div class="row">
+          <div class="col-md-12 listing-block">
+            <app-hotel-item *ngFor="let hotel of hotelPagedResults.content" [hotel]="hotel"></app-hotel-item>
+          </div>
+        </div>
+      </section>
+      <nz-empty *ngIf="!hotelPagedResults.totalElements"></nz-empty>
     </div>
   </div>
 </div>

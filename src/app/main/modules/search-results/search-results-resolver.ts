@@ -35,5 +35,4 @@ export class SearchResultsResolver implements Resolve<Observable<any>> {
     });
     return this.hotelService.search(this.searchRequest);
   }
-
 }
