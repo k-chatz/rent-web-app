@@ -22,6 +22,7 @@ import { DEFAULT_TIMEOUT, timeoutProvider } from './shared/interceptors/timeout.
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { UsersRouteDataProvider } from './management/modules/users/users-route-data.provider';
 import { NgProgressRouterModule } from '@ngx-progressbar/router';
+import {SimpleSmoothScrollModule} from 'ng2-simple-smooth-scroll';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -69,7 +70,8 @@ export const createTranslateLoader = (http: HttpClient) => {
       }
     }),
     TeximateModule,
-    GooglePlaceModule
+    GooglePlaceModule,
+    SimpleSmoothScrollModule
   ],
   providers: [
     {provide: NZ_I18N, useValue: en_US},

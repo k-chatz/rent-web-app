@@ -39,6 +39,7 @@
     "moment": "^2.23.0",
     "ng-animate": "^0.3.4",
     "ng-zorro-antd": "7.2.0",
+    "ng2-simple-smooth-scroll": "^0.3.0",
     "ng5-slider": "^1.1.14",
     "ng7-bootstrap-breadcrumb": "^1.0.4",
     "ngx-bootstrap": "^3.1.2",
