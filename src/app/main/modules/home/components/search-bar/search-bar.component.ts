@@ -40,7 +40,7 @@ export class SearchBarComponent implements OnInit {
           validators: [Validators.required]
         }],
         visitors: [null, {
-          validators: [Validators.min(1), Validators.max(15)]
+          validators: [Validators.min(1), Validators.max(30)]
         }]
       }
     );
@@ -74,7 +74,7 @@ export class SearchBarComponent implements OnInit {
         destination: value.destination,
         lat: value.lat,
         lng: value.lng,
-        visitors: parseInt(value.visitors, 10),
+        visitors: (value.visitors == null) ? 1 : value.visitors
       }
     });
   }
@@ -85,4 +85,5 @@ export class SearchBarComponent implements OnInit {
       this.form.get('lng').setValue(null);
     }
   }
+
 }
