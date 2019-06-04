@@ -24,7 +24,7 @@
       <pre>
         {{hotelPagedResults | json}}
       </pre>
-      <!--      <app-hotel-list-item [hotels]="hotelPagedResults"></app-hotel-list-item>-->
+      <app-hotel-item *ngFor="let hotel of hotelPagedResults.content" [hotel]="hotel"></app-hotel-item>
     </div>
   </div>
 </div>

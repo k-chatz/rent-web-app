@@ -33,7 +33,6 @@ export class SearchResultsComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.route.data.subscribe((response: any) => {
       this.smooth.smoothScrollToTop({duration: 500, easing: 'easeOutQuint'});
       /* Get all the params from the activated route snapshot and add some default values to them if they are not defined */
@@ -70,7 +69,6 @@ export class SearchResultsComponent implements OnInit {
         swimmingPool: this.route.snapshot.queryParamMap.get('swimmingPool') === 'true',
       };
       console.log(this.filters);
-
     });
   }
 }
