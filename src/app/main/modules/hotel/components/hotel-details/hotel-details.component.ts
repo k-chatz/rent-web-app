@@ -9,6 +9,7 @@ export class HotelDetailsComponent implements OnInit {
   @Input() name;
   @Input() stars;
   @Input() shortDescription;
+  @Input() email;
   @Input() longDescription;
 
   constructor() {

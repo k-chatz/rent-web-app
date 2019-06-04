@@ -42,7 +42,7 @@ export class SearchResultsComponent implements OnInit {
       this.endDate = this.route.snapshot.queryParamMap.get('end') == null ?
         moment(new Date()).add(2, 'days').format('YYYY-MM-DD') : this.route.snapshot.queryParamMap.get('end');
       this.visitors = this.route.snapshot.queryParamMap.get('visitors') == null ?
-        2 : parseInt(this.route.snapshot.queryParamMap.get('visitors'), 10);
+        1 : parseInt(this.route.snapshot.queryParamMap.get('visitors'), 10);
       this.lat = this.route.snapshot.queryParamMap.get('lat') == null ?
         37.983810 : parseFloat(this.route.snapshot.queryParamMap.get('lat'));
       this.lng = this.route.snapshot.queryParamMap.get('lng') == null ?

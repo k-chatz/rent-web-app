@@ -1,7 +1,9 @@
 <div class="jumbotron">
   <h1 class="display-6">{{name}}</h1>
   <h3>{{shortDescription}}</h3>
-  <nz-rate [ngModel]="stars*1" nzDisabled></nz-rate>
+  <nz-rate [ngModel]="stars" nzDisabled></nz-rate>
+  <hr class="my-4">
+  <p>Contact info: <b>{{email}}</b></p>
   <hr class="my-4">
   <p class="lead">{{longDescription}}</p>
 </div>

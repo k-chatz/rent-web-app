@@ -50,10 +50,10 @@ const routes: Routes = [
         },
       },
       {
-        path: 'hotel',
+        path: 'hotels',
         loadChildren: './modules/hotel/hotel.module#HotelModule',
         data: {
-          title: 'hotel',
+          title: 'hotels',
           breadcrumb: [
             {
               label: 'Home',
