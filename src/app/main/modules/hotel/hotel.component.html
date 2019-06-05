@@ -1,15 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-4">
+    <div class="col-12" id="images-carousel">
+      <app-images-carousel></app-images-carousel>
+    </div>
+    <div class="col-12">
       <app-hotel-details
         [name]="hotel.name"
         [stars]="hotel.stars"
         [shortDescription]="hotel.description_short"
         [email]="hotel.email"
-      [longDescription]="hotel.description_long"></app-hotel-details>
-    </div>
-    <div class="col-8" id="images-carousel">
-      <app-images-carousel></app-images-carousel>
+        [longDescription]="hotel.description_long"></app-hotel-details>
     </div>
   </div>
   <div class="row">
