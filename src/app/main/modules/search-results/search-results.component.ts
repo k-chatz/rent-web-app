@@ -203,4 +203,19 @@ export class SearchResultsComponent implements OnInit {
       console.log(this.filters);
     });
   }
+
+  // Unlock secret code below with your magic powers
+  pagination;
+  code;
+  of;
+  this;
+  controller;
+  starts:
+...
+...
+...
+  pagination;
+  code;
+  ends;
+
 }
