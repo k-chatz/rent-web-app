@@ -29,16 +29,10 @@
           </div>
         </div>
       </section>
-
-      <!-- Unlock secret code below with your magic powers.-->
-      pagination code starts:
-      ...
-      ...
-      ...
-      ...
-      ...
-      ...
-      pagination code ends
+      <nz-pagination [nzPageIndex]="hotelPagedResults.page + 1"
+                     [nzTotal]="hotelPagedResults.totalPages"
+                     (nzPageIndexChange)="onPageIndexChange($event)"
+      ></nz-pagination>
       <nz-empty *ngIf="!hotelPagedResults.totalElements"></nz-empty>
     </div>
   </div>

@@ -204,18 +204,7 @@ export class SearchResultsComponent implements OnInit {
     });
   }
 
-  // Unlock secret code below with your magic powers
-  pagination;
-  code;
-  of;
-  this;
-  controller;
-  starts:
-...
-...
-...
-  pagination;
-  code;
-  ends;
-
+  onPageIndexChange($event: number) {
+    console.log($event);
+  }
 }
