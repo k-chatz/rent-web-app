@@ -18,11 +18,29 @@ export class SearchResultsResolver implements Resolve<Observable<any>> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
+
     /* Initialize a class instance */
-    this.searchRequest = new SearchRequest(37.983810, 23.727539, moment(new Date()).format('YYYY-MM-DD'),
-      moment(new Date()).add(2, 'days').format('YYYY-MM-DD'),
-      2, false, false, false, false, false,
-      false, false, false, false, 0, 200);
+    this.searchRequest = new SearchRequest(
+      0,
+      10,
+      37.983810,
+      23.727539,
+      moment(new Date()).format('YYYY-MM-DD'),
+      moment(new Date()).add(2, 'days'
+      ).format('YYYY-MM-DD'),
+      2,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      0,
+      200
+    );
 
     // tslint:disable-next-line:max-line-length
     /* Get the class members after initializing the instance (it is very important to initialize the instance, otherwise the instance will be empty). */

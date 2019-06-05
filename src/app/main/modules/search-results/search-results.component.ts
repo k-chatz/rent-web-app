@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import * as moment from 'moment';
 import {AmenitiesCount} from '../../../shared/models/AmenitiesCount';
@@ -161,6 +161,7 @@ export class SearchResultsComponent implements OnInit {
   constructor(
     private titleService: Title,
     private route: ActivatedRoute,
+    private router: Router,
   ) {
     titleService.setTitle('Search - RentCube');
   }
@@ -206,5 +207,13 @@ export class SearchResultsComponent implements OnInit {
 
   onPageIndexChange($event: number) {
     console.log($event);
+    this.router.navigate(['/search'],
+      {
+        queryParams: {
+          page: $event - 1,
+          size: 5
+        },
+        queryParamsHandling: 'merge'
+      });
   }
 }

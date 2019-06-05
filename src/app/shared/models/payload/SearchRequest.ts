@@ -1,30 +1,45 @@
 export class SearchRequest {
+  page: number;
+  size: number;
   lat: number;
   lng: number;
   startDate?: string;
   endDate?: string;
   visitors?: number;
   wifi?: boolean;
-  // tslint:disable-next-line:variable-name
   swimmingPool?: boolean;
   gym?: boolean;
   spa?: boolean;
   bar?: boolean;
   restaurant?: boolean;
-  // tslint:disable-next-line:variable-name
   petsAllowed?: boolean;
   parking?: boolean;
-  // tslint:disable-next-line:variable-name
   roomService?: boolean;
   minPrice: number;
   maxPrice: number;
 
-  constructor(lat: number, lng: number, startDate: string, endDate: string, visitors: number, wifi: boolean,
-              // tslint:disable-next-line:variable-name
-              swimmingPool: boolean, gym: boolean, spa: boolean, bar: boolean, restaurant: boolean,
-              // tslint:disable-next-line:variable-name
-              petsAllowed: boolean, parking: boolean, roomService: boolean, minPrice: number,
-              maxPrice: number) {
+  constructor(
+    page: number,
+    size: number,
+    lat: number,
+    lng: number,
+    startDate: string,
+    endDate: string,
+    visitors: number,
+    wifi: boolean,
+    swimmingPool: boolean,
+    gym: boolean,
+    spa: boolean,
+    bar: boolean,
+    restaurant: boolean,
+    petsAllowed: boolean,
+    parking: boolean,
+    roomService: boolean,
+    minPrice: number,
+    maxPrice: number
+  ) {
+    this.page = page;
+    this.size = size;
     this.lat = lat;
     this.lng = lng;
     this.startDate = startDate;

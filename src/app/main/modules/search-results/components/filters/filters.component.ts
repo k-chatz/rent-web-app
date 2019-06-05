@@ -32,7 +32,6 @@ export class FiltersComponent implements OnInit {
       });
   }
 
-
   ngOnInit() {
     this.sliderOptions = {
       floor: this.filters.floorPrice,
