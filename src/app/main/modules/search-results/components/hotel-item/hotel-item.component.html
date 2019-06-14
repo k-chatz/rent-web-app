@@ -10,12 +10,48 @@
     <div class="price">{{hotel.description_short}}
       <small></small>
     </div>
+
+    <nz-rate [ngModel]="hotel.stars" nzDisabled></nz-rate>
+
+    <span><i class="fas fa-th"></i>&nbsp;{{hotel.number_of_rooms}}&nbsp;Available rooms</span>
+
     <div class="stats">
-      <span>
-        <i class="fa fa-arrows-alt"></i>1678 Sq ft
+      <span *ngIf="freeWifi">
+        <i class="fas fa-wifi"></i>Free Wifi
       </span>
-      <span><i class="fa fa-bath"></i>{{hotel.number_of_rooms}} Rooms
+
+      <span *ngIf="petsAllowed">
+        <i class="fas fa-paw"></i>Pets Allowed
       </span>
+
+      <span *ngIf="gym">
+        <i class="fas fa-dumbbell"></i>Gym
+      </span>
+
+      <span *ngIf="swimmingPool">
+        <i class="fas fa-swimming-pool"></i>Swimming Pool
+      </span>
+
+      <span *ngIf="spa">
+        <i class="fas fa-spa"></i>Spa
+      </span>
+
+      <span *ngIf="bar">
+        <i class="fas fa-glass-cheers"></i>Bar
+      </span>
+
+      <span *ngIf="restaurant">
+        <i class="fas fa-utensils"></i>Restaurant
+      </span>
+
+      <span *ngIf="roomService">
+        <i class="fas fa-person-booth"></i>Room Service
+      </span>
+
+      <span *ngIf="parking">
+        <i class="fas fa-parking"></i>Parking
+      </span>
+
     </div>
     <div class="address">{{hotel.address}}
     </div>

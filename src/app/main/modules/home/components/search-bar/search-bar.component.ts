@@ -65,7 +65,6 @@ export class SearchBarComponent implements OnInit {
   }
 
   submit(value: any) {
-    console.log(value);
     this.progress = true;
     this.router.navigate(['search'], {
       queryParams: {
