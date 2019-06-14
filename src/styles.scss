@@ -1,3 +1,5 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
 /* You can add global styles to this file, and also import other style files */
 body {
   background-color: #f0f3f6 !important;
@@ -133,7 +135,7 @@ date-range-popup > div{
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(49, 53, 61);
+  background: #244c8c;
   transition: .1s ease-out;
 }
 
