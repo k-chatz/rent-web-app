@@ -30,6 +30,7 @@
         </div>
       </section>
       <nz-pagination
+        *ngIf="hotelPagedResults.totalElements"
         [nzPageSize]="hotelPagedResults.size"
         [nzPageIndex]="hotelPagedResults.page + 1"
         [nzTotal]="hotelPagedResults.totalElements"
