@@ -34,7 +34,7 @@
   background-color: #51a2f936;
 }
 
-.card {
+.hotel-card {
   cursor: pointer;
   transition: border 250ms ease-in-out;
 
@@ -46,7 +46,7 @@
 
 }
 
-.card:hover {
+.hotel-card:hover {
   border: 1px solid #096dd999;
 
   -webkit-transform: scale(1.04);

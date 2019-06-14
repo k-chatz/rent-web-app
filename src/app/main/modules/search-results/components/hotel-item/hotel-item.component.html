@@ -1,59 +1,73 @@
-<div class="media">
-  <div class="fav-box"><i class="fa fa-heart-o" aria-hidden="true"></i>
-  </div>
-  <a routerLink="/hotels/{{hotel.id}}">
-    <img class="d-flex align-self-start"
-         src="{{hotel.photo}}"
-         alt="Generic placeholder image">
-  </a>
-  <div class="media-body pl-3">
-    <div class="price">{{hotel.description_short}}
-      <small></small>
+<div class="hotel-card">
+  <div class="row">
+    <div class="col-3">
+      <a routerLink="/hotels/{{hotel.id}}">
+        <img class="d-flex align-self-start"
+             src="{{hotel.photo}}"
+             alt="Generic placeholder image">
+      </a>
     </div>
+    <div class="col-9">
+      <div class="row">
+        <div class="col-10 title">
+          {{hotel.description_short}}
+          <nz-rate [ngModel]="hotel.stars" nzDisabled></nz-rate>
+        </div>
+        <div class="col-2">
+          <div class="fav-box">
+            <span>
+            <i class="fas fa-euro-sign"></i> 32
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <span><i class="fas fa-th"></i>&nbsp;{{hotel.number_of_rooms}}&nbsp;Available rooms</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="stats">
+            <span *ngIf="freeWifi">
+              <i class="fas fa-wifi"></i>Free Wifi
+            </span>
 
-    <nz-rate [ngModel]="hotel.stars" nzDisabled></nz-rate>
+            <span *ngIf="petsAllowed">
+              <i class="fas fa-paw"></i>Pets Allowed
+            </span>
 
-    <span><i class="fas fa-th"></i>&nbsp;{{hotel.number_of_rooms}}&nbsp;Available rooms</span>
+            <span *ngIf="gym">
+              <i class="fas fa-dumbbell"></i>Gym
+            </span>
 
-    <div class="stats">
-      <span *ngIf="freeWifi">
-        <i class="fas fa-wifi"></i>Free Wifi
-      </span>
+            <span *ngIf="swimmingPool">
+              <i class="fas fa-swimming-pool"></i>Swimming Pool
+            </span>
 
-      <span *ngIf="petsAllowed">
-        <i class="fas fa-paw"></i>Pets Allowed
-      </span>
+            <span *ngIf="spa">
+              <i class="fas fa-spa"></i>Spa
+            </span>
 
-      <span *ngIf="gym">
-        <i class="fas fa-dumbbell"></i>Gym
-      </span>
+            <span *ngIf="bar">
+              <i class="fas fa-glass-cheers"></i>Bar
+            </span>
 
-      <span *ngIf="swimmingPool">
-        <i class="fas fa-swimming-pool"></i>Swimming Pool
-      </span>
+            <span *ngIf="restaurant">
+              <i class="fas fa-utensils"></i>Restaurant
+            </span>
 
-      <span *ngIf="spa">
-        <i class="fas fa-spa"></i>Spa
-      </span>
+            <span *ngIf="roomService">
+              <i class="fas fa-person-booth"></i>Room Service
+            </span>
 
-      <span *ngIf="bar">
-        <i class="fas fa-glass-cheers"></i>Bar
-      </span>
+            <span *ngIf="parking">
+              <i class="fas fa-parking"></i>Parking
+            </span>
 
-      <span *ngIf="restaurant">
-        <i class="fas fa-utensils"></i>Restaurant
-      </span>
-
-      <span *ngIf="roomService">
-        <i class="fas fa-person-booth"></i>Room Service
-      </span>
-
-      <span *ngIf="parking">
-        <i class="fas fa-parking"></i>Parking
-      </span>
-
-    </div>
-    <div class="address">{{hotel.address}}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

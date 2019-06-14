@@ -20,56 +20,53 @@
   width: 41% !important;
 }
 
-.media {
-  background: #fff;
+.hotel-card {
   position: relative;
   margin-bottom: 15px;
+  background: white;
+  padding: 5px;
 }
 
-.media img {
+.hotel-card img {
   width: 200px;
   margin: 0;
   height: 150px;
 }
 
 .media-body {
-  border: 1px solid #bcbcbc;
-  border-left: 0;
   height: 150px;
 }
 
-.media .price {
-  float: left;
-  width: 100%;
-  font-size: 30px;
+.title {
+  font-size: 24px;
   font-weight: 600;
   color: #4765AB;
 }
 
-.media .price small {
+.hotel-card .title small {
   display: block;
   font-size: 17px;
   color: #232323;
 }
 
-.media .stats {
+.hotel-card .stats {
   float: left;
   width: 100%;
   margin-top: 10px;
 }
 
-.media .stats span {
+.hotel-card .stats span {
   float: left;
   margin-right: 10px;
   font-size: 15px;
 }
 
-.media .stats span i {
+.hotel-card .stats span i {
   margin-right: 7px;
   color: #4765AB;
 }
 
-.media .address {
+.hotel-card .address {
   float: left;
   width: 100%;
   font-size: 14px;
@@ -77,12 +74,10 @@
   color: #888;
 }
 
-.media .fav-box {
-  position: absolute;
-  right: 10px;
+.fav-box {
   font-size: 20px;
   top: 4px;
-  color: #E74C3C;
+  color: #e75628;
 }
 
 .map-box {
