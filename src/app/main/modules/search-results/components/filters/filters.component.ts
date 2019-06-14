@@ -33,24 +33,10 @@ export class FiltersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sliderOptions = {
-      floor: this.filters.floorPrice,
-      ceil: this.filters.ceilPrice,
-      translate: (value: number, label: LabelType): string => {
-        switch (label) {
-          case LabelType.Low:
-            return '<b>Min price:</b> $' + value;
-          case LabelType.High:
-            return '<b>Max price:</b> $' + value;
-          default:
-            return '$' + value;
-        }
-      }
-    };
-    this.route.queryParams.subscribe(() => {
+    this.route.data.subscribe((response: any) => {
       this.sliderOptions = {
-        floor: this.filters.floorPrice,
-        ceil: this.filters.ceilPrice,
+        floor: response.data.floorPrice,
+        ceil: response.data.ceilPrice,
         translate: (value: number, label: LabelType): string => {
           switch (label) {
             case LabelType.Low:

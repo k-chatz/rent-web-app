@@ -75,6 +75,8 @@ export class SearchBarComponent implements OnInit {
         lng: value.lng,
         visitors: (value.visitors == null) ? 1 : value.visitors
       }
+    }).catch((e) => {
+      this.progress = false;
     });
   }
 

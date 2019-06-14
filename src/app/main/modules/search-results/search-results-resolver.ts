@@ -22,7 +22,7 @@ export class SearchResultsResolver implements Resolve<Observable<any>> {
     /* Initialize a class instance */
     this.searchRequest = new SearchRequest(
       0,
-      10,
+      5,
       37.983810,
       23.727539,
       moment(new Date()).format('YYYY-MM-DD'),

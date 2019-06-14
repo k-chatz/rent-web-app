@@ -14,7 +14,7 @@ import {RoutingState} from '../../../shared/services/routing-state';
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss']
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultsComponent {
   destination: string;
   startDate: string;
   endDate: string;
@@ -168,9 +168,6 @@ export class SearchResultsComponent implements OnInit {
     private routingState: RoutingState
   ) {
     titleService.setTitle('Search - RentCube');
-  }
-
-  ngOnInit() {
     this.route.data.subscribe((response: any) => {
       if (this.routingState.getPreviousUrl().includes('search')) {
         this.smooth.smoothScrollToTop({duration: 1000, easing: 'easeOutQuint', offset: 600});
@@ -194,11 +191,13 @@ export class SearchResultsComponent implements OnInit {
       /* Get the hotels from the route data after the resolver fetched them */
       this.hotelPagedResults = response.data.results;
       this.amenitiesCount = response.data.amenitiesCount;
+      const minPrice = this.route.snapshot.queryParamMap.get('minPrice');
+      const maxPrice = this.route.snapshot.queryParamMap.get('maxPrice');
       this.filters = {
-        floorPrice: 45, // response.data.floorPrice,
-        ceilPrice: 78, // response.data.ceilPrice,
-        minPrice: response.data.minPrice,
-        maxPrice: response.data.maxPrice,
+        floorPrice: response.data.floorPrice,
+        ceilPrice: response.data.ceilPrice,
+        minPrice: minPrice ? minPrice : response.data.floorPrice,
+        maxPrice: maxPrice ? maxPrice : response.data.ceilPrice,
         wifi: this.route.snapshot.queryParamMap.get('wifi') === 'true',
         petsAllowed: this.route.snapshot.queryParamMap.get('petsAllowed') === 'true',
         bar: this.route.snapshot.queryParamMap.get('bar') === 'true',
