@@ -11,6 +11,7 @@ import {
 import {TranslateService} from '@ngx-translate/core';
 import {ToastrService} from 'ngx-toastr';
 import {SimpleSmoothScrollService} from 'ng2-simple-smooth-scroll';
+import {RoutingState} from './shared/services/routing-state';
 
 @Component({
   selector: 'app-root',
@@ -24,9 +25,11 @@ export class AppComponent implements OnInit {
     private translate: TranslateService,
     private router: Router,
     private toastr: ToastrService,
-    private smooth: SimpleSmoothScrollService
+    private smooth: SimpleSmoothScrollService,
+    private routingState: RoutingState
   ) {
     translate.setDefaultLang('gr');
+    routingState.loadRouting();
   }
 
   ngOnInit() {
@@ -43,7 +46,7 @@ export class AppComponent implements OnInit {
       if (routerEvent instanceof NavigationEnd || routerEvent instanceof NavigationCancel || routerEvent instanceof NavigationError) {
         this.showLoadingIndicator = false;
         if (this.router.url.includes('search')) {
-          this.smooth.smoothScrollToTop({duration: 1000, easing: 'easeOutQuint', offset: 600});
+          // this.smooth.smoothScrollToTop({duration: 1000, easing: 'easeOutQuint', offset: 600});
         } else {
           this.smooth.smoothScrollToTop({duration: 0, easing: 'easeOutQuint', offset: 0});
         }

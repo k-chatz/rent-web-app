@@ -6,6 +6,8 @@ import {AmenitiesCount} from '../../../shared/models/AmenitiesCount';
 import {Filters} from '../../../shared/models/Filters';
 import {PagedResponse} from '../../../shared/models/payload/PagedResponse';
 import {Hotel} from '../../../shared/models/hotel';
+import {SimpleSmoothScrollService} from 'ng2-simple-smooth-scroll';
+import {RoutingState} from '../../../shared/services/routing-state';
 
 @Component({
   selector: 'app-search',
@@ -162,12 +164,18 @@ export class SearchResultsComponent implements OnInit {
     private titleService: Title,
     private route: ActivatedRoute,
     private router: Router,
+    private smooth: SimpleSmoothScrollService,
+    private routingState: RoutingState
   ) {
     titleService.setTitle('Search - RentCube');
   }
 
   ngOnInit() {
     this.route.data.subscribe((response: any) => {
+      if (this.routingState.getPreviousUrl().includes('search')) {
+        this.smooth.smoothScrollToTop({duration: 1000, easing: 'easeOutQuint', offset: 600});
+      }
+
       /* Get all the params from the activated route snapshot and add some default values to them if they are not defined */
       this.destination = this.route.snapshot.queryParamMap.get('destination') == null ? '' :
         this.route.snapshot.queryParamMap.get('destination');
@@ -201,7 +209,7 @@ export class SearchResultsComponent implements OnInit {
         parking: this.route.snapshot.queryParamMap.get('parking') === 'true',
         swimmingPool: this.route.snapshot.queryParamMap.get('swimmingPool') === 'true',
       };
-      console.log(this.filters);
+      // console.log(this.filters);
     });
   }
 
