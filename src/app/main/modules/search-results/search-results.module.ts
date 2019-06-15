@@ -13,6 +13,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {AgmCoreModule} from '@agm/core';
 import {Ng5SliderModule} from 'ng5-slider';
 import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
+import {AgmJsMarkerClustererModule} from '@agm/js-marker-clusterer';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {GooglePlaceModule} from 'ngx-google-places-autocomplete';
     NgZorroAntdModule,
     AngularFontAwesomeModule,
     AgmCoreModule,
+    AgmJsMarkerClustererModule,
     Ng5SliderModule,
     GooglePlaceModule
   ]
