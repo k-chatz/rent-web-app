@@ -11,8 +11,8 @@
 
 <div class="container">
   <div class="row">
-    <div *ngFor="let dst of destinations" class="col-md-4 tile-box">
-      <div class="card mb-4 box-shadow">
+    <div *ngFor="let dst of destinations" class="col-md-4 tile-box" (click)="onClickRecommendation(dst)">
+      <div class="card mb-4 box-shadow" style="cursor: pointer;">
         <div class="card-overlay">
           <h2 class="card-title">{{dst.title}}</h2>
         </div>

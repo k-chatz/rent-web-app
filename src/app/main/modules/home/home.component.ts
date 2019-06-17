@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../../../shared/services/authentication.service';
 import {Title} from '@angular/platform-browser';
 import {first, timeout} from 'rxjs/operators';
@@ -24,27 +24,45 @@ export class HomeComponent implements OnInit {
   destinations = [
     {
       title: 'Meteora',
-      image: '../../../../assets/images/forest-1906850_640.jpg'
+      image: '../../../../assets/images/forest-1906850_640.jpg',
+      destination: 'Meteora',
+      lat: '39.7217044',
+      lng: '21.6284009',
     },
     {
       title: 'Volos',
-      image: '../../../../assets/images/greece-4181705_640.jpg'
+      image: '../../../../assets/images/greece-4181705_640.jpg',
+      destination: 'Volos',
+      lat: '39.3651995',
+      lng: '22.929803',
     },
     {
       title: 'Athens',
-      image: '../../../../assets/images/acropolis-12044_640.jpg'
+      image: '../../../../assets/images/acropolis-12044_640.jpg',
+      destination: 'Athens',
+      lat: '37.9908996',
+      lng: '23.703234',
     },
     {
       title: 'Rome',
-      image: '../../../../assets/images/rome-173472_640.jpg'
+      image: '../../../../assets/images/rome-173472_640.jpg',
+      destination: 'Rome',
+      lat: '41.9102411',
+      lng: '12.3955705',
     },
     {
       title: 'London',
-      image: '../../../../assets/images/london-3078109_640.jpg'
+      image: '../../../../assets/images/london-3078109_640.jpg',
+      destination: 'London',
+      lat: '51.5287714',
+      lng: '-0.2420248',
     },
     {
       title: 'Paris',
-      image: '../../../../assets/images/eiffel-tower-498378_640.jpg'
+      image: '../../../../assets/images/eiffel-tower-498378_640.jpg',
+      destination: 'Paris',
+      lat: '48.8589506',
+      lng: '2.2768485',
     },
   ];
 
@@ -54,7 +72,8 @@ export class HomeComponent implements OnInit {
     private auth: AuthenticationService,
     private titleService: Title,
     public uploader: FileUploaderService,
-    public reader: FileReaderService
+    public reader: FileReaderService,
+    private router: Router,
   ) {
     titleService.setTitle('RentCube');
   }
@@ -99,5 +118,15 @@ export class HomeComponent implements OnInit {
       }, (error) => {
         console.log('Error', error);
       });
+  }
+
+  onClickRecommendation(place: any) {
+    this.router.navigate(['search'], {
+      queryParams: {
+        destination: place.destination,
+        lat: place.lat,
+        lng: place.lng,
+      }
+    });
   }
 }

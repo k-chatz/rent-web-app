@@ -9,7 +9,7 @@
     </div>
     <div class="col-9">
       <div class="row">
-        <div class="col-10 title">
+        <div class="col-10 title" routerLink="/hotels/{{hotel.id}}">
           {{hotel.description_short}}
           <nz-rate [ngModel]="hotel.stars" nzDisabled></nz-rate>
         </div>
