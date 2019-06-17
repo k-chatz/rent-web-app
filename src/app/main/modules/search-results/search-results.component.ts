@@ -5,7 +5,7 @@ import * as moment from 'moment';
 import {AmenitiesCount} from '../../../shared/models/AmenitiesCount';
 import {Filters} from '../../../shared/models/Filters';
 import {PagedResponse} from '../../../shared/models/payload/PagedResponse';
-import {Hotel} from '../../../shared/models/hotel';
+import {Hotel} from '../../../shared/models/Hotel';
 import {SimpleSmoothScrollService} from 'ng2-simple-smooth-scroll';
 import {RoutingState} from '../../../shared/services/routing-state';
 import {environment} from '../../../../environments/environment';
