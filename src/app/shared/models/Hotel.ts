@@ -1,4 +1,3 @@
-/* TODO Use any for now, add amenities to every hotel model and create amenity model */
 export interface Hotel {
   id: number;
   name: string;
