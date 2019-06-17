@@ -7,6 +7,7 @@ import {Subscription} from 'rxjs';
 import {LoginForm} from '../../../shared/models/payload/login-form';
 import {Title} from '@angular/platform-browser';
 import {ToastrService} from 'ngx-toastr';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private auth: AuthenticationService,
     private toastr: ToastrService
   ) {
-    titleService.setTitle('Login');
+    titleService.setTitle(environment.appName + ' :: ' + 'Login');
     this.form = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],

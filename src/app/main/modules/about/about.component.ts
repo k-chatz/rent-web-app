@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {Location} from '@angular/common';
 import {slideInAnimation} from '../../../shared/animations/slide-in.animation';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-about',
@@ -18,7 +19,7 @@ export class AboutComponent implements OnInit {
     private titleService: Title,
     private location: Location
   ) {
-    titleService.setTitle('About RentCube');
+    titleService.setTitle(environment.appName + ' :: ' + 'About');
   }
 
   ngOnInit() {

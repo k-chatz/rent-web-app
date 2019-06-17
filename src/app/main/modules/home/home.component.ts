@@ -8,6 +8,7 @@ import {fadeIn} from 'ng-animate';
 import {HttpClient} from '@angular/common/http';
 import {FileReaderService} from '../../../shared/services/file-reader.service';
 import {FileUploaderService} from '../../../shared/services/file-uploader.service';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -75,7 +76,7 @@ export class HomeComponent implements OnInit {
     public reader: FileReaderService,
     private router: Router,
   ) {
-    titleService.setTitle('RentCube');
+    titleService.setTitle(environment.appName);
   }
 
   get session$() {

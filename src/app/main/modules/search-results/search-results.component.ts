@@ -8,6 +8,7 @@ import {PagedResponse} from '../../../shared/models/payload/PagedResponse';
 import {Hotel} from '../../../shared/models/hotel';
 import {SimpleSmoothScrollService} from 'ng2-simple-smooth-scroll';
 import {RoutingState} from '../../../shared/services/routing-state';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-search',
@@ -167,7 +168,7 @@ export class SearchResultsComponent {
     private smooth: SimpleSmoothScrollService,
     private routingState: RoutingState
   ) {
-    titleService.setTitle('Search - RentCube');
+    titleService.setTitle(environment.appName + ' :: ' + 'Search');
     this.route.data.subscribe((response: any) => {
       if (this.routingState.getPreviousUrl().includes('search')) {
         this.smooth.smoothScrollToTop({duration: 1000, easing: 'easeOutQuint', offset: 600});

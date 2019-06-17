@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Title} from '@angular/platform-browser';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +12,7 @@ export class DashboardComponent implements OnInit {
   public constructor(
     private titleService: Title
   ) {
-    titleService.setTitle('Dashboard');
+    titleService.setTitle(environment.appName + ' :: ' + 'Dashboard');
   }
 
   ngOnInit() {

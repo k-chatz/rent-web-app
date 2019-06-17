@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {AuthenticationService} from '../../../shared/services/authentication.service';
 import {Session} from '../../../shared/models/session';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +21,7 @@ export class ProfileComponent implements OnInit {
     private titleService: Title,
     private auth: AuthenticationService
   ) {
-    titleService.setTitle('Profile');
+    titleService.setTitle(environment.appName + ' :: ' + 'Profile');
   }
 
   ngOnInit() {

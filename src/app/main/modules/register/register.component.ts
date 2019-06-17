@@ -10,6 +10,7 @@ import {Title} from '@angular/platform-browser';
 import {ValidateEmailNotTaken} from '../../../shared/validators/email-taken.validator';
 import {CheckService} from '../../../shared/services/check.service';
 import {ValidateUsernameNotTaken} from '../../../shared/validators/username-taken.validator';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -32,7 +33,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private check: CheckService
   ) {
-    titleService.setTitle('Register');
+    titleService.setTitle(environment.appName + ' :: ' + 'Register');
     this.form = this.fb.group(
       {
         username: ['', {

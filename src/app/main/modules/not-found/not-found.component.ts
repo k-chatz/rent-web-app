@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import { Location } from '@angular/common';
+import {environment} from '../../../../environments/environment';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class NotFoundComponent implements OnInit {
     private titleService: Title,
     private location: Location
   ) {
-    titleService.setTitle('Not found');
+    titleService.setTitle(environment.appName + ' :: ' + 'Not found');
   }
 
   ngOnInit() {

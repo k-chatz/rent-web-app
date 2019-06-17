@@ -3,6 +3,7 @@ import {HotelService} from '../../../shared/services/hotel.service';
 import {ActivatedRoute} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {SimpleSmoothScrollService} from 'ng2-simple-smooth-scroll';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-hotel',
@@ -25,7 +26,7 @@ export class HotelComponent implements OnInit {
     this.route.data.subscribe(response => {
       // TODO: Server should return not found if the hotel with the given id doesn't exist
       this.hotel = response.data.hotel;
-      this.titleService.setTitle(this.hotel.name);
+      this.titleService.setTitle(environment.appName + ' :: ' + this.hotel.name);
     });
   }
 
