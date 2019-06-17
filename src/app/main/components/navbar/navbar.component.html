@@ -53,21 +53,22 @@
 
           <li role="menuitem">
             <a class="dropdown-item" routerLink="/profile">
-              <i class="fa fa-user-o"></i> {{session.profile.name}}&nbsp;{{session.profile.surname}}</a>
+              <i class="fas fa-user"></i> {{session.profile.name}}&nbsp;{{session.profile.surname}}</a>
           </li>
 
           <li class="divider dropdown-divider">
 
           <li *ngIf="(session.user.role == 'ROLE_ADMIN')" role="menuitem">
             <a class="dropdown-item" routerLink="/management">
-              <i class="fa fa-sliders"></i> Management</a>
+              <i class="fas fa-sliders-h"></i>Management</a>
           </li>
           <li class="divider dropdown-divider">
 
           </li>
           <li role="menuitem">
             <a class="dropdown-item" routerLink="/" (click)="logout()">
-              <i class="fa fa-sign-out"></i> Logout
+              <i class="fas fa-sign-out-alt"></i>
+              Logout
             </a>
           </li>
         </ul>

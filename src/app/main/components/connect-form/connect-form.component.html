@@ -4,13 +4,13 @@
       <h1>Create Account</h1>
       <div class="social-container">
         <a routerLink="" class="social">
-          <i class="fa fa-facebook"></i>
+          <i class="fab fa-facebook"></i>
         </a>
         <a routerLink="" class="social">
-          <i class="fa fa-google-plus"></i>
+          <i class="fab fa-google"></i>
         </a>
         <a routerLink="" class="social">
-          <i class="fa fa-linkedin"></i>
+          <i class="fab fa-linkedin"></i>
         </a>
       </div>
       <span>or use your email for registration</span>
@@ -32,7 +32,7 @@
           type="submit" class="btn btn-outline-dark" style="margin-top: 10px">
           Sign Up
           <fa *ngIf="registerProgress" name="cog" animation="spin"></fa>
-          <fa *ngIf="!registerProgress" name="sign-in"></fa>
+          <i *ngIf="!registerProgress" class="fas fa-sign-in-alt"></i>
         </button>
       </div>
     </form>
@@ -43,12 +43,12 @@
       <h1>Sign in</h1>
       <div class="social-container">
         <a routerLink="" class="social">
-          <i class="fa fa-facebook"></i></a>
+          <i class="fab fa-facebook"></i></a>
         <a routerLink="" class="social">
-          <i class="fa fa-google-plus"></i>
+          <i class="fab fa-google"></i>
         </a>
         <a routerLink="" class="social">
-          <i class="fa fa-linkedin"></i>
+          <i class="fab fa-linkedin"></i>
         </a>
       </div>
       <span>or use your account</span>
@@ -65,7 +65,7 @@
           type="submit" class="btn btn-outline-dark">
           Sign In
           <fa *ngIf="loginProgress" name="cog" animation="spin"></fa>
-          <fa *ngIf="!loginProgress" name="sign-in"></fa>
+          <i *ngIf="!loginProgress" class="fas fa-sign-in-alt"></i>
         </button>
       </div>
     </form>
