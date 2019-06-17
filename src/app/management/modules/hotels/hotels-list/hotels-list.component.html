@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-12 col-xl-8" style="padding: 0 4px 0 14px;">
+    <nz-card>
+      <nz-table
+        #ajaxTable
+        nzShowSizeChanger
+        [nzFrontPagination]="false"
+        [nzData]="users"
+        [nzLoading]="loading"
+        [nzTotal]="total"
+        [(nzPageIndex)]="pageIndex"
+        [(nzPageSize)]="pageSize"
+        (nzPageIndexChange)="searchData()"
+        (nzPageSizeChange)="searchData(true)"
+        [nzScroll]="{ x: '700px' }"
+      >
+        <thead (nzSortChange)="sort($event)" nzSingleSort>
+        <tr>
+          <th
+            nzShowCheckbox
+            nzShowRowSelection
+            [nzSelections]="listOfSelection"
+            [(nzChecked)]="isAllDisplayDataChecked"
+            [nzIndeterminate]="isIndeterminate"
+            (nzCheckedChange)="checkAll($event)"
+            nzWidth="50px"
+          ></th>
+          <th nzShowSort nzSortKey="name" nzWidth="50px">ID</th>
+          <th nzShowSort nzSortKey="username">Username</th>
+          <th nzShowSort nzSortKey="email">Email</th>
+          <th nzShowSort nzSortKey="role" nzWidth="100px">Role</th>
+          <th nzShowSort nzSortKey="pending_provider" nzWidth="70px">Role status</th>
+          <th nzShowSort nzSortKey="updatedAt" nzWidth="60px">Lock</th>
+          <!--
+          <th nzShowFilter [nzFilters]="filterGender" (nzFilterChange)="updateFilter($event)">Gender</th>
+          <th nzShowSort nzSortKey="email"><span>Email</span></th>
+          -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of ajaxTable.data" class="user-row"
+            [ngClass]="{'user-pending-provider-row': data.pending_provider, 'user-selected-row': data.username==selected }">
+          <td nzShowCheckbox [(nzChecked)]="mapOfCheckedId[data.id]" (nzCheckedChange)="refreshStatus()"></td>
+          <td (click)="hotelClicked(data)">{{ data.id }}</td>
+          <td (click)="hotelClicked(data)" class="td-username">{{ data.username }}</td>
+          <td (click)="hotelClicked(data)">{{ data.email }}</td>
+          <td (click)="hotelClicked(data)">
+            <nz-tag [nzColor]="'blue'">{{ data.role }}</nz-tag>
+          </td>
+          <td (click)="hotelClicked(data)">
+            <nz-tag *ngIf="data.pending_provider" [nzColor]="'volcano'">Pending</nz-tag>
+          </td>
+          <td>
+            <nz-switch [(ngModel)]="switchValue" [nzControl]="true" (click)="clickSwitch()"
+                       [nzLoading]="loading"></nz-switch>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+  </div>
+  <div class="col-12 col-xl-4" style="padding: 0 14px 0 1px;">
+    <nz-card>
+      <router-outlet></router-outlet>
+    </nz-card>
+  </div>
+</div>
