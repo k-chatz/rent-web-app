@@ -3,6 +3,7 @@ export class SearchRequest {
   size: number;
   lat: number;
   lng: number;
+  radius: number;
   startDate?: string;
   endDate?: string;
   visitors?: number;
@@ -23,6 +24,7 @@ export class SearchRequest {
     size: number,
     lat: number,
     lng: number,
+    radius: number,
     startDate: string,
     endDate: string,
     visitors: number,
@@ -42,6 +44,7 @@ export class SearchRequest {
     this.size = size;
     this.lat = lat;
     this.lng = lng;
+    this.radius = radius;
     this.startDate = startDate;
     this.endDate = endDate;
     this.visitors = visitors;
