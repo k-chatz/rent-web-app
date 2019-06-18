@@ -1,10 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Profile} from '../../../../shared/models/profile';
-import {User} from '../../../../shared/models/user';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
-import {UserService} from '../../../../shared/services/user.service';
-import {UsersRouteDataProvider} from '../../users/users-route-data.provider';
+import {Hotel} from '../../../../shared/models/Hotel';
+import {HotelService} from '../../../../shared/services/hotel.service';
+import {HotelsRouteDataProvider} from '../hotels-route-data.provider';
 
 @Component({
   selector: 'app-hotels-detail',
@@ -12,29 +11,28 @@ import {UsersRouteDataProvider} from '../../users/users-route-data.provider';
   styleUrls: ['./hotels-detail.component.scss']
 })
 export class HotelsDetailComponent implements OnInit, OnDestroy {
-
-  profile: Profile;
-  user: User;
-  private userSub: Subscription;
+  hotel: Hotel;
+  private hotelSub: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: UserService,
-    private routeDataProvider: UsersRouteDataProvider
+    private service: HotelService,
+    private routeDataProvider: HotelsRouteDataProvider
   ) {
   }
 
   ngOnInit() {
-    this.userSub = this.routeDataProvider.getUser$().subscribe((user: User) => {
-      this.user = user;
+    this.hotelSub = this.routeDataProvider.getHotel$().subscribe((hotel: Hotel) => {
+      // this.hotel = hotel;
     });
     this.route.data.subscribe((data: any) => {
-      this.profile = data.data;
+      console.log(data);
+      this.hotel = data.data;
     });
   }
 
   ngOnDestroy(): void {
-    this.userSub.unsubscribe();
+    this.hotelSub.unsubscribe();
   }
 }

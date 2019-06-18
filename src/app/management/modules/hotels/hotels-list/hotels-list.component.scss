@@ -1,0 +1,18 @@
+.hotel-row {
+  cursor: pointer;
+  background: white;
+}
+
+.selected-row {
+  background-color: #e8e8e8;
+}
+
+nz-table {
+  border: 1px solid #d9dbdd;
+}
+
+nz-card {
+  height: calc(100vh - 104px);
+  overflow: auto;
+}
+

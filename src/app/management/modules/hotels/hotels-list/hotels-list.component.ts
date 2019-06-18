@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {PagedResponse} from '../../../../shared/models/payload/PagedResponse';
-import {User} from '../../../../shared/models/user';
 import {ActivatedRoute, Router} from '@angular/router';
-import {UserService} from '../../../../shared/services/user.service';
-import {UsersRouteDataProvider} from '../../users/users-route-data.provider';
 import {catchError} from 'rxjs/operators';
 import {throwError} from 'rxjs';
+import {HotelsRouteDataProvider} from '../hotels-route-data.provider';
+import {Hotel} from '../../../../shared/models/Hotel';
+import {HotelService} from '../../../../shared/services/hotel.service';
 
 @Component({
   selector: 'app-hotels-list',
@@ -18,18 +18,13 @@ export class HotelsListComponent implements OnInit {
   pageIndex = 1;
   pageSize = 17;
   total = 1;
-  users = [];
+  hotels = [];
   loading = true;
   sortValue: string | null = null;
   sortKey: string | null = null;
   searchGenderList: string[] = [];
   selected: string;
-  pagedResponse: PagedResponse<User>;
-  filterGender = [
-    {text: 'male', value: 'male'},
-    {text: 'female', value: 'female'}
-  ];
-
+  pagedResponse: PagedResponse<Hotel>;
   listOfSelection = [
     {
       text: 'Select All Row',
@@ -56,6 +51,14 @@ export class HotelsListComponent implements OnInit {
   isIndeterminate = false;
   listOfDisplayData: any[] = [];
   mapOfCheckedId: { [key: string]: boolean } = {};
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private hotelService: HotelService,
+    private routeDataProvider: HotelsRouteDataProvider
+  ) {
+  }
 
   clickSwitch(): void {
     if (!this.loading) {
@@ -85,28 +88,24 @@ export class HotelsListComponent implements OnInit {
     this.searchData();
   }
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private userService: UserService,
-    private routeDataProvider: UsersRouteDataProvider
-  ) {
-  }
-
   ngOnInit(): void {
     this.route.data.subscribe((resolve: any) => {
       this.pagedResponse = resolve.data;
       this.total = this.pagedResponse.totalElements;
       this.pageIndex = this.pagedResponse.page + 1;
       this.pageSize = this.pagedResponse.size;
-      this.users = this.pagedResponse.content;
+      this.hotels = this.pagedResponse.content;
+
+      console.log(this.hotels);
+
       this.loading = false;
-      this.selected = this.router.url.substr(18);
-      console.log('this.selected', this.selected);
+      console.log('this.router.url', this.router.url);
+      this.selected = this.router.url.substr(19);
+      console.log(this.selected);
       if (this.selected !== undefined) {
-        const selectedUser = this.users.find(r => r.username === this.selected);
-        this.routeDataProvider.setUser(selectedUser);
-        console.log('selectedUser', selectedUser);
+        const selectedHotel = this.hotels.find(r => r.id === +this.selected);
+        console.log('selectedHotel', selectedHotel);
+        this.routeDataProvider.setHotel(selectedHotel);
       }
     });
   }
@@ -121,13 +120,13 @@ export class HotelsListComponent implements OnInit {
       size: this.pageSize
     };
 
-    this.userService.getAll(filter).pipe(
+    this.hotelService.getHotelsByProvider(filter).pipe(
       catchError((error: any) => {
         this.loading = false;
         return throwError(error);
       })
     ).subscribe((data: any) => {
-        this.users = data.content;
+      this.hotels = data.content;
         this.total = data.totalElements;
         this.loading = false;
       },
@@ -135,13 +134,15 @@ export class HotelsListComponent implements OnInit {
   }
 
   updateFilter(value: string[]): void {
+    console.log('updateFilter', value);
     this.searchGenderList = value;
     this.searchData(true);
   }
 
   hotelClicked(data: any) {
-    this.selected = data.username;
-    this.routeDataProvider.setUser(data);
-    this.router.navigate(['management/users', data.username]);
+    console.log('hotelClicked', data);
+    this.selected = data.id;
+    this.routeDataProvider.setHotel(data);
+    this.router.navigate(['management/hotels', data.id]);
   }
 }
