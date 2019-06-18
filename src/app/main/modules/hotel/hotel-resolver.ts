@@ -14,6 +14,6 @@ export class HotelResolver implements Resolve<Observable<any>> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-    return this.hotelService.getHotelDetails(route.paramMap.get('id'));
+    return this.hotelService.getHotel(route.paramMap.get('id'));
   }
 }

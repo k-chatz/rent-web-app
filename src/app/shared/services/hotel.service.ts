@@ -18,7 +18,7 @@ export class HotelService {
   ) {
   }
 
-  getHotelDetails(hotelID): Observable<Hotel> {
+  getHotel(hotelID): Observable<Hotel> {
     return this.http.get<Hotel>(environment.apiRoot + '/hotels/' + hotelID);
   }
 
@@ -26,7 +26,7 @@ export class HotelService {
     return this.http.get<Room>(environment.apiRoot + '/hotels/' + hotelID + '/rooms');
   }
 
-  getHotelByOwner(filters) {
+  getHotelsByProvider(filters) {
     const params = new HttpParams({fromObject: filters});
     return this.http.get<Room>(environment.apiRoot + '/hotels/', {params});
   }
