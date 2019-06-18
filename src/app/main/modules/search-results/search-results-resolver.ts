@@ -25,6 +25,7 @@ export class SearchResultsResolver implements Resolve<Observable<any>> {
       5,
       37.983810,
       23.727539,
+      10,
       moment(new Date()).format('YYYY-MM-DD'),
       moment(new Date()).add(2, 'days'
       ).format('YYYY-MM-DD'),
