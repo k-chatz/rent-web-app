@@ -1,6 +1,8 @@
 <div class="search-widget">
   <form (ngSubmit)="submit(form.value)" [formGroup]="form" class="form-validate">
     <h4 id="searchLabel">Search</h4>
+
+    <!--Google place-->
     <div class="form-group">
       <div class="controls">
         <div class="control-label">
@@ -13,7 +15,7 @@
           [options]='placesOptions'
           #placesRef="ngx-places"
           (onAddressChange)="handleCheckAddressChange($event)"
-          (input)="valuechange(place.value)"
+          (input)="onPlaceChange(place.value)"
           type="text"
           class="form-control"
           placeholder="Where are you going?"
@@ -22,14 +24,8 @@
           #place>
       </div>
     </div>
-    <!--     (ngModelChange)="onStartChange($event)"
-              (nzOnOpenChange)="handleStartOpenChange($event)"
-              [nzDisabledDate]="disabledStartDate"-->
-    <!-- (ngModelChange)="onEndChange($event)"
-              (nzOnOpenChange)="handleEndOpenChange($event)"
-              [nzDisabledDate]="disabledEndDate"
-               [nzOpen]="endOpen"-->
-    <!--nzFormat="yyyy-MM-dd HH:mm:ss"-->
+
+    <!--Check-in/out dates-->
     <div formGroupName="daterangeGroup">
       <div class="form-group">
         <div class="controls">
@@ -45,25 +41,38 @@
           >
           </nz-date-picker>
         </div>
+      </div>
 
-        <div class="form-group">
-          <div class="controls">
-            <div class="control-label">
-              <label for="endDate">Check-Out Date:</label>
-            </div>
-            <nz-date-picker
-              formControlName="endDate"
-              id="endDate"
-              nzFormat="dd-MM-yyyy"
-              nzPlaceHolder="End"
-              nzShowTime
-            >
-            </nz-date-picker>
+      <div class="form-group">
+        <div class="controls">
+          <div class="control-label">
+            <label for="endDate">Check-Out Date:</label>
           </div>
+          <nz-date-picker
+            formControlName="endDate"
+            id="endDate"
+            nzFormat="dd-MM-yyyy"
+            nzPlaceHolder="End"
+            nzShowTime
+          >
+          </nz-date-picker>
         </div>
       </div>
     </div>
 
+    <!--Distance radius-->
+    <div class="form-group">
+      <div class="controls">
+        <div class="control-label">
+          <label for="visitors">Distance radius:</label>
+        </div>
+        <select class="custom-select" formControlName="radius">
+          <option *ngFor="let number of [2,5,10,15,20]" [ngValue]="number">{{number}}</option>
+        </select>
+      </div>
+    </div>
+
+    <!--Visitors-->
     <div class="form-group">
       <div class="controls">
         <div class="control-label">
