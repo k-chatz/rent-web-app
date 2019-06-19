@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import * as moment from 'moment';
@@ -9,6 +9,7 @@ import {Hotel} from '../../../shared/models/Hotel';
 import {SimpleSmoothScrollService} from 'ng2-simple-smooth-scroll';
 import {RoutingState} from '../../../shared/services/routing-state';
 import {environment} from '../../../../environments/environment';
+import {LatLngLiteral} from '@agm/core/services/google-maps-types';
 
 @Component({
   selector: 'app-search',
@@ -171,15 +172,18 @@ export class SearchResultsComponent {
   ) {
     titleService.setTitle(environment.appName + ' :: ' + 'Search');
     this.route.data.subscribe((response: any) => {
+      console.log('response.data', response.data);
       const previousUrl = this.routingState.getPreviousUrl();
 
       if (previousUrl !== undefined && previousUrl.includes('search')) {
-        this.smooth.smoothScrollToTop({duration: 1000, easing: 'easeOutQuint', offset: 600});
+        // this.smooth.smoothScrollToTop({duration: 10response.data00, easing: 'easeOutQuint', offset: 600});
       }
 
       /* Get all the params from the activated route snapshot and add some default values to them if they are not defined */
+
       this.destination = this.route.snapshot.queryParamMap.get('destination') == null ? '' :
         this.route.snapshot.queryParamMap.get('destination');
+      console.log(' this.destination', this.destination);
 
       this.startDate = this.route.snapshot.queryParamMap.get('start') == null ?
         moment(new Date()).format('YYYY-MM-DD') : this.route.snapshot.queryParamMap.get('start');
@@ -237,12 +241,25 @@ export class SearchResultsComponent {
       });
   }
 
-  onCircleDragEnd($event: MouseEvent) {
-    console.log('onCircleDragEnd', $event);
-  }
-
   onCircleRadiusChange(radius: number) {
     console.log('onCircleRadiusChange', radius);
-    // this.radius = radius;
+    this.router.navigate(['/search'],
+      {
+        queryParams: {radius: radius / 1000},
+        queryParamsHandling: 'merge'
+      });
+  }
+
+  centerChange(event: LatLngLiteral) {
+    console.log('mouseUp', event);
+    this.router.navigate(['/search'],
+      {
+        queryParams: {
+          destination: this.destination,
+          lat: event.lat,
+          lng: event.lng,
+        },
+        queryParamsHandling: 'merge'
+      });
   }
 }
