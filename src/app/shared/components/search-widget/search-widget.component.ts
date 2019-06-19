@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Address} from 'ngx-google-places-autocomplete/objects/address';
 import * as moment from 'moment';
 
@@ -23,7 +23,7 @@ export class SearchWidgetComponent implements OnInit {
   // Used by the date range picker, don't touch it:
   endOpen = false;
   progress: boolean;
-
+  radiusOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100];
   placesOptions: {
     types: ['(cities)'],
     componentRestrictions: { country: 'GR' }
@@ -31,7 +31,8 @@ export class SearchWidgetComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
   ) {
     this.form = this.fb.group(
       {
@@ -64,9 +65,22 @@ export class SearchWidgetComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.data.subscribe((response: any) => {
+      this.destination = this.route.snapshot.queryParamMap.get('destination') == null ? '' :
+        this.route.snapshot.queryParamMap.get('destination');
+      this.form.get('destination').setValue(this.destination);
+      this.latitude = this.route.snapshot.queryParamMap.get('lat') == null ? 37.983810 :
+        parseFloat(this.route.snapshot.queryParamMap.get('lat'));
+      this.form.get('lat').setValue(this.latitude);
+      this.longitude = this.route.snapshot.queryParamMap.get('lng') == null ? 23.727539 :
+        parseFloat(this.route.snapshot.queryParamMap.get('lng'));
+      this.form.get('lng').setValue(this.longitude);
+      this.radius = this.route.snapshot.queryParamMap.get('radius') == null ?
+        5 : parseFloat(this.route.snapshot.queryParamMap.get('radius'));
+      this.form.get('radius').setValue(this.radius);
+    });
     const start = this.startDate.split('-');
     const end = this.endDate.split('-');
-    this.form.get('destination').setValue(this.destination);
     this.form.get('daterangeGroup').get('startDate').setValue(new Date(Number(start[2]), Number(start[1]) - 1, Number(start[0])));
     this.form.get('daterangeGroup').get('endDate').setValue(new Date(Number(end[2]), Number(end[1]) - 1, Number(end[0])));
     this.form.get('visitors').setValue(this.visitors);
@@ -89,10 +103,10 @@ export class SearchWidgetComponent implements OnInit {
   }
 
   submit(value: any) {
-    console.log(value);
     this.router.navigate(['/search'],
       {
         queryParams: {
+          page: 0,
           start: moment(new Date(value.daterangeGroup.startDate)).format('DD-MM-YYYY'),
           end: moment(new Date(value.daterangeGroup.endDate)).format('DD-MM-YYYY'),
           destination: value.destination,
