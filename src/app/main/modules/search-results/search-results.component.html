@@ -17,12 +17,27 @@
       </div>
     </div>
     <div id="right-content" class="col-9">
-      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="12" [styles]="mapStyle">
+      <agm-map
+        [latitude]="lat"
+        [longitude]="lng"
+        [zoom]="12"
+        [maxZoom]="15"
+        [styles]="mapStyle"
+        [disableDefaultUI]="true"
+        [zoomControl]="false"
+        [scaleControl]="false"
+        [mapTypeControl]="false"
+        [fitBounds]="hotelPagedResults.content.length>0"
+      >
         <agm-marker-cluster
           imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
-          <agm-marker *ngFor="let hotel of hotelPagedResults.content" [latitude]="hotel.lat"
-                      [longitude]="hotel.lng">
-            <agm-info-window>
+          <agm-marker *ngFor="let hotel of hotelPagedResults.content"
+                      [latitude]="hotel.lat"
+                      [longitude]="hotel.lng"
+                      [agmFitBounds]="true"
+                      [iconUrl]="markerIcon"
+          >
+            <agm-info-window [isOpen]="true">
               <strong>{{hotel.id}}</strong>
               <p>{{hotel.name}}</p>
               <p>{{hotel.description_short}}</p>

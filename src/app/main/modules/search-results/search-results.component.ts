@@ -29,6 +29,13 @@ export class SearchResultsComponent {
   minPrice: number;
   amenitiesCount: AmenitiesCount;
   filters: Filters;
+  markerIcon = {
+    url: 'https://maps.google.com/mapfiles/kml/shapes/rec_lodging.png',
+    scaledSize: {
+      width: 35,
+      height: 35
+    }
+  };
   mapStyle = [
     {
       featureType: 'administrative.land_parcel',
@@ -163,6 +170,7 @@ export class SearchResultsComponent {
     }
   ];
 
+
   constructor(
     private titleService: Title,
     private route: ActivatedRoute,
@@ -172,7 +180,6 @@ export class SearchResultsComponent {
   ) {
     titleService.setTitle(environment.appName + ' :: ' + 'Search');
     this.route.data.subscribe((response: any) => {
-      console.log('response.data', response.data);
       const previousUrl = this.routingState.getPreviousUrl();
 
       if (previousUrl !== undefined && previousUrl.includes('search')) {
@@ -183,7 +190,6 @@ export class SearchResultsComponent {
 
       this.destination = this.route.snapshot.queryParamMap.get('destination') == null ? '' :
         this.route.snapshot.queryParamMap.get('destination');
-      console.log(' this.destination', this.destination);
 
       this.startDate = this.route.snapshot.queryParamMap.get('start') == null ?
         moment(new Date()).format('YYYY-MM-DD') : this.route.snapshot.queryParamMap.get('start');
@@ -201,7 +207,7 @@ export class SearchResultsComponent {
         23.727539 : parseFloat(this.route.snapshot.queryParamMap.get('lng'));
 
       this.radius = this.route.snapshot.queryParamMap.get('radius') == null ?
-        10 : parseFloat(this.route.snapshot.queryParamMap.get('radius'));
+        5 : parseFloat(this.route.snapshot.queryParamMap.get('radius'));
       /* Get the hotels from the route data after the resolver fetched them */
 
       this.hotelPagedResults = response.data.results;
@@ -230,7 +236,6 @@ export class SearchResultsComponent {
   }
 
   onPageIndexChange($event: number) {
-    console.log($event);
     this.router.navigate(['/search'],
       {
         queryParams: {
@@ -242,19 +247,21 @@ export class SearchResultsComponent {
   }
 
   onCircleRadiusChange(radius: number) {
-    console.log('onCircleRadiusChange', radius);
     this.router.navigate(['/search'],
       {
-        queryParams: {radius: radius / 1000},
+        queryParams: {
+          radius: radius / 1000,
+          page: 0
+        },
         queryParamsHandling: 'merge'
       });
   }
 
   centerChange(event: LatLngLiteral) {
-    console.log('mouseUp', event);
     this.router.navigate(['/search'],
       {
         queryParams: {
+          page: 0,
           destination: this.destination,
           lat: event.lat,
           lng: event.lng,
