@@ -236,4 +236,13 @@ export class SearchResultsComponent {
         queryParamsHandling: 'merge'
       });
   }
+
+  onCircleDragEnd($event: MouseEvent) {
+    console.log('onCircleDragEnd', $event);
+  }
+
+  onCircleRadiusChange(radius: number) {
+    console.log('onCircleRadiusChange', radius);
+    // this.radius = radius;
+  }
 }

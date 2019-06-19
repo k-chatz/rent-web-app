@@ -21,8 +21,26 @@
         <agm-marker-cluster
           imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
           <agm-marker *ngFor="let hotel of hotelPagedResults.content" [latitude]="hotel.lat"
-                      [longitude]="hotel.lng"></agm-marker>
+                      [longitude]="hotel.lng">
+            <agm-info-window>
+              <strong>{{hotel.id}}</strong>
+              <p>{{hotel.name}}</p>
+              <nz-rate [ngModel]="hotel.stars" nzDisabled></nz-rate>
+            </agm-info-window>
+
+          </agm-marker>
         </agm-marker-cluster>
+        <agm-circle [latitude]="lat" [longitude]="lng"
+                    [radius]="radius*1000"
+                    [fillColor]="'rgba(57,199,100,0.4)'"
+                    [circleDraggable]="true"
+                    [editable]="true"
+                    (dragEnd)="onCircleDragEnd($event)"
+                    (radiusChange)="onCircleRadiusChange($event)"
+
+        >
+        </agm-circle>
+
       </agm-map>
       <hr>
       <h3><b>{{destination}}: {{hotelPagedResults.content.length}} hotels found</b></h3>
