@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import * as moment from 'moment';
@@ -10,13 +10,15 @@ import {SimpleSmoothScrollService} from 'ng2-simple-smooth-scroll';
 import {RoutingState} from '../../../shared/services/routing-state';
 import {environment} from '../../../../environments/environment';
 import {LatLngLiteral} from '@agm/core/services/google-maps-types';
+import {MapsAPILoader} from '@agm/core';
+import {} from '@agm/core/services/google-maps-types';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss']
 })
-export class SearchResultsComponent {
+export class SearchResultsComponent implements OnInit {
   destination: string;
   startDate: string;
   endDate: string;
@@ -169,14 +171,16 @@ export class SearchResultsComponent {
       ]
     }
   ];
-
+  private geoCoder;
 
   constructor(
     private titleService: Title,
     private route: ActivatedRoute,
     private router: Router,
     private smooth: SimpleSmoothScrollService,
-    private routingState: RoutingState
+    private routingState: RoutingState,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone
   ) {
     titleService.setTitle(environment.appName + ' :: ' + 'Search');
     this.route.data.subscribe((response: any) => {
@@ -235,6 +239,12 @@ export class SearchResultsComponent {
     });
   }
 
+  ngOnInit() {
+    this.mapsAPILoader.load().then(() => {
+      this.geoCoder = new google.maps.Geocoder();
+    });
+  }
+
   onPageIndexChange($event: number) {
     this.router.navigate(['/search'],
       {
@@ -257,16 +267,43 @@ export class SearchResultsComponent {
       });
   }
 
-  centerChange(event: LatLngLiteral) {
-    this.router.navigate(['/search'],
-      {
-        queryParams: {
-          page: 0,
-          destination: this.destination,
-          lat: event.lat,
-          lng: event.lng,
-        },
-        queryParamsHandling: 'merge'
-      });
+  onCenterChange(event: LatLngLiteral) {
+    this.geoCoder.geocode({location: {lat: event.lat, lng: event.lng}}, (results, status) => {
+      if (status === 'OK') {
+        results.map((address) => {
+          if (address.types.some(r => r === 'administrative_area_level_4')) {
+            if (address) {
+              console.log(address.formatted_address);
+              this.ngZone.run(() => {
+                this.router.navigate(['/search'], {
+                  queryParams: {
+                    page: 0,
+                    destination: address.formatted_address,
+                    lat: event.lat,
+                    lng: event.lng,
+                  },
+                  queryParamsHandling: 'merge'
+                });
+              });
+            } else {
+              console.error('No results found');
+            }
+          }
+        });
+      } else {
+        console.error('Geocoder failed due to: ' + status);
+        this.ngZone.run(() => {
+          this.router.navigate(['/search'], {
+            queryParams: {
+              page: 0,
+              destination: this.destination,
+              lat: event.lat,
+              lng: event.lng,
+            },
+            queryParamsHandling: 'merge'
+          });
+        });
+      }
+    });
   }
 }

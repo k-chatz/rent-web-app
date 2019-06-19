@@ -7,7 +7,7 @@ const apiRoot = 'https://localhost:8443/api';
 export const environment = {
   appName: 'RentCube',
   production: false,
-  googleMapsKey: '',
+  googleMapsKey: 'AIzaSyABfpyzGQl4TzduIB0R-Ft9jrUipl3hBKQ',
   apiRoot,
   usersEndpoint: apiRoot + '/users',
   hotelsEndpoint: apiRoot + '/hotels'
