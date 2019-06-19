@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Address} from 'ngx-google-places-autocomplete/objects/address';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-search-widget',
@@ -38,8 +39,12 @@ export class SearchWidgetComponent implements OnInit {
           validators: [Validators.required]
         }],
         daterangeGroup: this.fb.group({
-            startDate: [null, {validators: []}],
-            endDate: [null, {validators: []}]
+          startDate: [null, {
+            validators: [Validators.required]
+          }],
+          endDate: [null, {
+            validators: [Validators.required]
+          }]
           }
         ),
         lat: [null, {
@@ -88,8 +93,8 @@ export class SearchWidgetComponent implements OnInit {
     this.router.navigate(['/search'],
       {
         queryParams: {
-          start: value.daterangeGroup.startDate,
-          end: value.daterangeGroup.endDate,
+          start: moment(new Date(value.daterangeGroup.startDate)).format('DD-MM-YYYY'),
+          end: moment(new Date(value.daterangeGroup.endDate)).format('DD-MM-YYYY'),
           destination: value.destination,
           lat: value.lat,
           lng: value.lng,
