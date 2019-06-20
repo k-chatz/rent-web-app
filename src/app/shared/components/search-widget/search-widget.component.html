@@ -61,7 +61,7 @@
     </div>
 
     <!--Distance radius-->
-    <div class="form-group">
+    <div class="form-group" style="margin-bottom: 10px;">
       <div class="controls">
         <div class="control-label">
           <label for="visitors">Distance radius:</label>
@@ -101,7 +101,7 @@
 
     <div class="text-right">
       <button
-        [disabled]="!form.valid || progress || form.untouched"
+        [disabled]="!form.valid || progress"
         type="submit"
         class="btn btn-primary">
         <fa *ngIf="progress" name="cog" animation="spin"></fa>
