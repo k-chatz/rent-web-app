@@ -73,6 +73,7 @@ export class SearchBarComponent implements OnInit {
         destination: value.destination,
         lat: value.lat,
         lng: value.lng,
+        radius: 5,
         visitors: (value.visitors == null) ? 1 : value.visitors
       }
     }).catch((e) => {
