@@ -23,13 +23,14 @@ export class SearchResultsComponent implements OnInit {
   startDate: string;
   endDate: string;
   visitors: number;
-  hotelPagedResults: PagedResponse<Hotel>;
+  amenitiesCount: AmenitiesCount;
+  pagedHotels: PagedResponse<Hotel>;
+  allHotels: Array<Hotel>;
   lat: number;
   lng: number;
   radius: number;
   maxPrice: number;
   minPrice: number;
-  amenitiesCount: AmenitiesCount;
   filters: Filters;
   markerIcon = {
     url: 'https://maps.google.com/mapfiles/kml/shapes/rec_lodging.png',
@@ -214,7 +215,9 @@ export class SearchResultsComponent implements OnInit {
         5 : parseFloat(this.route.snapshot.queryParamMap.get('radius'));
       /* Get the hotels from the route data after the resolver fetched them */
 
-      this.hotelPagedResults = response.data.results;
+      this.allHotels = response.data.allHotels;
+
+      this.pagedHotels = response.data.pagedHotels;
 
       this.amenitiesCount = response.data.amenitiesCount;
 
@@ -273,7 +276,6 @@ export class SearchResultsComponent implements OnInit {
         results.map((address) => {
           if (address.types.some(r => r === 'administrative_area_level_4')) {
             if (address) {
-              console.log(address.formatted_address);
               this.ngZone.run(() => {
                 this.router.navigate(['/search'], {
                   queryParams: {

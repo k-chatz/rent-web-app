@@ -27,17 +27,17 @@
         [zoomControl]="false"
         [scaleControl]="false"
         [mapTypeControl]="false"
-        [fitBounds]="hotelPagedResults.content.length>0"
+        [fitBounds]="pagedHotels.content.length>0"
       >
         <agm-marker-cluster
           imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
-          <agm-marker *ngFor="let hotel of hotelPagedResults.content"
+          <agm-marker *ngFor="let hotel of allHotels"
                       [latitude]="hotel.lat"
                       [longitude]="hotel.lng"
                       [agmFitBounds]="true"
                       [iconUrl]="markerIcon"
           >
-            <agm-info-window [isOpen]="true">
+            <agm-info-window>
               <strong>{{hotel.id}}</strong>
               <p>{{hotel.name}}</p>
               <p>{{hotel.description_short}}</p>
@@ -54,23 +54,23 @@
                     (centerChange)="onCenterChange($event)"></agm-circle>
       </agm-map>
       <hr>
-      <h3><b>{{destination}}: {{hotelPagedResults.content.length}} hotels found</b></h3>
+      <h3><b>{{destination}}: {{pagedHotels.content.length}} hotels found</b></h3>
       <hr>
       <section class="search-box">
         <div class="row">
           <div class="col-md-12 listing-block">
-            <app-hotel-item *ngFor="let hotel of hotelPagedResults.content" [hotel]="hotel"></app-hotel-item>
+            <app-hotel-item *ngFor="let hotel of pagedHotels.content" [hotel]="hotel"></app-hotel-item>
           </div>
         </div>
       </section>
       <nz-pagination
-        *ngIf="hotelPagedResults.totalElements"
-        [nzPageSize]="hotelPagedResults.size"
-        [nzPageIndex]="hotelPagedResults.page + 1"
-        [nzTotal]="hotelPagedResults.totalElements"
+        *ngIf="pagedHotels.totalElements"
+        [nzPageSize]="pagedHotels.size"
+        [nzPageIndex]="pagedHotels.page + 1"
+        [nzTotal]="pagedHotels.totalElements"
         (nzPageIndexChange)="onPageIndexChange($event)"
       ></nz-pagination>
-      <nz-empty *ngIf="!hotelPagedResults.totalElements"></nz-empty>
+      <nz-empty *ngIf="!pagedHotels.totalElements"></nz-empty>
     </div>
   </div>
 </div>

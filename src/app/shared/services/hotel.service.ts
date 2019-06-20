@@ -5,7 +5,7 @@ import {Hotel} from '../models/Hotel';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import * as moment from 'moment';
-import {SearchResults} from '../models/payload/SearchResults';
+import {SearchResponse} from '../models/payload/SearchResponse';
 import {Room} from '../models/Room';
 
 @Injectable({
@@ -33,13 +33,13 @@ export class HotelService {
 
   search(filters) {
     const params = new HttpParams({fromObject: filters});
-    return this.http.get<SearchResults>(`${environment.hotelsEndpoint + '/search'}`, {params}).pipe(
-      map((searchResults: SearchResults) => {
+    return this.http.get<SearchResponse>(`${environment.hotelsEndpoint + '/search'}`, {params}).pipe(
+      map((searchResponse: SearchResponse) => {
         return {
-          ...searchResults,
+          ...searchResponse,
           results: {
-            ...searchResults.results,
-            content: searchResults.results.content.map((hotel: Hotel) => {
+            ...searchResponse.pagedHotels,
+            content: searchResponse.pagedHotels.content.map((hotel: Hotel) => {
               return {
                 ...hotel,
                 createdAt: moment(new Date(hotel.createdAt)).format('DD-MM-YYYY - HH:mm'),

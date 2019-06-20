@@ -2,9 +2,10 @@ import {PagedResponse} from './PagedResponse';
 import {Hotel} from '../Hotel';
 import {AmenitiesCount} from '../AmenitiesCount';
 
-export interface SearchResults {
-  results: PagedResponse<Hotel>;
+export interface SearchResponse {
+  floorPrice: number;
+  ceilPrice: number;
   amenitiesCount: AmenitiesCount;
-  minPrice: number;
-  maxPrice: number;
+  allHotels: Array<Hotel>;
+  pagedHotels: PagedResponse<Hotel>;
 }
