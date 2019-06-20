@@ -27,7 +27,10 @@ export class FiltersComponent implements OnInit {
     console.log(key, this.filters[key]);
     this.router.navigate(['/search'],
       {
-        queryParams: {[key]: this.filters[key]},
+        queryParams: {
+          page: 0,
+          [key]: this.filters[key]
+        },
         queryParamsHandling: 'merge'
       });
   }
@@ -55,10 +58,10 @@ export class FiltersComponent implements OnInit {
   onUserChangeEnd(changeContext: ChangeContext): void {
     console.log('onUserChangeEnd', changeContext);
     if (!changeContext.pointerType) {
-      this.filters.minPrice = changeContext.value;
+      this.filters.floorPrice = changeContext.value;
       this.filter('minPrice');
     } else {
-      this.filters.maxPrice = changeContext.highValue;
+      this.filters.ceilPrice = changeContext.highValue;
       this.filter('maxPrice');
     }
   }
