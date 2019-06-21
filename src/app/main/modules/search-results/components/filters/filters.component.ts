@@ -47,6 +47,17 @@ export class FiltersComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((response: any) => {
       this.amenitiesCount = response.data.amenities;
+
+      this.petsAllowed = 0;
+      this.wifi = 0;
+      this.swimmingPool = 0;
+      this.gym = 0;
+      this.spa = 0;
+      this.bar = 0;
+      this.restaurant = 0;
+      this.parking = 0;
+      this.roomService = 0;
+
       this.amenitiesCount.map((a: AmenityCount) => {
         if (a.amenity === 'petsAllowed') {
           this.petsAllowed = a.count;

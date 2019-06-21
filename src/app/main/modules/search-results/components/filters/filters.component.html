@@ -13,12 +13,13 @@
 
   <div nz-row class="form-group">
     <div nz-col nzSpan="19">
-      <label nz-checkbox [(ngModel)]="filters.petsAllowed" (ngModelChange)="filter('petsAllowed')">Pets Allowed</label>
+      <label nz-checkbox [disabled]="!petsAllowed" [(ngModel)]="filters.petsAllowed"
+             (ngModelChange)="filter('petsAllowed')">Pets Allowed</label>
     </div>
     <div nz-col nzSpan="4">
       <div nz-row nzType="flex" nzJustify="end">
         <div nz-col>
-          <span>{{petsAllowed}}</span>
+          <span [ngStyle]="{'color': petsAllowed ? 'rgba(0,0,0,.65)' : 'rgba(0,0,0,.25)' }">{{petsAllowed}}</span>
         </div>
       </div>
     </div>
@@ -26,12 +27,13 @@
 
   <div nz-row class="form-group">
     <div nz-col nzSpan="19">
-      <label nz-checkbox [(ngModel)]="filters.wifi" (ngModelChange)="filter('wifi')">Free Wifi</label>
+      <label nz-checkbox [disabled]="!wifi" [(ngModel)]="filters.wifi" (ngModelChange)="filter('wifi')">Free
+        Wifi</label>
     </div>
     <div nz-col nzSpan="4">
       <div nz-row nzType="flex" nzJustify="end">
         <div nz-col>
-          <span>{{wifi}}</span>
+          <span [ngStyle]="{'color': wifi ? 'rgba(0,0,0,.65)' : 'rgba(0,0,0,.25)' }">{{wifi}}</span>
         </div>
       </div>
     </div>
@@ -39,13 +41,14 @@
 
   <div nz-row class="form-group">
     <div nz-col nzSpan="19">
-      <label nz-checkbox [(ngModel)]="filters.swimmingPool" (ngModelChange)="filter('swimmingPool')">Swimming
+      <label nz-checkbox [disabled]="!swimmingPool" [(ngModel)]="filters.swimmingPool"
+             (ngModelChange)="filter('swimmingPool')">Swimming
         pool</label>
     </div>
     <div nz-col nzSpan="4">
       <div nz-row nzType="flex" nzJustify="end">
         <div nz-col>
-          <span>{{swimmingPool}}</span>
+          <span [ngStyle]="{'color': swimmingPool ? 'rgba(0,0,0,.65)' : 'rgba(0,0,0,.25)' }">{{swimmingPool}}</span>
         </div>
       </div>
     </div>
@@ -53,12 +56,12 @@
 
   <div nz-row class="form-group">
     <div nz-col nzSpan="19">
-      <label nz-checkbox [(ngModel)]="filters.gym" (ngModelChange)="filter('gym')">Gym</label>
+      <label nz-checkbox [disabled]="!gym" [(ngModel)]="filters.gym" (ngModelChange)="filter('gym')">Gym</label>
     </div>
     <div nz-col nzSpan="4">
       <div nz-row nzType="flex" nzJustify="end">
         <div nz-col>
-          <span>{{gym}}</span>
+          <span [ngStyle]="{'color': gym ? 'rgba(0,0,0,.65)' : 'rgba(0,0,0,.25)' }">{{gym}}</span>
         </div>
       </div>
     </div>
@@ -66,12 +69,12 @@
 
   <div nz-row class="form-group">
     <div nz-col nzSpan="19">
-      <label nz-checkbox [(ngModel)]="filters.spa" (ngModelChange)="filter('spa')">Spa</label>
+      <label nz-checkbox [disabled]="!spa" [(ngModel)]="filters.spa" (ngModelChange)="filter('spa')">Spa</label>
     </div>
     <div nz-col nzSpan="4">
       <div nz-row nzType="flex" nzJustify="end">
         <div nz-col>
-          <span>{{spa}}</span>
+          <span [ngStyle]="{'color': spa ? 'rgba(0,0,0,.65)' : 'rgba(0,0,0,.25)' }">{{spa}}</span>
         </div>
       </div>
     </div>
@@ -79,12 +82,12 @@
 
   <div nz-row class="form-group">
     <div nz-col nzSpan="19">
-      <label nz-checkbox [(ngModel)]="filters.bar" (ngModelChange)="filter('bar')">Bar</label>
+      <label nz-checkbox [disabled]="!bar" [(ngModel)]="filters.bar" (ngModelChange)="filter('bar')">Bar</label>
     </div>
     <div nz-col nzSpan="4">
       <div nz-row nzType="flex" nzJustify="end">
         <div nz-col>
-          <span>{{bar}}</span>
+          <span [ngStyle]="{'color': bar ? 'rgba(0,0,0,.65)' : 'rgba(0,0,0,.25)' }">{{bar}}</span>
         </div>
       </div>
     </div>
@@ -92,12 +95,13 @@
 
   <div nz-row class="form-group">
     <div nz-col nzSpan="19">
-      <label nz-checkbox [(ngModel)]="filters.restaurant" (ngModelChange)="filter('restaurant')">Restaurant</label>
+      <label nz-checkbox [disabled]="!restaurant" [(ngModel)]="filters.restaurant"
+             (ngModelChange)="filter('restaurant')">Restaurant</label>
     </div>
     <div nz-col nzSpan="4">
       <div nz-row nzType="flex" nzJustify="end">
         <div nz-col>
-          <span>{{restaurant}}</span>
+          <span [ngStyle]="{'color': restaurant ? 'rgba(0,0,0,.65)' : 'rgba(0,0,0,.25)' }">{{restaurant}}</span>
         </div>
       </div>
     </div>
@@ -105,12 +109,13 @@
 
   <div nz-row class="form-group">
     <div nz-col nzSpan="19">
-      <label nz-checkbox [(ngModel)]="filters.parking" (ngModelChange)="filter('parking')">Parking</label>
+      <label nz-checkbox [disabled]="!parking" [(ngModel)]="filters.parking"
+             (ngModelChange)="filter('parking')">Parking</label>
     </div>
     <div nz-col nzSpan="4">
       <div nz-row nzType="flex" nzJustify="end">
         <div nz-col>
-          <span>{{parking}}</span>
+          <span [ngStyle]="{'color': parking ? 'rgba(0,0,0,.65)' : 'rgba(0,0,0,.25)' }">{{parking}}</span>
         </div>
       </div>
     </div>
@@ -118,12 +123,13 @@
 
   <div nz-row class="form-group">
     <div nz-col nzSpan="19">
-      <label nz-checkbox [(ngModel)]="filters.roomService" (ngModelChange)="filter('roomService')">Room service</label>
+      <label nz-checkbox [disabled]="!roomService" [(ngModel)]="filters.roomService"
+             (ngModelChange)="filter('roomService')">Room service</label>
     </div>
     <div nz-col nzSpan="4">
       <div nz-row nzType="flex" nzJustify="end">
         <div nz-col>
-          <span>{{roomService}}</span>
+          <span [ngStyle]="{'color': roomService ? 'rgba(0,0,0,.65)' : 'rgba(0,0,0,.25)' }">{{roomService}}</span>
         </div>
       </div>
     </div>
