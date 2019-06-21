@@ -13,7 +13,7 @@
         ></app-search-widget>
       </div>
       <div class="row" style="margin-top: 30px;">
-        <app-filters [filters]="filters" [amenitiesCount]="amenitiesCount"></app-filters>
+        <app-filters [filters]="filters"></app-filters>
       </div>
     </div>
     <div id="right-content" class="col-9">
@@ -54,7 +54,7 @@
                     (centerChange)="onCenterChange($event)"></agm-circle>
       </agm-map>
       <hr>
-      <h3><b>{{destination}}: {{pagedHotels.content.length}} hotels found</b></h3>
+      <h3><b>{{destination}}: {{allHotels.length}} hotels found</b></h3>
       <hr>
       <section class="search-box">
         <div class="row">

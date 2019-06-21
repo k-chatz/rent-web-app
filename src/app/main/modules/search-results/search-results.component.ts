@@ -2,7 +2,6 @@ import {Component, NgZone, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import * as moment from 'moment';
-import {AmenitiesCount} from '../../../shared/models/AmenitiesCount';
 import {Filters} from '../../../shared/models/Filters';
 import {PagedResponse} from '../../../shared/models/payload/PagedResponse';
 import {Hotel} from '../../../shared/models/Hotel';
@@ -23,7 +22,6 @@ export class SearchResultsComponent implements OnInit {
   startDate: string;
   endDate: string;
   visitors: number;
-  amenitiesCount: AmenitiesCount;
   pagedHotels: PagedResponse<Hotel>;
   allHotels: Array<Hotel>;
   lat: number;
@@ -196,6 +194,8 @@ export class SearchResultsComponent implements OnInit {
       this.destination = this.route.snapshot.queryParamMap.get('destination') == null ? '' :
         this.route.snapshot.queryParamMap.get('destination');
 
+      titleService.setTitle(environment.appName + ' :: ' + this.destination);
+
       this.startDate = this.route.snapshot.queryParamMap.get('start') == null ?
         moment(new Date()).format('YYYY-MM-DD') : this.route.snapshot.queryParamMap.get('start');
 
@@ -218,8 +218,6 @@ export class SearchResultsComponent implements OnInit {
       this.allHotels = response.data.allHotels;
 
       this.pagedHotels = response.data.pagedHotels;
-
-      this.amenitiesCount = response.data.amenitiesCount;
 
       const minPrice = this.route.snapshot.queryParamMap.get('minPrice');
       const maxPrice = this.route.snapshot.queryParamMap.get('maxPrice');

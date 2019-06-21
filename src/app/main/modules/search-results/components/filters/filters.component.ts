@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ChangeContext, LabelType, Options} from 'ng5-slider';
-import {AmenitiesCount} from '../../../../../shared/models/AmenitiesCount';
+import {AmenityCount} from '../../../../../shared/models/AmenityCount';
 import {Filters} from '../../../../../shared/models/Filters';
 
 @Component({
@@ -12,10 +12,20 @@ import {Filters} from '../../../../../shared/models/Filters';
 export class FiltersComponent implements OnInit {
   @Input() filters: Filters;
   @Input() sliderOptions: Options;
-  @Input() amenitiesCount: AmenitiesCount;
-
+  amenities: Array<AmenityCount>;
   manualRefresh: EventEmitter<void> = new EventEmitter<void>();
   progress: boolean;
+
+  petsAllowed = 0;
+  wifi = 0;
+  swimmingPool = 0;
+  gym = 0;
+  spa = 0;
+  bar = 0;
+  restaurant = 0;
+  parking = 0;
+  roomService = 0;
+  amenitiesCount: Array<AmenityCount>;
 
   constructor(
     private router: Router,
@@ -24,7 +34,6 @@ export class FiltersComponent implements OnInit {
   }
 
   filter(key) {
-    console.log(key, this.filters[key]);
     this.router.navigate(['/search'],
       {
         queryParams: {
@@ -37,6 +46,41 @@ export class FiltersComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe((response: any) => {
+      this.amenitiesCount = response.data.amenities;
+      this.amenitiesCount.map((a: AmenityCount) => {
+        if (a.amenity === 'petsAllowed') {
+          this.petsAllowed = a.count;
+        }
+        if (a.amenity === 'wifi') {
+          this.wifi = a.count;
+        }
+        if (a.amenity === 'swimmingPool') {
+          this.swimmingPool = a.count;
+        }
+        if (a.amenity === 'gym') {
+          this.gym = a.count;
+        }
+        if (a.amenity === 'spa') {
+          this.spa = a.count;
+        }
+
+        if (a.amenity === 'bar') {
+          this.bar = a.count;
+        }
+
+        if (a.amenity === 'restaurant') {
+          this.restaurant = a.count;
+        }
+
+        if (a.amenity === 'parking') {
+          this.parking = a.count;
+        }
+
+        if (a.amenity === 'roomService') {
+          this.roomService = a.count;
+        }
+      });
+
       this.sliderOptions = {
         floor: response.data.floorPrice,
         ceil: response.data.ceilPrice,
