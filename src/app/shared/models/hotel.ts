@@ -1,9 +1,12 @@
+import {File} from './file';
+
 export interface Hotel {
   id: number;
   name: string;
   number_of_rooms: number;
   address: string;
   stars: string;
+  hotel_photos: Array<File>;
   email: string;
   lat: string;
   lng: string;
@@ -12,5 +15,4 @@ export interface Hotel {
   amenities: any[];
   createdAt?: Date;
   updatedAt?: Date;
-  photo: string;
 }

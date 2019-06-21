@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
-import {Hotel} from '../models/Hotel';
+import {Hotel} from '../models/hotel';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import * as moment from 'moment';
-import {SearchResponse} from '../models/payload/SearchResponse';
+import {SearchResponse} from '../models/payload/searchResponse';
 import {Room} from '../models/Room';
 
 @Injectable({

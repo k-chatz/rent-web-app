@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
-import {Business} from '../models/Business';
-import {PagedResponse} from '../models/payload/PagedResponse';
+import {Business} from '../models/business';
+import {PagedResponse} from '../models/payload/pagedResponse';
 
 @Injectable({
   providedIn: 'root'

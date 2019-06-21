@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Hotel} from '../../../../shared/models/Hotel';
+import {Hotel} from '../../../../shared/models/hotel';
 import {HotelService} from '../../../../shared/services/hotel.service';
 import {HotelsRouteDataProvider} from '../hotels-route-data.provider';
 

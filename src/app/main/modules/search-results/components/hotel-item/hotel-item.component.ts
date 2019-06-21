@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Hotel} from '../../../../../shared/models/Hotel';
+import {Hotel} from '../../../../../shared/models/hotel';
 
 @Component({
   selector: 'app-hotel-item',
@@ -10,6 +10,7 @@ export class HotelItemComponent implements OnInit {
 
   @Input() hotel: Hotel;
 
+  photoUrl: string;
   petsAllowed: boolean;
   freeWifi: boolean;
   swimmingPool: boolean;
@@ -24,6 +25,8 @@ export class HotelItemComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.photoUrl = this.hotel.hotel_photos[0] !== undefined ?
+      this.hotel.hotel_photos[0].fileDownloadUri : '../../../../assets/images/empty.jpg';
     this.petsAllowed = this.hotel.amenities.some(a => a.name === 'petsAllowed');
     this.freeWifi = this.hotel.amenities.some(a => a.name === 'wifi');
     this.swimmingPool = this.hotel.amenities.some(a => a.name === 'swimmingPool');

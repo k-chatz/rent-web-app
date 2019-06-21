@@ -1,6 +1,6 @@
-import {PagedResponse} from './PagedResponse';
-import {Hotel} from '../Hotel';
-import {AmenityCount} from '../AmenityCount';
+import {PagedResponse} from './pagedResponse';
+import {Hotel} from '../hotel';
+import {AmenityCount} from '../amenityCount';
 
 export interface SearchResponse {
   floorPrice: number;

@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ChangeContext, LabelType, Options} from 'ng5-slider';
-import {AmenityCount} from '../../../../../shared/models/AmenityCount';
-import {Filters} from '../../../../../shared/models/Filters';
+import {AmenityCount} from '../../../../../shared/models/amenityCount';
+import {Filters} from '../../../../../shared/models/filters';
 
 @Component({
   selector: 'app-filters',

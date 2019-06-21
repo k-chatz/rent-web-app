@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../../../shared/services/user.service';
-import {PagedResponse} from '../../../../shared/models/payload/PagedResponse';
+import {PagedResponse} from '../../../../shared/models/payload/pagedResponse';
 import {User} from '../../../../shared/models/user';
 import {catchError, map} from 'rxjs/operators';
 import {throwError} from 'rxjs';

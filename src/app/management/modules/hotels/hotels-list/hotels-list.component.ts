@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {PagedResponse} from '../../../../shared/models/payload/PagedResponse';
+import {PagedResponse} from '../../../../shared/models/payload/pagedResponse';
 import {ActivatedRoute, Router} from '@angular/router';
 import {catchError} from 'rxjs/operators';
 import {throwError} from 'rxjs';
 import {HotelsRouteDataProvider} from '../hotels-route-data.provider';
-import {Hotel} from '../../../../shared/models/Hotel';
+import {Hotel} from '../../../../shared/models/hotel';
 import {HotelService} from '../../../../shared/services/hotel.service';
 
 @Component({

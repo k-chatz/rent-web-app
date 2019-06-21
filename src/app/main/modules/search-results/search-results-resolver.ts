@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Resolve, RouterStateSnapshot, ActivatedRouteSnapshot} from '@angular/router';
 import {Observable} from 'rxjs';
 import {HotelService} from '../../../shared/services/hotel.service';
-import {SearchRequest} from '../../../shared/models/payload/SearchRequest';
+import {SearchRequest} from '../../../shared/models/payload/searchRequest';
 import * as moment from 'moment';
 
 @Injectable({
