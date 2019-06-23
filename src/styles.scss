@@ -15,6 +15,7 @@ body {
 .ant-input {
   border: 1px solid #ffffff;
   height: 38px !important;
+  font-size: 1rem !important;
 }
 
 agm-map > div.agm-map-container-inner.sebm-google-map-container-inner {
@@ -25,7 +26,7 @@ agm-map > div.agm-map-container-inner.sebm-google-map-container-inner {
   width: 238px !important;
 }
 
-#startDate > nz-picker > span > input:focus, #endDate > nz-picker > span > input:focus{
+#startDate > nz-picker > span > input:focus, #endDate > nz-picker > span > input:focus {
   border-color: #FFC107;
   box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.3);
 }
@@ -84,14 +85,14 @@ ng5-slider > span.ng5-slider-span.ng5-slider-pointer.ng5-slider-pointer-min:afte
   left: 8px;
 }
 
-date-range-popup > div{
+date-range-popup > div {
   top: 42px;
 }
 
-@media(max-width: 768px){
-  date-range-popup > div{
+@media(max-width: 768px) {
+  date-range-popup > div {
     top: 42px;
-    right:50px;
+    right: 50px;
   }
 }
 

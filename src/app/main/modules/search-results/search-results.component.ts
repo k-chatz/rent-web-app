@@ -19,8 +19,8 @@ import {} from '@agm/core/services/google-maps-types';
 })
 export class SearchResultsComponent implements OnInit {
   destination: string;
-  startDate: string;
-  endDate: string;
+  checkin: string;
+  checkout: string;
   visitors: number;
   pagedHotels: PagedResponse<Hotel>;
   allHotels: Array<Hotel>;
@@ -185,9 +185,9 @@ export class SearchResultsComponent implements OnInit {
     this.route.data.subscribe((response: any) => {
       const previousUrl = this.routingState.getPreviousUrl();
 
-      if (previousUrl !== undefined && previousUrl.includes('search')) {
-        // this.smooth.smoothScrollToTop({duration: 10response.data00, easing: 'easeOutQuint', offset: 600});
-      }
+      /*      if (previousUrl !== undefined && previousUrl.includes('search')) {
+                this.smooth.smoothScrollToTop({duration: 10, easing: 'easeOutQuint', offset: 600});
+            }*/
 
       /* Get all the params from the activated route snapshot and add some default values to them if they are not defined */
 
@@ -196,11 +196,11 @@ export class SearchResultsComponent implements OnInit {
 
       titleService.setTitle(environment.appName + ' :: ' + this.destination);
 
-      this.startDate = this.route.snapshot.queryParamMap.get('start') == null ?
-        moment(new Date()).format('YYYY-MM-DD') : this.route.snapshot.queryParamMap.get('start');
+      this.checkin = this.route.snapshot.queryParamMap.get('checkin') == null ?
+        moment(new Date()).format('YYYY-MM-DD') : this.route.snapshot.queryParamMap.get('checkin');
 
-      this.endDate = this.route.snapshot.queryParamMap.get('end') == null ?
-        moment(new Date()).add(2, 'days').format('YYYY-MM-DD') : this.route.snapshot.queryParamMap.get('end');
+      this.checkout = this.route.snapshot.queryParamMap.get('checkout') == null ?
+        moment(new Date()).add(2, 'days').format('YYYY-MM-DD') : this.route.snapshot.queryParamMap.get('checkout');
 
       this.visitors = this.route.snapshot.queryParamMap.get('visitors') == null ?
         1 : parseInt(this.route.snapshot.queryParamMap.get('visitors'), 10);

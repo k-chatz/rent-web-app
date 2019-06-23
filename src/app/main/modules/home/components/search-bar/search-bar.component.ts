@@ -68,8 +68,8 @@ export class SearchBarComponent implements OnInit {
     this.progress = true;
     this.router.navigate(['search'], {
       queryParams: {
-        start: moment(value.daterange[0]).format('DD-MM-YYYY'),
-        end: moment(value.daterange[1]).format('DD-MM-YYYY'),
+        checkin: moment(value.daterange[0]).format('YYYY-MM-DD'),
+        checkout: moment(value.daterange[1]).format('YYYY-MM-DD'),
         destination: value.destination,
         lat: value.lat,
         lng: value.lng,
@@ -81,7 +81,7 @@ export class SearchBarComponent implements OnInit {
     });
   }
 
-  valuechange(value: string) {
+  onAddressInputChange(value: string) {
     if (value === '') {
       this.form.get('lat').setValue(null);
       this.form.get('lng').setValue(null);

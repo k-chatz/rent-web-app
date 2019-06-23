@@ -4,8 +4,8 @@ export class SearchRequest {
   lat: number;
   lng: number;
   radius: number;
-  startDate?: string;
-  endDate?: string;
+  checkin?: string;
+  checkout?: string;
   visitors?: number;
   wifi?: boolean;
   swimmingPool?: boolean;
@@ -25,8 +25,8 @@ export class SearchRequest {
     lat: number,
     lng: number,
     radius: number,
-    startDate: string,
-    endDate: string,
+    checkin: string,
+    checkout: string,
     visitors: number,
     wifi: boolean,
     swimmingPool: boolean,
@@ -45,8 +45,8 @@ export class SearchRequest {
     this.lat = lat;
     this.lng = lng;
     this.radius = radius;
-    this.startDate = startDate;
-    this.endDate = endDate;
+    this.checkin = checkin;
+    this.checkout = checkout;
     this.visitors = visitors;
     this.wifi = wifi;
     this.swimmingPool = swimmingPool;

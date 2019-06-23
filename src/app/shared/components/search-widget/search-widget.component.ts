@@ -15,8 +15,8 @@ export class SearchWidgetComponent implements OnInit {
   @Input() longitude;
   @Input() radius;
   @Input() visitors;
-  @Input() startDate;
-  @Input() endDate;
+  @Input() checkin;
+  @Input() checkout;
 
   form: FormGroup;
 
@@ -40,10 +40,10 @@ export class SearchWidgetComponent implements OnInit {
           validators: [Validators.required]
         }],
         daterangeGroup: this.fb.group({
-          startDate: [null, {
+          checkin: [null, {
             validators: [Validators.required]
           }],
-          endDate: [null, {
+          checkout: [null, {
             validators: [Validators.required]
           }]
           }
@@ -79,10 +79,10 @@ export class SearchWidgetComponent implements OnInit {
         5 : parseFloat(this.route.snapshot.queryParamMap.get('radius'));
       this.form.get('radius').setValue(this.radius);
     });
-    const start = this.startDate.split('-');
-    const end = this.endDate.split('-');
-    this.form.get('daterangeGroup').get('startDate').setValue(new Date(Number(start[2]), Number(start[1]) - 1, Number(start[0])));
-    this.form.get('daterangeGroup').get('endDate').setValue(new Date(Number(end[2]), Number(end[1]) - 1, Number(end[0])));
+    const checkin = this.checkin.split('-');
+    const checkout = this.checkout.split('-');
+    this.form.get('daterangeGroup').get('checkin').setValue(new Date(Number(checkin[0]), Number(checkin[1]) - 1, Number(checkin[2])));
+    this.form.get('daterangeGroup').get('checkout').setValue(new Date(Number(checkout[0]), Number(checkout[1]) - 1, Number(checkout[2])));
     this.form.get('visitors').setValue(this.visitors);
     this.form.get('lat').setValue(this.latitude);
     this.form.get('lng').setValue(this.longitude);
@@ -107,8 +107,8 @@ export class SearchWidgetComponent implements OnInit {
       {
         queryParams: {
           page: 0,
-          start: moment(new Date(value.daterangeGroup.startDate)).format('DD-MM-YYYY'),
-          end: moment(new Date(value.daterangeGroup.endDate)).format('DD-MM-YYYY'),
+          checkin: moment(new Date(value.daterangeGroup.checkin)).format('YYYY-MM-DD'),
+          checkout: moment(new Date(value.daterangeGroup.checkout)).format('YYYY-MM-DD'),
           destination: value.destination,
           lat: value.lat,
           lng: value.lng,

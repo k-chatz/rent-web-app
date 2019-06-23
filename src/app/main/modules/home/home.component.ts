@@ -41,8 +41,8 @@ export class HomeComponent implements OnInit {
       title: 'Athens',
       image: '../../../../assets/images/acropolis-12044_640.jpg',
       destination: 'Athens',
-      lat: '37.9908996',
-      lng: '23.703234',
+      lat: '37.9838096',
+      lng: '23.727538800000048',
     },
     {
       title: 'Rome',
@@ -124,6 +124,7 @@ export class HomeComponent implements OnInit {
   onClickRecommendation(place: any) {
     this.router.navigate(['search'], {
       queryParams: {
+        radius: 5,
         destination: place.destination,
         lat: place.lat,
         lng: place.lng,
