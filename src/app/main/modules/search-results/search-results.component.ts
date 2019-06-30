@@ -22,11 +22,11 @@ export class SearchResultsComponent implements OnInit {
   checkin: string;
   checkout: string;
   visitors: number;
-  pagedHotels: PagedResponse<Hotel>;
-  allHotels: Array<Hotel>;
   lat: number;
   lng: number;
   radius: number;
+  pagedHotels: PagedResponse<Hotel>;
+  allHotels: Array<Hotel>;
   maxPrice: number;
   minPrice: number;
   filters: Filters;

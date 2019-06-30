@@ -23,7 +23,8 @@ import {AgmJsMarkerClustererModule} from '@agm/js-marker-clusterer';
     SearchWidgetComponent
   ],
   exports: [
-    FiltersComponent
+    FiltersComponent,
+    SearchWidgetComponent
   ],
   imports: [
     CommonModule,

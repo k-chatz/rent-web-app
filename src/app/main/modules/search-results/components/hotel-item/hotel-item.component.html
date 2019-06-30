@@ -9,14 +9,14 @@
     </div>
     <div class="col-9">
       <div class="row">
-        <div class="col-10 title" routerLink="/hotels/{{hotel.id}}">
-          {{hotel.id}}&nbsp;{{hotel.name}}
+        <div class="col-10 title">
+          <span routerLink="/hotels/{{hotel.id}}" style="cursor: pointer;">{{hotel.id}}&nbsp;{{hotel.name}}</span>
           <nz-rate [ngModel]="hotel.stars" nzDisabled></nz-rate>
         </div>
         <div class="col-2">
           <div class="fav-box">
             <span>
-            <i class="fas fa-euro-sign"></i> 32
+            <i class="fas fa-euro-sign"></i> {{hotel.min_room_price}} - {{hotel.max_room_price}}
             </span>
           </div>
         </div>

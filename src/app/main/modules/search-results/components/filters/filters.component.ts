@@ -11,7 +11,7 @@ import {Filters} from '../../../../../shared/models/filters';
 })
 export class FiltersComponent implements OnInit {
   @Input() filters: Filters;
-  @Input() sliderOptions: Options;
+  sliderOptions: Options;
   amenities: Array<AmenityCount>;
   manualRefresh: EventEmitter<void> = new EventEmitter<void>();
   progress: boolean;
@@ -91,7 +91,7 @@ export class FiltersComponent implements OnInit {
           this.roomService = a.count;
         }
       });
-
+      // console.log('PRICES:', response.data.floorPrice, response.data.ceilPrice);
       this.sliderOptions = {
         floor: response.data.floorPrice,
         ceil: response.data.ceilPrice,

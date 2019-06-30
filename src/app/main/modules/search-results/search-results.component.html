@@ -9,8 +9,8 @@
           [visitors]="visitors"
           [latitude]="lat"
           [longitude]="lng"
-          [radius]="radius"
-        ></app-search-widget>
+          [radius]="radius">
+        </app-search-widget>
       </div>
       <div class="row" style="margin-top: 30px;">
         <app-filters [filters]="filters"></app-filters>
@@ -27,8 +27,7 @@
         [zoomControl]="false"
         [scaleControl]="false"
         [mapTypeControl]="false"
-        [fitBounds]="pagedHotels.content.length>0"
-      >
+        [fitBounds]="pagedHotels.content.length>0">
         <agm-marker-cluster
           imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
           <agm-marker *ngFor="let hotel of allHotels"

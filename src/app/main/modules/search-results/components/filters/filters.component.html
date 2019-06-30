@@ -27,7 +27,8 @@
 
   <div nz-row class="form-group">
     <div nz-col nzSpan="19">
-      <label nz-checkbox [disabled]="!wifi" [(ngModel)]="filters.wifi" (ngModelChange)="filter('wifi')">Free
+      <label nz-checkbox [disabled]="!wifi && !filters.wifi" [(ngModel)]="filters.wifi"
+             (ngModelChange)="filter('wifi')">Free
         Wifi</label>
     </div>
     <div nz-col nzSpan="4">
@@ -41,7 +42,7 @@
 
   <div nz-row class="form-group">
     <div nz-col nzSpan="19">
-      <label nz-checkbox [disabled]="!swimmingPool" [(ngModel)]="filters.swimmingPool"
+      <label nz-checkbox [disabled]="!swimmingPool && !filters.swimmingPool" [(ngModel)]="filters.swimmingPool"
              (ngModelChange)="filter('swimmingPool')">Swimming
         pool</label>
     </div>
@@ -56,7 +57,8 @@
 
   <div nz-row class="form-group">
     <div nz-col nzSpan="19">
-      <label nz-checkbox [disabled]="!gym" [(ngModel)]="filters.gym" (ngModelChange)="filter('gym')">Gym</label>
+      <label nz-checkbox [disabled]="!gym && !filters.gym" [(ngModel)]="filters.gym"
+             (ngModelChange)="filter('gym')">Gym</label>
     </div>
     <div nz-col nzSpan="4">
       <div nz-row nzType="flex" nzJustify="end">
@@ -69,7 +71,8 @@
 
   <div nz-row class="form-group">
     <div nz-col nzSpan="19">
-      <label nz-checkbox [disabled]="!spa" [(ngModel)]="filters.spa" (ngModelChange)="filter('spa')">Spa</label>
+      <label nz-checkbox [disabled]="!spa && !filters.spa" [(ngModel)]="filters.spa"
+             (ngModelChange)="filter('spa')">Spa</label>
     </div>
     <div nz-col nzSpan="4">
       <div nz-row nzType="flex" nzJustify="end">
@@ -82,7 +85,8 @@
 
   <div nz-row class="form-group">
     <div nz-col nzSpan="19">
-      <label nz-checkbox [disabled]="!bar" [(ngModel)]="filters.bar" (ngModelChange)="filter('bar')">Bar</label>
+      <label nz-checkbox [disabled]="!bar && !filters.bar" [(ngModel)]="filters.bar"
+             (ngModelChange)="filter('bar')">Bar</label>
     </div>
     <div nz-col nzSpan="4">
       <div nz-row nzType="flex" nzJustify="end">
@@ -95,7 +99,7 @@
 
   <div nz-row class="form-group">
     <div nz-col nzSpan="19">
-      <label nz-checkbox [disabled]="!restaurant" [(ngModel)]="filters.restaurant"
+      <label nz-checkbox [disabled]="!restaurant && !filters.restaurant" [(ngModel)]="filters.restaurant"
              (ngModelChange)="filter('restaurant')">Restaurant</label>
     </div>
     <div nz-col nzSpan="4">
@@ -109,7 +113,7 @@
 
   <div nz-row class="form-group">
     <div nz-col nzSpan="19">
-      <label nz-checkbox [disabled]="!parking" [(ngModel)]="filters.parking"
+      <label nz-checkbox [disabled]="!parking && !filters.parking" [(ngModel)]="filters.parking"
              (ngModelChange)="filter('parking')">Parking</label>
     </div>
     <div nz-col nzSpan="4">
@@ -123,7 +127,7 @@
 
   <div nz-row class="form-group">
     <div nz-col nzSpan="19">
-      <label nz-checkbox [disabled]="!roomService" [(ngModel)]="filters.roomService"
+      <label nz-checkbox [disabled]="!roomService && !filters.roomService" [(ngModel)]="filters.roomService"
              (ngModelChange)="filter('roomService')">Room service</label>
     </div>
     <div nz-col nzSpan="4">
