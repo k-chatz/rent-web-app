@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Hotel} from '../../../../../shared/models/hotel';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-hotel-item',
@@ -21,7 +22,9 @@ export class HotelItemComponent implements OnInit {
   parking: boolean;
   roomService: boolean;
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
   }
 
   ngOnInit() {
@@ -36,5 +39,12 @@ export class HotelItemComponent implements OnInit {
     this.restaurant = this.hotel.amenities.some(a => a.name === 'restaurant');
     this.parking = this.hotel.amenities.some(a => a.name === 'parking');
     this.roomService = this.hotel.amenities.some(a => a.name === 'roomService');
+  }
+
+  hotelNavigate(hotelId) {
+    this.router.navigate(['/hotels/', hotelId],
+      {
+        queryParamsHandling: 'merge'
+      });
   }
 }

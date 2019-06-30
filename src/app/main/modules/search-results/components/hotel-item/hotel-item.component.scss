@@ -3,6 +3,11 @@
   width: 100%;
 }
 
+.title-span {
+  padding-right: 6px;
+  cursor: pointer;
+}
+
 .search-box {
   width: 90%;
   margin: 0 auto 40px;
@@ -38,7 +43,7 @@
 }
 
 .title {
-  font-size: 24px;
+  font-size: 23px;
   font-weight: 600;
   color: #4765AB;
 }

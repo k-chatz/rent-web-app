@@ -1,19 +1,17 @@
 <div class="hotel-card">
   <div class="row">
     <div class="col-3">
-      <a routerLink="/hotels/{{hotel.id}}">
-        <img class="d-flex align-self-start"
-             src="{{photoUrl}}"
-             alt="Generic placeholder image">
+      <a (click)="hotelNavigate(hotel.id)">
+        <img class="d-flex align-self-start" src="{{photoUrl}}" alt="Generic placeholder image">
       </a>
     </div>
     <div class="col-9">
       <div class="row">
-        <div class="col-10 title">
-          <span routerLink="/hotels/{{hotel.id}}" style="cursor: pointer;">{{hotel.id}}&nbsp;{{hotel.name}}</span>
+        <div class="col-9 title">
+          <span (click)="hotelNavigate(hotel.id)" class="title-span">{{hotel.id}}&nbsp;{{hotel.name}}</span>
           <nz-rate [ngModel]="hotel.stars" nzDisabled></nz-rate>
         </div>
-        <div class="col-2">
+        <div class="col-3">
           <div class="fav-box">
             <span>
             <i class="fas fa-euro-sign"></i> {{hotel.min_room_price}} - {{hotel.max_room_price}}
