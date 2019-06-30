@@ -13,6 +13,8 @@ export interface Hotel {
   description_short: string;
   description_long: string;
   amenities: any[];
+  min_room_price: number;
+  max_room_price: number;
   createdAt?: Date;
   updatedAt?: Date;
 }
