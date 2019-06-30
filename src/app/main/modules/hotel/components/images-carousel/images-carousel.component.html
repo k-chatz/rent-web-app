@@ -1,5 +1,5 @@
 <div id="carousel-images" class="carousel slide" data-ride="carousel" data-interval="false">
-  <div class="carousel-inner">
+  <div class="carousel-inner" style="height: 534px;">
     <div *ngFor="let image of images; let i = index" class="carousel-item active" [class.active]="i == 0">
       <img class="d-block w-100" src="{{image.fileDownloadUri}}" alt="">
     </div>
@@ -21,9 +21,11 @@
     <div class="carousel-inner">
 
       <div *ngFor="let group of thumbnails; let i = index" class="carousel-item active" [class.active]="i == 0">
-        <img (click)="changeSlide(i*5+j)" *ngFor="let image of group; let j = index" src="{{image.fileDownloadUri}}"
-             data-target="#carousel-images" [attr.data-slide-to]="i * 5 + j"
-             class="thumbnail img-responsive selected" [class.selected]="i * 5 + j == currentSlide">
+        <img (click)="changeSlide(i*maxThumbnails+j)" *ngFor="let image of group; let j = index"
+             src="{{image.fileDownloadUri}}"
+             data-target="#carousel-images" [attr.data-slide-to]="i * maxThumbnails + j"
+             class="thumbnail img-responsive selected" style="height: 84.4px;"
+             [class.selected]="i * maxThumbnails + j == currentSlide">
       </div>
 
       <a class="carousel-control-prev thumbnail-control" href="#carousel-thumbnails" role="button" data-slide="prev">

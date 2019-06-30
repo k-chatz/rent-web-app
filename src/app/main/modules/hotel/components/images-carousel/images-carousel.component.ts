@@ -11,6 +11,7 @@ export class ImagesCarouselComponent implements OnInit {
   thumbnails = [];
   currentSlide = 0;
   totalSlides = 0;
+  maxThumbnails = 6;
 
   changeSlide(slide) {
     this.currentSlide = slide;
@@ -37,8 +38,8 @@ export class ImagesCarouselComponent implements OnInit {
 
   ngOnInit() {
     let i;
-    for (i = 0; i < this.images.length; i += 5) {
-      this.thumbnails.push(this.images.slice(i, i + 5));
+    for (i = 0; i < this.images.length; i += this.maxThumbnails) {
+      this.thumbnails.push(this.images.slice(i, i + this.maxThumbnails));
     }
     this.totalSlides = this.images.length;
   }
