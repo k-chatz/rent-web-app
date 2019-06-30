@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {File} from '../../../../../shared/models/file';
 
 @Component({
   selector: 'app-images-carousel',
@@ -6,17 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./images-carousel.component.scss']
 })
 export class ImagesCarouselComponent implements OnInit {
-  images = [
-    'https://t-ec.bstatic.com/images/hotel/max1024x768/626/62687652.jpg',
-    'https://t-ec.bstatic.com/images/hotel/max1024x768/626/62687642.jpg',
-    'https://s-ec.bstatic.com/images/hotel/max1024x768/626/62687650.jpg',
-    'https://s-ec.bstatic.com/images/hotel/max1024x768/626/62687659.jpg',
-    'https://s-ec.bstatic.com/images/hotel/max1024x768/626/62687647.jpg',
-    'https://t-ec.bstatic.com/images/hotel/max1280x900/626/62687644.jpg',
-    'https://s-ec.bstatic.com/images/hotel/max1280x900/626/62687645.jpg',
-    'https://t-ec.bstatic.com/images/hotel/max1280x900/626/62687646.jpg',
-    'https://s-ec.bstatic.com/images/hotel/max1280x900/626/62687648.jpg'
-  ];
+  @Input() images: Array<File>;
   thumbnails = [];
   currentSlide = 0;
   totalSlides = 0;

@@ -1,13 +1,15 @@
 <div id="carousel-images" class="carousel slide" data-ride="carousel" data-interval="false">
   <div class="carousel-inner">
     <div *ngFor="let image of images; let i = index" class="carousel-item active" [class.active]="i == 0">
-      <img class="d-block w-100" src="{{image}}" alt="">
+      <img class="d-block w-100" src="{{image.fileDownloadUri}}" alt="">
     </div>
+
     <a class="carousel-control-prev" href="#carousel-images" role="button" data-slide="prev"
        (click)="slidePrevious()">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
+
     <a class="carousel-control-next" href="#carousel-images" role="button" data-slide="next"
        (click)="slideNext()">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
@@ -17,19 +19,23 @@
 
   <div id="carousel-thumbnails" class="carousel slide" data-ride="carousel" data-interval="false">
     <div class="carousel-inner">
+
       <div *ngFor="let group of thumbnails; let i = index" class="carousel-item active" [class.active]="i == 0">
-        <img (click)="changeSlide(i*5+j)" *ngFor="let image of group; let j = index" src="{{image}}"
+        <img (click)="changeSlide(i*5+j)" *ngFor="let image of group; let j = index" src="{{image.fileDownloadUri}}"
              data-target="#carousel-images" [attr.data-slide-to]="i * 5 + j"
              class="thumbnail img-responsive selected" [class.selected]="i * 5 + j == currentSlide">
       </div>
+
       <a class="carousel-control-prev thumbnail-control" href="#carousel-thumbnails" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
+
       <a class="carousel-control-next thumbnail-control" href="#carousel-thumbnails" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
+
     </div>
   </div>
 </div>
