@@ -9,7 +9,7 @@ import {SimpleSmoothScrollService} from 'ng2-simple-smooth-scroll';
 import {RoutingState} from '../../../shared/services/routing-state';
 import {environment} from '../../../../environments/environment';
 import {LatLngLiteral} from '@agm/core/services/google-maps-types';
-import {MapsAPILoader} from '@agm/core';
+import {AgmInfoWindow, MapsAPILoader} from '@agm/core';
 import {} from '@agm/core/services/google-maps-types';
 
 @Component({
@@ -170,6 +170,9 @@ export class SearchResultsComponent implements OnInit {
       ]
     }
   ];
+  infoWindowOpened = null;
+  previousInfoWindow = null;
+
   private geoCoder;
 
   constructor(
@@ -186,7 +189,7 @@ export class SearchResultsComponent implements OnInit {
       const previousUrl = this.routingState.getPreviousUrl();
 
       /*      if (previousUrl !== undefined && previousUrl.includes('search')) {
-                this.smooth.smoothScrollToTop({duration: 10, easing: 'easeOutQuint', offset: 600});
+              this.smooth.smoothScrollToTop({duration: 10, easing: 'easeOutQuint', offset: 600});
             }*/
 
       /* Get all the params from the activated route snapshot and add some default values to them if they are not defined */
@@ -244,6 +247,13 @@ export class SearchResultsComponent implements OnInit {
     this.mapsAPILoader.load().then(() => {
       this.geoCoder = new google.maps.Geocoder();
     });
+  }
+
+  hotelNavigate(hotelId) {
+    this.router.navigate(['/hotels/', hotelId],
+      {
+        queryParamsHandling: 'merge'
+      });
   }
 
   onPageIndexChange($event: number) {
@@ -305,5 +315,21 @@ export class SearchResultsComponent implements OnInit {
         });
       }
     });
+  }
+
+  selectMarker(infoWindow: AgmInfoWindow) {
+    if (this.previousInfoWindow == null) {
+      this.previousInfoWindow = infoWindow;
+    } else {
+      this.infoWindowOpened = infoWindow;
+      this.previousInfoWindow.close();
+    }
+    this.previousInfoWindow = infoWindow;
+  }
+
+  closeWindow() {
+    if (this.previousInfoWindow != null) {
+      this.previousInfoWindow.close();
+    }
   }
 }

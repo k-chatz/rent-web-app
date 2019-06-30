@@ -27,7 +27,8 @@
         [zoomControl]="false"
         [scaleControl]="false"
         [mapTypeControl]="false"
-        [fitBounds]="pagedHotels.content.length>0">
+        [fitBounds]="pagedHotels.content.length>0"
+        (mapClick)="closeWindow()">
         <agm-marker-cluster
           imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
           <agm-marker *ngFor="let hotel of allHotels"
@@ -35,11 +36,12 @@
                       [longitude]="hotel.lng"
                       [agmFitBounds]="true"
                       [iconUrl]="markerIcon"
-          >
-            <agm-info-window>
-              <strong>{{hotel.id}}</strong>
-              <p>{{hotel.name}}</p>
-              <p>{{hotel.description_short}}</p>
+                      (markerClick)=selectMarker(infoWindow)>
+            <agm-info-window #infoWindow>
+              <h4 (click)="hotelNavigate(hotel.id)" style="cursor: pointer;">{{hotel.name}}
+                <small>({{hotel.id}})</small>
+              </h4>
+              <p style="max-width: 220px;">{{hotel.description_short}}</p>
               <nz-rate [ngModel]="hotel.stars" nzDisabled></nz-rate>
             </agm-info-window>
           </agm-marker>
