@@ -18,12 +18,8 @@ export class HotelService {
   ) {
   }
 
-  getHotel(hotelID): Observable<Hotel> {
-    return this.http.get<Hotel>(environment.apiRoot + '/hotels/' + hotelID);
-  }
-
-  getHotelRooms(hotelID): Observable<Room> {
-    return this.http.get<Room>(environment.apiRoot + '/hotels/' + hotelID + '/rooms');
+  getHotel(hotelId): Observable<Hotel> {
+    return this.http.get<Hotel>(environment.apiRoot + '/hotels/' + hotelId);
   }
 
   getHotelsByProvider(filters) {
@@ -53,4 +49,17 @@ export class HotelService {
       }),
     );
   }
+
+  getHotelRooms(hotelId: number): Observable<Room[]> {
+    return this.http.get<Room[]>(environment.apiRoot + '/hotels/' + hotelId + '/rooms');
+  }
+
+  roomReservation(hotelId: number, roomId: number, checkin: string, checkout: string): Observable<Room[]> {
+    return this.http.post<Room[]>(environment.apiRoot + '/hotels/' + hotelId + '/rooms/' + roomId + '/reservation',
+      {
+        startDate: checkin,
+        endDate: checkout
+      });
+  }
+
 }

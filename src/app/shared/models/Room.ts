@@ -1,8 +1,7 @@
 export interface Room {
   id: number;
   room_number: number;
-  photo: string;
-  description: string;
+  photos: [];
   capacity: number;
   createdAt?: Date;
   updatedAt?: Date;

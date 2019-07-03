@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentInit, Component, OnInit, ViewChild} from '@angular/core';
 import {HotelService} from '../../../shared/services/hotel.service';
 import {ActivatedRoute} from '@angular/router';
 import {Title} from '@angular/platform-browser';
@@ -15,156 +15,6 @@ import {Hotel} from '../../../shared/models/hotel';
   styleUrls: ['./hotel.component.scss']
 })
 export class HotelComponent {
-  destination: string;
-  checkin: string;
-  checkout: string;
-  visitors: number;
-  lat: number;
-  lng: number;
-  radius: number;
-  markerIcon = {
-    url: 'https://maps.google.com/mapfiles/kml/shapes/rec_lodging.png',
-    scaledSize: {
-      width: 35,
-      height: 35
-    }
-  };
-  mapStyle = [
-    {
-      featureType: 'administrative.land_parcel',
-      elementType: 'labels',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'landscape',
-      stylers: [
-        {
-          color: '#0078ff'
-        },
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'landscape',
-      elementType: 'geometry.fill',
-      stylers: [
-        {
-          color: '#ffeabb'
-        },
-        {
-          saturation: 100
-        },
-        {
-          lightness: 35
-        },
-        {
-          visibility: 'on'
-        }
-      ]
-    },
-    {
-      featureType: 'landscape.man_made',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'landscape.natural.landcover',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'landscape.natural.terrain',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'poi',
-      elementType: 'labels.text',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'poi.business',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'poi.park',
-      elementType: 'labels.text',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'road.arterial',
-      elementType: 'labels',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'road.highway',
-      elementType: 'labels',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'road.local',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'road.local',
-      elementType: 'labels',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'transit.station',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    }
-  ];
-  hotel: Hotel;
-  rooms: Room[];
-
   constructor(
     private hotelService: HotelService,
     private route: ActivatedRoute,
@@ -172,9 +22,7 @@ export class HotelComponent {
     private routingState: RoutingState,
     private smooth: SimpleSmoothScrollService,
   ) {
-
     this.route.data.subscribe((response: any) => {
-      console.log(response);
       this.hotel = response.data.hotel;
       this.titleService.setTitle(environment.appName + ' :: ' + this.hotel.name);
       const previousUrl = this.routingState.getPreviousUrl();
@@ -205,12 +53,55 @@ export class HotelComponent {
 
       this.radius = this.route.snapshot.queryParamMap.get('radius') == null ?
         5 : parseFloat(this.route.snapshot.queryParamMap.get('radius'));
+
+      this.hotelService.getHotelRooms(this.hotel.id).subscribe((rooms: Room[]) => {
+        this.rooms = rooms;
+      });
     });
+  }
 
+  destination: string;
+  checkin: string;
+  checkout: string;
+  visitors: number;
+  lat: number;
+  lng: number;
+  radius: number;
+  markerIcon = {
+    url: '/assets/images/iconfinder_map-marker_285659.svg',
+    scaledSize: {
+      width: 35,
+      height: 35
+    }
+  };
+  hotel: Hotel;
+  rooms: Room[];
+  isVisible = false;
 
-    this.hotelService.getHotelRooms(1).subscribe((data: any) => {
-      this.rooms = data;
-    });
+  counter(i: number) {
+    return new Array(i);
+  }
 
+  handleOk(roomId: number): void {
+    console.log('Button ok clicked!');
+    this.isVisible = false;
+    console.log(roomId);
+    moment(new Date(this.checkin)).format('YYYY-MM-DD');
+    this.hotelService.roomReservation(this.hotel.id, roomId,
+      moment(new Date(this.checkin)).format('YYYY-MM-DD'),
+      moment(new Date(this.checkout)).format('YYYY-MM-DD')
+    )
+      .subscribe((data: any) => {
+        console.log(data);
+      });
+  }
+
+  handleCancel(): void {
+    console.log('Button cancel clicked!');
+    this.isVisible = false;
+  }
+
+  reservation(roomId: number) {
+    this.isVisible = true;
   }
 }

@@ -31,145 +31,12 @@ export class SearchResultsComponent implements OnInit {
   minPrice: number;
   filters: Filters;
   markerIcon = {
-    url: 'https://maps.google.com/mapfiles/kml/shapes/rec_lodging.png',
+    url: '/assets/images/iconfinder_map-marker_285659.svg',
     scaledSize: {
       width: 35,
       height: 35
     }
   };
-  mapStyle = [
-    {
-      featureType: 'administrative.land_parcel',
-      elementType: 'labels',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'landscape',
-      stylers: [
-        {
-          color: '#0078ff'
-        },
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'landscape',
-      elementType: 'geometry.fill',
-      stylers: [
-        {
-          color: '#ffeabb'
-        },
-        {
-          saturation: 100
-        },
-        {
-          lightness: 35
-        },
-        {
-          visibility: 'on'
-        }
-      ]
-    },
-    {
-      featureType: 'landscape.man_made',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'landscape.natural.landcover',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'landscape.natural.terrain',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'poi',
-      elementType: 'labels.text',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'poi.business',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'poi.park',
-      elementType: 'labels.text',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'road.arterial',
-      elementType: 'labels',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'road.highway',
-      elementType: 'labels',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'road.local',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'road.local',
-      elementType: 'labels',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    },
-    {
-      featureType: 'transit.station',
-      stylers: [
-        {
-          visibility: 'off'
-        }
-      ]
-    }
-  ];
   infoWindowOpened = null;
   previousInfoWindow = null;
 
@@ -188,9 +55,9 @@ export class SearchResultsComponent implements OnInit {
     this.route.data.subscribe((response: any) => {
       const previousUrl = this.routingState.getPreviousUrl();
 
-      /*      if (previousUrl !== undefined && previousUrl.includes('search')) {
-              this.smooth.smoothScrollToTop({duration: 10, easing: 'easeOutQuint', offset: 600});
-            }*/
+      if (previousUrl !== undefined && previousUrl.includes('search')) {
+        // this.smooth.smoothScrollToTop({duration: 15, easing: 'easeOutQuint', offset: 0});
+      }
 
       /* Get all the params from the activated route snapshot and add some default values to them if they are not defined */
 

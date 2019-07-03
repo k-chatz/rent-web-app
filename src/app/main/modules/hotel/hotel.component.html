@@ -17,8 +17,7 @@
           [latitude]="lat"
           [longitude]="lng"
           [zoom]="12"
-          [maxZoom]="15"
-          [styles]="mapStyle"
+          [maxZoom]="16"
           [disableDefaultUI]="true"
           [zoomControl]="false"
           [scaleControl]="false"
@@ -49,7 +48,61 @@
       </div>
       <div class="row">
         <div class="col-12">
-          <app-rooms-list [rooms]="rooms"></app-rooms-list>
+          <div class="rooms-list">
+            <h2>Reserve a room</h2>
+            <nz-card *ngFor="let room of rooms" [nzBordered]="true">
+              <h6 class="available">Room number: {{room.room_number}} <span>from €{{room.price}}</span></h6>
+              <div nz-row>
+                <div nz-col [nzSpan]="18" [nzPush]="6">
+                  <button type="button" class="btn btn-primary" (click)="reservation(room.id)">Reserve</button>
+                </div>
+
+                <div nz-col [nzSpan]="6" [nzPull]="18">
+                  <span>Persons:</span>
+                  <div class="people-icons">
+                    <img *ngFor="let in of counter(room.capacity); let i = index;"
+                         src="assets/images/person.svg" class="person-icon" alt="person-icon">
+                  </div>
+                </div>
+              </div>
+              <nz-modal [(nzVisible)]="isVisible" [nzTitle]="hotel.name" (nzOnCancel)="handleCancel()"
+                        (nzOnOk)="handleOk(room. id)">
+
+                <h5>Room number {{room.room_number}} check-in ...</h5>
+
+                <div class="form-group">
+                  <div class="controls">
+                    <div class="control-label">
+                      <label for="startDate">Check-In Date:</label>
+                    </div>
+                    <nz-date-picker
+                      id="startDate"
+                      nzFormat="yyyy-MM-dd"
+                      nzPlaceHolder="Start"
+                      [(ngModel)]="checkin"
+                    >
+                    </nz-date-picker>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="controls">
+                    <div class="control-label">
+                      <label for="endDate">Check-Out Date:</label>
+                    </div>
+                    <nz-date-picker
+                      id="endDate"
+                      nzFormat="yyyy-MM-dd"
+                      nzPlaceHolder="End"
+                      [(ngModel)]="checkout"
+                    >
+                    </nz-date-picker>
+                  </div>
+                </div>
+
+              </nz-modal>
+            </nz-card>
+          </div>
         </div>
       </div>
       <div class="row">

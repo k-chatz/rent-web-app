@@ -7,13 +7,12 @@ import { ImagesCarouselComponent } from './components/images-carousel/images-car
 import { HotelDetailsComponent } from './components/hotel-details/hotel-details.component';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import {FormsModule} from '@angular/forms';
-import { RoomsListComponent } from './components/rooms-list/rooms-list.component';
 import { HotelReviewsComponent } from './components/hotel-reviews/hotel-reviews.component';
 import {AgmCoreModule} from '@agm/core';
 import {SearchResultsModule} from '../search-results/search-results.module';
 
 @NgModule({
-  declarations: [HotelComponent, ImagesCarouselComponent, HotelDetailsComponent, RoomsListComponent, HotelReviewsComponent],
+  declarations: [HotelComponent, ImagesCarouselComponent, HotelDetailsComponent, HotelReviewsComponent],
   imports: [
     CommonModule,
     HotelRoutingModule,
