@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve --port=4201 -o",
     "build": "ng build --prod --base-href https://kwstarikanos.github.io/rent-web-app/",
+    "npx angular-cli-ghpages": "npx angular-cli-ghpages --dir=dist/rent-app",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
