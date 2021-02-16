@@ -31,7 +31,7 @@ export class SearchResultsComponent implements OnInit {
   minPrice: number;
   filters: Filters;
   markerIcon = {
-    url: '/assets/images/iconfinder_map-marker_285659.svg',
+    url: '/assets/images/iconfinder_map-marker_285659.png',
     scaledSize: {
       width: 35,
       height: 35

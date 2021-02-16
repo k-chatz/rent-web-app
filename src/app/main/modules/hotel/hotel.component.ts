@@ -68,7 +68,7 @@ export class HotelComponent {
   lng: number;
   radius: number;
   markerIcon = {
-    url: '/assets/images/iconfinder_map-marker_285659.svg',
+    url: '/assets/images/iconfinder_map-marker_285659.png',
     scaledSize: {
       width: 35,
       height: 35
