@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port=4201 -o",
+    "start-dev": "ng build --watch & http-server -c-1 dist",
     "build": "ng build --prod --base-href https://kwstarikanos.github.io/rent-web-app/",
     "npx angular-cli-ghpages": "npx angular-cli-ghpages --dir=dist/rent-app",
     "test": "ng test",
