@@ -40,7 +40,7 @@ export class SearchResultsResolver implements Resolve<Observable<any>> {
       false,
       false,
       0,
-      200
+      2000
     );
 
     // tslint:disable-next-line:max-line-length
